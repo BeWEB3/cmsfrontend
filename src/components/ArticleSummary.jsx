@@ -31,7 +31,7 @@ const ArticleSummary = ({ language }) => {
           {t.content.split("\n\n").map((paragraph, index) => (
             <p
               key={index}
-              className="mb-4 text-[40px] font-normal leading-[77.2px] text-left text-[#00567D]  "
+              className="mb-4 text-[40px] font-normal leading-[77.2px]  text-[#00567D]  "
             >
               {paragraph}
             </p>
@@ -39,7 +39,7 @@ const ArticleSummary = ({ language }) => {
         </div>
         <div className="flex items-center justify-end gap-1 mt-4 ">
           <Calendar size={16} className="mr-1" />
-          <span className=" text-[21px] font-normal leading-[26.04px] text-left text-[#00567D]  ">
+          <span className=" text-[21px] font-normal leading-[26.04px]  text-[#00567D]  ">
             {t.date}
           </span>
         </div>

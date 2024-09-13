@@ -55,7 +55,7 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-white text-[31px] font-bold leading-[31px] text-left mb-4 "
+                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
               >
                 1. {t.firstName}
               </label>
@@ -72,7 +72,7 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-white text-[31px] font-bold leading-[31px] text-left mb-4 "
+                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
               >
                 2. {t.lastName}
               </label>
@@ -89,7 +89,7 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-white text-[31px] font-bold leading-[31px] text-left mb-4 "
+                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
               >
                 3. {t.email}
               </label>
@@ -107,7 +107,7 @@ const ContactForm = ({ language }) => {
           <div className=" pt-8  ">
             <label
               htmlFor="message"
-              className="block text-white text-[31px] font-bold leading-[31px] text-left mb-4 "
+              className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
             >
               4. {t.message}
             </label>

@@ -13,7 +13,7 @@ const HeroSectionWithImg = ({ language }) => {
       <img
         src={heroVideo}
         alt=""
-        className="relative z-[1] w-full " // Lower z-index for the image
+        className="relative z-[1] lg:h-[830px] md:h-[650px] h-[600px] object-cover w-full " // Lower z-index for the image
       />
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute left-4 top-[50%] translate-y-[-100%] flex flex-col gap-2 text-white z-[3]">

@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import heroVideo from "../pics/HeroVideoImg.png";
 import Facebook from "../pics/Facebook F.svg";
 import Youtube from "../pics/YouTube.svg";
 import Twitter from "../pics/Twitter.svg";
@@ -10,8 +9,19 @@ import { Pause, Play } from "lucide-react";
 
 const HeroSectionWithVideo = ({ language }) => {
   const videoRef = useRef(null);
+  const progressRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(50);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.addEventListener("timeupdate", handleProgress);
+      return () => {
+        videoElement.removeEventListener("timeupdate", handleProgress);
+      };
+    }
+  }, []);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -34,32 +44,33 @@ const HeroSectionWithVideo = ({ language }) => {
   };
 
   const handleSeek = (e) => {
-    if (videoRef.current) {
-      const seekTime = (e.target.value / 100) * videoRef.current.duration;
+    if (videoRef.current && progressRef.current) {
+      const rect = progressRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      const seekTime = (percentage / 100) * videoRef.current.duration;
       videoRef.current.currentTime = seekTime;
-      setProgress(e.target.value);
+      setProgress(percentage);
     }
   };
+
   return (
     <div className=" relative  ">
-      <img
-        src={heroVideo}
-        alt=""
-        className="relative z-[1] w-full " // Lower z-index for the image
-      />
-
-      {/* <video
+      <video
         ref={videoRef}
-        className="w-full rounded-lg"
+        className="w-full lg:h-[830px] md:h-[650px] h-[600px] object-cover "
         onTimeUpdate={handleProgress}
+        loop
       >
-        <source src="your-video-url.mp4" type="video/mp4" />
+        <source src="videos/herovideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video> */}
+      </video>
+
       <div className="absolute bottom-[40%] z-10 right-6 flex items-center gap-4  ">
         <div
           className="w-[200px] h-1 bg-[#ffffffaf]  cursor-pointer relative flex items-center "
           onClick={handleSeek}
+          ref={progressRef}
         >
           <div
             className="h-2 bg-[#5b5f63f1] "

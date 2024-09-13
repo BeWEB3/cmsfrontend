@@ -64,7 +64,11 @@ const NewsSection = ({ language }) => {
               <div className="absolute top-6 left-6  text-[white] text-[17px] font-extrabold leading-[17px]  rounded-full">
                 {news.date}
               </div>
-              <div className="p-4  absolute bottom-0 left-0  ">
+              <div
+                className={`p-4  absolute bottom-0  ${
+                  language === "ar" ? "right-0" : "left-0"
+                }  `}
+              >
                 <h3 className="text-[22px] font-bold leading-[27.28px] text-white mb-2">
                   {news.title}
                 </h3>
