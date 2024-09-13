@@ -29,8 +29,53 @@ const ParticipantsSection = ({ language }) => {
           "Member of the Balance of Payments Committee at the International Monetary Fund from 2005-2008.",
         ],
       },
+      {
+        name: "His Excellency Dr. Ahmed bin Abdulkarim Al-Khulafi",
+        title:
+          "Chairman of the Board of Directors of the General Authority for Competition",
+        image: participantIcon,
+        qualifications: [
+          "Doctorate in Economics: Colorado State University (USA) 2000 AD",
+          "Master in Business Administration: Colorado State University (USA) 2000",
+          "Master in Economics: University of Portland (USA) 1998",
+          "Bachelor of Law: King Saud University, 1987 AD",
+        ],
+        experience: [
+          "Advisor to the Royal Court with the rank of Minister and Chairman of the Board of Directors of the General Authority for Competition from 2021-2026.",
+          "Deputy Governor for Research and International Affairs at the Saudi Monetary Agency from 2013-2016.",
+          "Executive Director of the Kingdom’s Office at the International Monetary Fund from 2011-2013.",
+        ],
+        memberships: [
+          "Member of the Board of Directors of the Saudi Fund for Development from 2020-2011 AD.",
+          "Member of the Board of Directors of the Advisory Board of the Saudi Tourism Information and Research Center 'MAS'.",
+          "Affiliated with the Ministry of Tourism from 2008-2010 AD.",
+          "Member of the Balance of Payments Committee at the International Monetary Fund from 2005-2008.",
+        ],
+      },
     ],
     ar: [
+      {
+        name: "معالي الدكتور أحمد بن عبد الكريم الخليفي",
+        title: "رئيس مجلس إدارة الهيئة العامة للمنافسة",
+        image: participantIcon,
+        qualifications: [
+          "دكتوراه في الاقتصاد: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000 م",
+          "ماجستير في إدارة الأعمال: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000",
+          "ماجستير في الاقتصاد: جامعة بورتلاند (الولايات المتحدة الأمريكية) 1998",
+          "بكالوريوس في القانون: جامعة الملك سعود، 1987 م",
+        ],
+        experience: [
+          "مستشار في الديوان الملكي برتبة وزير ورئيس مجلس إدارة الهيئة العامة للمنافسة من 2021 إلى 2026.",
+          "نائب محافظ البحوث والشؤون الدولية في مؤسسة النقد العربي السعودي من 2013 إلى 2016.",
+          "المدير التنفيذي لمكتب المملكة العربية السعودية في صندوق النقد الدولي من 2011 إلى 2013.",
+        ],
+        memberships: [
+          "عضو مجلس إدارة صندوق التنمية السعودي من 2020 إلى 2011 م.",
+          "عضو مجلس إدارة المجلس الاستشاري لمركز المعلومات والبحوث السياحية 'ماس'.",
+          "تابع لوزارة السياحة من 2008 إلى 2010 م.",
+          "عضو لجنة ميزان المدفوعات في صندوق النقد الدولي من 2005 إلى 2008.",
+        ],
+      },
       {
         name: "معالي الدكتور أحمد بن عبد الكريم الخليفي",
         title: "رئيس مجلس إدارة الهيئة العامة للمنافسة",
@@ -65,7 +110,7 @@ const ParticipantsSection = ({ language }) => {
           {language === "ar" ? "المشاركين" : "Participants"}
         </h2>
         <div
-          className={`flex justify-center flex-wrap gap-8 ${
+          className={`grid grid-cols-2 gap-8 ${
             language === "ar" ? "!text-right" : "!text-left"
           }`}
         >

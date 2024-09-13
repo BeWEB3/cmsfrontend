@@ -1,5 +1,4 @@
 import React from "react";
-import { Code, Briefcase, BarChart } from "lucide-react";
 
 import Bulb from "../pics/Light On Bulb.png";
 
