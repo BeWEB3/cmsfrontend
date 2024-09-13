@@ -15,7 +15,6 @@ const ContactForm = ({ language }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Add your form submission logic here
   };
 
   const translations = {

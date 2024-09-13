@@ -11,7 +11,6 @@ const App = () => {
     return savedLanguage || "ar";
   });
 
-  // Update local storage whenever language state changes
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
