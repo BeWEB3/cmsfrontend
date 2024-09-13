@@ -10,7 +10,7 @@ const ParticipantsSection = ({ language }) => {
         name: "His Excellency Dr. Ahmed bin Abdulkarim Al-Khulafi",
         title:
           "Chairman of the Board of Directors of the General Authority for Competition",
-        image: participantIcon, // Replace with actual image URL
+        image: participantIcon,
         qualifications: [
           "Doctorate in Economics: Colorado State University (USA) 2000 AD",
           "Master in Business Administration: Colorado State University (USA) 2000",
@@ -34,7 +34,7 @@ const ParticipantsSection = ({ language }) => {
       {
         name: "معالي الدكتور أحمد بن عبد الكريم الخليفي",
         title: "رئيس مجلس إدارة الهيئة العامة للمنافسة",
-        image: participantIcon, // Replace with actual image URL
+        image: participantIcon,
         qualifications: [
           "دكتوراه في الاقتصاد: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000 م",
           "ماجستير في إدارة الأعمال: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000",
@@ -59,48 +59,73 @@ const ParticipantsSection = ({ language }) => {
   const currentParticipants = participants[language] || participants["en"];
 
   return (
-    <div className=" py-10 relative">
+    <div className=" py-16 pb-[18rem]  relative">
       <div className="container mx-auto">
         <h2 className="text-[50px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
           {language === "ar" ? "المشاركين" : "Participants"}
         </h2>
         <div
           className={`flex justify-center flex-wrap gap-8 ${
-            language === "ar" ? "text-right" : "text-left"
+            language === "ar" ? "!text-right" : "!text-left"
           }`}
         >
           {currentParticipants.map((participant, index) => (
             <div
               key={index}
-              className="bg-white [box-shadow:0_0_10px_3px_#7B7B7B40] rounded-[12px] p-6 w-full max-w-[100%] md:w-[48%] flex flex-col "
+              className="bg-white [box-shadow:0_0_10px_3px_#7B7B7B40] rounded-[12px] p-6 w-full max-w-[100%] md:w-[682px] flex flex-col "
             >
               <img
                 src={participant.image}
                 alt={participant.name}
                 className="rounded-[6px] h-32 w-32 mb-4"
               />
-              <h3 className="text-xl font-bold  mb-2">{participant.name}</h3>
-              <p className="text-gray-600  mb-4">{participant.title}</p>
+              <h3 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2">
+                {participant.name}
+              </h3>
+              <p className="text-[14px] font-normal leading-[14px]  text-[#919397]  mb-4">
+                {participant.title}
+              </p>
 
-              <div className="text-left w-full">
-                <h4 className="font-semibold mb-2">Academic Qualifications</h4>
+              <div className=" w-full">
+                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText  ">
+                  Academic Qualifications
+                </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
                   {participant.qualifications.map((qualification, i) => (
-                    <li key={i}>{qualification}</li>
+                    <li
+                      key={i}
+                      className="text-[12px] font-normal leading-[17.16px]  text-[#00567D]   "
+                    >
+                      {qualification}
+                    </li>
                   ))}
                 </ul>
 
-                <h4 className="font-semibold mb-2">Practical Experience</h4>
+                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
+                  Practical Experience
+                </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
                   {participant.experience.map((exp, i) => (
-                    <li key={i}>{exp}</li>
+                    <li
+                      key={i}
+                      className="text-[12px] font-normal leading-[17.16px]  text-[#00567D]   "
+                    >
+                      {exp}
+                    </li>
                   ))}
                 </ul>
 
-                <h4 className="font-semibold mb-2">Memberships</h4>
+                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
+                  Memberships
+                </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700">
                   {participant.memberships.map((membership, i) => (
-                    <li key={i}>{membership}</li>
+                    <li
+                      key={i}
+                      className="text-[12px] font-normal leading-[17.16px]  text-[#00567D]   "
+                    >
+                      {membership}
+                    </li>
                   ))}
                 </ul>
               </div>
