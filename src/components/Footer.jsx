@@ -48,7 +48,7 @@ const Footer = ({ language }) => {
       }`}
     >
       <div className=" mx-auto max-w-[891px] w-full   ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:px-6 py-12 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:px-6 py-12 ">
           <div className=" order-2  ">
             <h3 className="text-[24px] font-bold leading-[46.05px]  text-white mb-4">
               {content[language].title1}
@@ -83,7 +83,7 @@ const Footer = ({ language }) => {
               ))}
             </ul>
           </div>
-          <div className="md:col-span-2 lg:order-3 order-1  ">
+          <div className="sm:col-span-2 lg:order-3 order-1  ">
             <div className="flex lg:justify-end justify-start  items-end gap-4 ">
               <img src={logo1} alt="Logo" className="h-[134px] w-[99px]" />
               <div className=" h-[100px] w-[2px] bg-white mb-[15px] mx-4 " />

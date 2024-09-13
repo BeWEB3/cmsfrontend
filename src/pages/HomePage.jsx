@@ -16,14 +16,16 @@ const HomePage = ({ language }) => {
     <>
       {/* <HeroSectionWithImg language={language} /> */}
       <HeroSectionWithVideo language={language} />
-      <ServiceSection language={language} />
-      <ParticipantsSection language={language} />
-      <CompetitionNetwork language={language} />
-      <NewsSection language={language} />
-      {/* <ContactForm language={language} />
+      <div dir={language === "ar" ? "rtl" : "ltr"}>
+        <ServiceSection language={language} />
+        <ParticipantsSection language={language} />
+        <CompetitionNetwork language={language} />
+        <NewsSection language={language} />
+        {/* <ContactForm language={language} />
       <ContactInfo language={language} />
       <ArticleSummary language={language} />
       <CountryFlags language={language} /> */}
+      </div>
     </>
   );
 };

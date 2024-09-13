@@ -34,7 +34,10 @@ const Header = ({ language, toggleLanguage }) => {
   ];
 
   return (
-    <header className="w-full relative  ">
+    <header
+      className="w-full relative  "
+      dir={language === "ar" ? "rtl" : "ltr"}
+    >
       <div className=" max-w-[1400px]  left-[50%] translate-x-[-50%] top-0  w-full mx-auto px-4 py-2 absolute  z-50 ">
         <div className="flex justify-between items-center  ">
           <div className="flex items-center gap-4">

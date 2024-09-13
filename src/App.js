@@ -25,7 +25,6 @@ const App = () => {
         className={` items-center flex flex-col min-h-screen${
           language === "ar" ? " !text-right" : " !text-left"
         }`}
-        dir={language === "ar" ? "rtl" : "ltr"}
       >
         <Header language={language} toggleLanguage={toggleLanguage} />
         <main className="flex-grow   ">
