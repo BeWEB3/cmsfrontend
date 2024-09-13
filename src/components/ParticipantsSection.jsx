@@ -105,19 +105,19 @@ const ParticipantsSection = ({ language }) => {
 
   return (
     <div className=" py-16 pb-[18rem]  relative">
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <h2 className="text-[50px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
           {language === "ar" ? "المشاركين" : "Participants"}
         </h2>
         <div
-          className={`grid grid-cols-2 gap-8 ${
+          className={`grid lg:grid-cols-2 gap-8 px-4 max-w-[1390px] mx-auto  ${
             language === "ar" ? "!text-right" : "!text-left"
           }`}
         >
           {currentParticipants.map((participant, index) => (
             <div
               key={index}
-              className="bg-white [box-shadow:0_0_10px_3px_#7B7B7B40] rounded-[12px] p-6 w-full max-w-[100%] md:w-[682px] flex flex-col "
+              className="bg-white [box-shadow:0_0_10px_3px_#7B7B7B40] rounded-[12px] p-6 w-full  flex flex-col "
             >
               <img
                 src={participant.image}
