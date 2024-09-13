@@ -86,7 +86,7 @@ const Footer = ({ language }) => {
           <div className="md:col-span-2 lg:order-3 order-1  ">
             <div className="flex lg:justify-end justify-start  items-end gap-4 ">
               <img src={logo1} alt="Logo" className="h-[134px] w-[99px]" />
-              <div className=" h-[110px] w-[2px] bg-white mb-[15px] mx-4 " />
+              <div className=" h-[100px] w-[2px] bg-white mb-[15px] mx-4 " />
               <img
                 src={logo2}
                 alt="Logo"
