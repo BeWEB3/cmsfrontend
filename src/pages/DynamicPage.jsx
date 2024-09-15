@@ -5,6 +5,7 @@ import ServiceSection from "../components/ServiceSection";
 import TeamSection from "../components/TeamSection";
 import AboutSection from "../components/AboutSection";
 import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
+import HeroSectionWithImg from "../components/HeroSectionWithImg";
 
 const DynamicPage = ({ language, toggleLanguage }) => {
   const { slug } = useParams();
@@ -35,7 +36,15 @@ const DynamicPage = ({ language, toggleLanguage }) => {
 
   const renderComponent = (component) => {
     switch (component.type) {
-      case "hero":
+      case "heroimg":
+        return (
+          <HeroSectionWithImg
+            key={component.id}
+            {...component.data}
+            language={language}
+          />
+        );
+      case "herovideo":
         return (
           <HeroSectionWithVideo
             key={component.id}

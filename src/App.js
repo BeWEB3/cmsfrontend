@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage.jsx";
 import DynamicPage from "./pages/DynamicPage";
+import NewsPage from "./pages/NewsPage.jsx";
 
 const App = () => {
   const [language, setLanguage] = useState(() => {
@@ -30,6 +31,7 @@ const App = () => {
         <main className="flex-grow   ">
           <Routes>
             <Route path="/" element={<HomePage language={language} />} />
+            <Route path="/news" element={<NewsPage language={language} />} />
             <Route
               path="/:slug"
               element={

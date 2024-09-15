@@ -29,7 +29,6 @@ const HeroSectionWithImg = ({ language }) => {
       </div>
 
       {/* Artboard Image */}
-      <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] bottom-[-5px] z-[2]" />
       <img
         src={artBoard}
         alt=""

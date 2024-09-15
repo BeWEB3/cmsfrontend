@@ -31,7 +31,8 @@ const ServiceSection = ({ language }) => {
   ];
 
   return (
-    <section id="services" className="pb-28 pt-10 bg-[#00567D]">
+    <section id="services" className="pb-28 pt-10 bg-[#00567D] relative ">
+      <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] top-[-118px]  z-[2]" />
       <div className="container mx-auto px-4">
         <h2 className="text-white text-[50px] font-bold leading-[50px] text-center mb-16">
           {language === "ar" ? "الأهداف" : "Objectives"}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NewsSection = ({ language }) => {
   const newsData = [
@@ -73,6 +74,14 @@ const NewsSection = ({ language }) => {
             </div>
           ))}
         </div>
+        <Link
+          to={"/news"}
+          className={
+            " block text-[36px] font-bold leading-[36px] text-center text-[#0069A7] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-40%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-1 mt-8 "
+          }
+        >
+          {language === "ar" ? "اقرأ المزيد" : "Read More"}
+        </Link>
       </div>
     </div>
   );
