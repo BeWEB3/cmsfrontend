@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import newImg from "../pics/NewsImg.png";
 
 const NewsSection = ({ language }) => {
   const newsData = [
@@ -13,7 +14,7 @@ const NewsSection = ({ language }) => {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -25,7 +26,7 @@ const NewsSection = ({ language }) => {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -37,7 +38,7 @@ const NewsSection = ({ language }) => {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
   ];
 
@@ -54,6 +55,7 @@ const NewsSection = ({ language }) => {
               key={index}
               className="relative rounded-lg overflow-hidden shadow-lg  text-white h-[284px] "
             >
+              <div className="  absolute w-full h-full bg-[linear-gradient(180deg,#00000003_0%,#00567D_100%)] left-0 top-0   " />
               <img
                 src={news.imgSrc}
                 alt="News"

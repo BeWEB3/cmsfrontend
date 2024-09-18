@@ -37,9 +37,9 @@ const ContactForm = ({ language }) => {
   const t = translations[language] || translations.en;
 
   return (
-    <div className=" lg:px-8 px-4  ">
+    <div className=" xl:px-0 px-4  ">
       <div
-        className={`bg-[#00567D] px-8 rounded-[13px] shadow-lg w-full py-12   my-16 ${
+        className={`bg-[#00567D] px-8 xl:rounded-none rounded-[13px] shadow-lg w-full py-12   my-16 ${
           language === "ar" ? "rtl" : "ltr"
         }`}
       >

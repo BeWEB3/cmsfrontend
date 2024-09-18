@@ -23,7 +23,7 @@ const ArticleSummary = ({ language }) => {
 
   return (
     <div className="py-24 relative">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px]  top-[-90px] md:block hidden z-[2]" />
+      <div className="absolute w-full bg-[white] xl:h-[180px] md:h-[130px] h-[50px] xl:top-[-135px]  top-[-110px] md:block hidden z-[2]" />
 
       <div className=" px-6  ">
         <h2 className=" lg:text-[60px] text-[40px] font-bold lg:leading-[66px] leading-[40px] text-center text-[#00567D] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-50%)] before:absolute before:bottom-[-2px] before:left-[50%] before:translate-x-[-50%] pb-1  mb-10">

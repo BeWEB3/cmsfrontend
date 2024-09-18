@@ -23,7 +23,7 @@ const ContactInfo = ({ language }) => {
 
   return (
     <div className=" py-24 relative  ">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px] top-[-80px] md:block hidden  z-[2]   " />
+      <div className="absolute w-full bg-[white] xl:h-[150px] md:h-[120px] h-[50px] xl:top-[-135px] top-[-110px] md:block hidden  z-[2]   " />
       <div className=" px-6   ">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-12 p-6 max-w-[1339px] mx-auto w-full flex justify-between items-center xl:flex-nowrap flex-wrap gap-10 ">
           <div className="grid grid-cols-2 md:gap-24 sm:gap-12 gap-2  lg:order-1 order-2  lg:w-[unset] w-full ">

@@ -38,20 +38,20 @@ const Header = ({ language, toggleLanguage }) => {
       className="w-full relative  "
       dir={language === "ar" ? "rtl" : "ltr"}
     >
-      <div className=" max-w-[1400px]  left-[50%] translate-x-[-50%] top-0  w-full mx-auto sm:px-4 px-2 py-2 absolute  z-50 ">
+      <div className=" max-w-[1400px]  left-[50%] translate-x-[-50%] top-0  w-full mx-auto sm:px-4 px-1 py-2 absolute  z-50 ">
         <div className="flex justify-between items-center  ">
           <div className="flex items-center gap-4">
             <div className="flex items-end gap-2 ">
               <img
                 src={logo1}
                 alt="Logo"
-                className="   sm:h-[83px] sm:w-[61px]   h-[70px] w-[45px] object-contain object-center"
+                className="    sm:h-[83px] sm:w-[61px]   h-[70px] w-[45px] object-contain object-center"
               />
-              <div className=" sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px]  " />
+              <div className=" sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px]  " />
               <img
                 src={logo2}
                 alt="Logo"
-                className="sm:h-[96px] sm:w-[109px] h-[80px] w-[90px] ml-[-10px]  "
+                className="sm:h-[96px] sm:w-[109px] h-[80px] w-[80px] ml-[-10px]  "
               />
             </div>
             <nav className="hidden xl:flex items-center gap-4 ">
@@ -66,12 +66,9 @@ const Header = ({ language, toggleLanguage }) => {
               ))}
             </nav>
           </div>
-          <div className="flex items-center sm:space-x-4 sm:gap-0 gap-3  ">
+          <div className="flex items-center sm:space-x-4 sm:gap-0 gap-1  ">
             <div>
-              <div
-                className=" flex items-center sm:gap-6 gap-2 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]  "
-                dir={language === "ar" ? "rtl" : "ltr"}
-              >
+              <div className=" flex items-center sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]  ">
                 <div className=" flex items-center gap-1 [&_*]:text-[10px] text-white  ">
                   <Phone size={12} />
                   <Link to={"tel:+2035351900"}>+2035351900</Link>
@@ -110,7 +107,7 @@ const Header = ({ language, toggleLanguage }) => {
                     id="search"
                     lang={language}
                     placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
-                    className=" border-white border-solid border-[1px] rounded-[30px] px-[2rem] max-w-[214px] w-full mx-auto py-[2px] focus:outline-none bg-transparent text-white placeholder:text-white "
+                    className=" border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[27px] max-w-[214px] w-full mx-auto py-[2px] focus:outline-none bg-transparent text-white placeholder:text-white  text-[12px] font-normal leading-[13.8px]   "
                   />
                 </label>
               </div>

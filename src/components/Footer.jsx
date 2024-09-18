@@ -48,14 +48,14 @@ const Footer = ({ language }) => {
       }`}
     >
       <div className=" mx-auto max-w-[891px] w-full   ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:px-6 py-12 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 gap-4 sm:px-6 py-12 ">
           <div className=" order-2  ">
-            <h3 className="text-[24px] font-bold leading-[46.05px]  text-white mb-4">
+            <h3 className="text-[24px] font-bold leading-[46.05px]  text-white sm:mb-4 mb-0  ">
               {content[language].title1}
             </h3>
             <ul>
               {content[language].links1.map((link, index) => (
-                <li key={index} className="mb-2">
+                <li key={index} className="sm:mb-2 mb-0  ">
                   <Link
                     href="#"
                     className="hover:underline text-[16px] font-light leading-[30.7px]   "
@@ -67,12 +67,12 @@ const Footer = ({ language }) => {
             </ul>
           </div>
           <div className=" order-3  ">
-            <h3 className="text-[24px] font-bold leading-[46.05px]  text-white mb-4">
+            <h3 className="text-[24px] font-bold leading-[46.05px]  text-white sm:mb-4 mb-0  ">
               {content[language].title2}
             </h3>
             <ul>
               {content[language].links2.map((link, index) => (
-                <li key={index} className="mb-2">
+                <li key={index} className="sm:mb-2 mb-0  ">
                   <Link
                     href="#"
                     className="hover:underline text-[16px] font-light leading-[30.7px]   "

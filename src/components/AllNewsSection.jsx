@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function AllNewsSection({ language }) {
+import newImg from "../pics/NewsImg.png";
+
+function AllNewsSection({ language, ShowallNewsLink = true }) {
   const newsData = [
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -13,7 +15,7 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -25,7 +27,7 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -37,7 +39,7 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -49,7 +51,7 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -61,7 +63,7 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
@@ -73,20 +75,21 @@ function AllNewsSection({ language }) {
         language === "ar"
           ? "الهيئة العامة للمنافسة تعقد الاجتماع الدوري لمناقشة القضايا الاقتصادية"
           : "The General Authority for Competition is holding its regular meeting to discuss economic issues.",
-      imgSrc: "https://via.placeholder.com/300", // Replace with actual image source
+      imgSrc: newImg, // Replace with actual image source
     },
   ];
   return (
     <div className="relative  ">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px] top-[-80px] md:block hidden  z-[2]" />
+      <div className="absolute w-full bg-[white] xl:h-[180px] md:h-[110px] h-[50px] xl:top-[-135px] top-[-110px] md:block hidden  z-[2]" />
       <div className=" px-6  py-24  ">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-12 p-6 max-w-[1339px] mx-auto   ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {newsData.map((news, index) => (
               <div
                 key={index}
-                className="relative rounded-lg overflow-hidden shadow-lg  text-white h-[284px] "
+                className="relative rounded-lg overflow-hidden shadow-lg  text-white h-[284px]     "
               >
+                <div className="  absolute w-full h-full bg-[linear-gradient(180deg,#00000003_0%,#00567D_100%)] left-0 top-0   " />
                 <img
                   src={news.imgSrc}
                   alt="News"
@@ -108,6 +111,7 @@ function AllNewsSection({ language }) {
             ))}
           </div>
         </div>
+
         <Link
           to={"/news"}
           className={

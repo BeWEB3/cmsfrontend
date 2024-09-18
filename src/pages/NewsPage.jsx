@@ -10,7 +10,7 @@ function NewsPage({ language }) {
         Title={{ ar: "أخبار المنافسة", en: "Competition news" }}
         newsTitle={false}
       />
-      <AllNewsSection language={language} />
+      <AllNewsSection language={language} ShowallNewsLink={false} />
     </div>
   );
 }
