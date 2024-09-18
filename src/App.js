@@ -5,6 +5,9 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage.jsx";
 import DynamicPage from "./pages/DynamicPage";
 import NewsPage from "./pages/NewsPage.jsx";
+import SubNewsPage from "./pages/SubNewsPage.jsx";
+import ContactUsPage from "./pages/ContactUsPage.jsx";
+import MembersPage from "./pages/MembersPage.jsx";
 
 const App = () => {
   const [language, setLanguage] = useState(() => {
@@ -32,6 +35,18 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage language={language} />} />
             <Route path="/news" element={<NewsPage language={language} />} />
+            <Route
+              path="/news/:name"
+              element={<SubNewsPage language={language} />}
+            />
+            <Route
+              path="/contact-us"
+              element={<ContactUsPage language={language} />}
+            />
+            <Route
+              path="/members"
+              element={<MembersPage language={language} />}
+            />
             <Route
               path="/:slug"
               element={

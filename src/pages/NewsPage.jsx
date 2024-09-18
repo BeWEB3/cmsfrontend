@@ -5,7 +5,11 @@ import AllNewsSection from "../components/AllNewsSection";
 function NewsPage({ language }) {
   return (
     <div>
-      <HeroSectionWithImg language={language} />
+      <HeroSectionWithImg
+        language={language}
+        Title={{ ar: "أخبار المنافسة", en: "Competition news" }}
+        newsTitle={false}
+      />
       <AllNewsSection language={language} />
     </div>
   );
