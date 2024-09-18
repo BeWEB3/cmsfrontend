@@ -9,7 +9,7 @@ function SubNewsPage({ language }) {
 
   const title = {
     en: "Article Title",
-    ar: "Página de noticias sub",
+    ar: "عنوان المقال",
   };
   return (
     <div>

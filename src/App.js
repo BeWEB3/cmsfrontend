@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage.jsx";
-import DynamicPage from "./pages/DynamicPage";
+// import DynamicPage from "./pages/DynamicPage";
 import NewsPage from "./pages/NewsPage.jsx";
 import SubNewsPage from "./pages/SubNewsPage.jsx";
 import ContactUsPage from "./pages/ContactUsPage.jsx";
 import MembersPage from "./pages/MembersPage.jsx";
+import TemplatePage from "./pages/TemplatePage.jsx";
 
 const App = () => {
   const [language, setLanguage] = useState(() => {
@@ -48,6 +49,10 @@ const App = () => {
               element={<MembersPage language={language} />}
             />
             <Route
+              path="/template"
+              element={<TemplatePage language={language} />}
+            />
+            {/* <Route
               path="/:slug"
               element={
                 <DynamicPage
@@ -55,7 +60,7 @@ const App = () => {
                   toggleLanguage={toggleLanguage}
                 />
               }
-            />
+            /> */}
           </Routes>
         </main>
         <Footer language={language} />
