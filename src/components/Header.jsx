@@ -61,20 +61,23 @@ const Header = ({ language, toggleLanguage }) => {
       <div className="max-w-[1400px] left-[50%] translate-x-[-50%] top-0 w-full mx-auto sm:px-4 px-1 py-2 absolute z-50">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="flex items-end gap-2">
+            <div className="flex items-end sm:gap-2 gap-1 ">
               <img
                 src={logo1}
                 alt="Logo"
-                className="sm:h-[83px] sm:w-[61px] h-[70px] w-[45px] object-contain object-center"
+                className="sm:h-[83px] sm:w-[61px] h-[60px] w-[40px] object-contain object-center"
               />
               <div className="sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px]" />
               <img
                 src={logo2}
                 alt="Logo"
-                className="sm:h-[96px] sm:w-[109px] h-[80px] w-[80px] ml-[-10px]"
+                className="sm:h-[96px] sm:w-[109px] h-[70px] w-[70px] ml-[-10px]"
               />
             </div>
-            <nav className="hidden xl:flex items-center gap-4">
+            <nav
+              className="hidden xl:flex items-center gap-4"
+              dir={language === "ar" && "ltr"}
+            >
               {navItems.map((item, index) => (
                 <NavLink
                   key={index}
@@ -122,14 +125,14 @@ const Header = ({ language, toggleLanguage }) => {
           <div className="flex items-center sm:space-x-4 sm:gap-0 gap-1">
             <div>
               <div className="flex items-center sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]">
-                <div className="flex items-center gap-1 [&_*]:text-[10px] text-white">
+                <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[8px] text-white">
                   <Phone size={12} />
                   <Link to={"tel:+2035351900"}>+2035351900</Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Mail size={12} />
                   <Link to={"mailto:info@eca.org.eg"}>info@eca.org.eg</Link>
                 </div>
-                <div className="flex items-center [&_*]:text-[10px] text-white">
+                <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[8px] text-white">
                   <button
                     onClick={toggleLanguage}
                     className={`${language === "en" ? "" : ""}`}
@@ -186,6 +189,7 @@ const Header = ({ language, toggleLanguage }) => {
               <NavLink
                 key={index}
                 to={item.href}
+                onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-2 rounded-md text-black  font-bold text-[19px] transition-colors duration-200"
               >
                 {item.label}
@@ -213,6 +217,10 @@ const Header = ({ language, toggleLanguage }) => {
                   <NavLink
                     key={index}
                     to={item.href}
+                    onClick={() => {
+                      setIsMenuOpen(false); // Close menu on dropdown link click
+                      setIsDropdownOpen(false); // Optionally close dropdown as well
+                    }}
                     className="block px-3 py-2 rounded-md  text-black   text-[19px] font-medium  hover:bg-gray-100 transition-colors duration-200"
                   >
                     {item.label}

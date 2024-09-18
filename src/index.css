@@ -9,6 +9,7 @@ body,
 #root {
   font-family: "Frutiger LT Arabic", sans-serif;
   background: white;
+  overflow-x: hidden;
 }
 
 * {

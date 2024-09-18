@@ -8,12 +8,12 @@ const CompetitionNetwork = ({ language }) => {
       <div className=" mx-auto px-4 flex justify-center gap-8 mb-24 ">
         {/* Arabic Section */}
         {language === "ar" && (
-          <div className="bg-[#E2ECF0] text-[#00567D] p-6 rounded-md shadow-lg w-full max-w-[1128px]">
-            <h2 className="sm:text-[36px] text-[25px] font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText before:left-[unset] before:right-0 mb-4">
+          <div className="bg-[#E2ECF0] text-[#00567D] sm:p-6 p-4 rounded-md shadow-lg w-full max-w-[1128px]">
+            <h2 className="sm:text-[36px] text-[20px] font-bold leading-[36px]  text-[#0069A7] leftLineOnText before:left-[unset] before:right-0 mb-4">
               شبكة المنافسة العربية
             </h2>
             <div className="text-lg leading-relaxed text-right">
-              <ol className="list-decimal list-inside mt-4 [&>li]:my-4 [&>li]:text-[20px] [&>li]:font-normal [&>li]:leading-[26.2px]  text-[#0069A7] ">
+              <ol className="list-decimal list-inside mt-4 [&>li]:my-4 [&>li]:sm:text-[20px] [&>li]:text-[16px]  [&>li]:font-normal [&>li]:sm:leading-[26.2px] [&>li]:leading-[22px]  text-[#0069A7] ">
                 <li>
                   تم إنشاء شبكة المنافسة العربية بناءً على مبادرة المجلس
                   الاقتصادي والاجتماعي لجامعة الدول العربية، والذي كلف لجنة
@@ -42,12 +42,12 @@ const CompetitionNetwork = ({ language }) => {
 
         {/* English Section */}
         {language === "en" && (
-          <div className="bg-[#E2ECF0] text-[#00567D] p-6 rounded-md shadow-lg w-full max-w-[1128px]">
-            <h2 className="sm:text-[36px] text-[25px]  font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText mb-4   ">
+          <div className="bg-[#E2ECF0] text-[#00567D] sm:p-6 p-4 rounded-md shadow-lg w-full max-w-[1128px]">
+            <h2 className="sm:text-[36px] text-[20px]  font-bold leading-[36px]  text-[#0069A7] leftLineOnText mb-4   ">
               Arab Competition Network
             </h2>
             <div className="text-lg leading-relaxed text-left">
-              <ol className="list-decimal list-inside mt-4 [&>li]:my-4 [&>li]:text-[20px] [&>li]:font-normal [&>li]:leading-[26.2px]  text-[#0069A7]  ">
+              <ol className="list-decimal list-inside mt-4 [&>li]:my-4 [&>li]:sm:text-[20px] [&>li]:text-[16px]  [&>li]:font-normal [&>li]:sm:leading-[26.2px] [&>li]:leading-[22px]  text-[#0069A7]  ">
                 <li>
                   The Arab Competition Network was established based on an
                   initiative of the Economic and Social Council of the League of

@@ -3,12 +3,12 @@ import React from "react";
 const TempleteContentSection = ({ language }) => {
   return (
     <div className="py-24 relative">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] top-[-118px]  z-[2]" />
+      <div className="absolute w-full bg-[white] xl:h-[160px] md:h-[120px] h-[50px] xl:top-[-140px] top-[-110px]  z-[2] md:block hidden  " />
 
-      <div className=" px-6  ">
-        <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] p-6 max-w-[1339px] mx-auto">
+      <div className=" sm:px-6 px-4  ">
+        <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-6 p-2 max-w-[1339px] mx-auto">
           <div className="p-4">
-            <div className="bg-gray-200 py-6 flex items-center justify-center mb-4 max-w-[505px] mx-auto w-full">
+            <div className="bg-gray-200  py-6 flex items-center justify-center mb-4 max-w-[505px] mx-auto w-full">
               <p className="text-[40px] font-normal leading-[77.2px] text-center text-[#00567D]   ">
                 Image Goes Here
                 <br />

@@ -24,6 +24,7 @@ const ContactForm = ({ language }) => {
       lastName: "2. Last Name",
       email: "3. Email Address",
       message: "4. Message",
+      submit: "Submit",
     },
     ar: {
       title: "أرسل لنا رسالة",
@@ -31,6 +32,7 @@ const ContactForm = ({ language }) => {
       lastName: "اسم العائلة",
       email: "عنوان البريد الإلكتروني",
       message: "الرسالة",
+      submit: "إرسال",
     },
   };
 
@@ -126,6 +128,14 @@ const ContactForm = ({ language }) => {
               className="w-full px-6 py-3 bg-white rounded-lg "
               required
             ></textarea>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full bg-white text-[#00567D]  font-bold py-2 px-4 rounded  transition duration-300"
+            >
+              {t.submit}
+            </button>
           </div>
         </form>
       </div>

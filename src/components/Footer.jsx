@@ -95,12 +95,16 @@ const Footer = ({ language }) => {
           </div>
           <div className="sm:col-span-2 lg:order-3 order-1">
             <div className="flex lg:justify-end justify-start items-end gap-4">
-              <img src={logo1} alt="Logo" className="h-[134px] w-[99px]" />
-              <div className="h-[100px] w-[2px] bg-white mb-[15px] mx-4" />
+              <img
+                src={logo1}
+                alt="Logo"
+                className="sm:h-[134px] sm:w-[99px] h-[100px] w-[70px]  "
+              />
+              <div className="sm:h-[100px] h-[80px] w-[2px] bg-white mb-[15px] mx-4" />
               <img
                 src={logo2}
                 alt="Logo"
-                className={`h-[155px] w-[176px] ${
+                className={`sm:h-[155px] sm:w-[176px] h-[125px] w-[130px] ${
                   language === "ar" ? "mr-[-25px]" : "ml-[-25px]"
                 }`}
               />
