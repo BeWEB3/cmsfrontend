@@ -51,7 +51,8 @@ const NewsSection = ({ language }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {newsData.map((news, index) => (
-            <div
+            <Link
+              to={"/news/sdfsdf"}
               key={index}
               className="relative rounded-lg overflow-hidden shadow-lg  text-white h-[284px] "
             >
@@ -73,7 +74,7 @@ const NewsSection = ({ language }) => {
                   {news.title}
                 </h3>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <Link

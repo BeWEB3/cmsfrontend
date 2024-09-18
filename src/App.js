@@ -9,6 +9,8 @@ import SubNewsPage from "./pages/SubNewsPage.jsx";
 import ContactUsPage from "./pages/ContactUsPage.jsx";
 import MembersPage from "./pages/MembersPage.jsx";
 import TemplatePage from "./pages/TemplatePage.jsx";
+import ScrollToTop from "./hooks/ScrollToTop.jsx";
+import NotFound from "./pages/NotFoundPage.jsx";
 
 const App = () => {
   const [language, setLanguage] = useState(() => {
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <div
         className={` items-center flex flex-col min-h-screen${
           language === "ar" ? " !text-right" : " !text-left"
@@ -52,6 +55,7 @@ const App = () => {
               path="/template"
               element={<TemplatePage language={language} />}
             />
+            <Route path="*" element={<NotFound language={language} />} />
             {/* <Route
               path="/:slug"
               element={

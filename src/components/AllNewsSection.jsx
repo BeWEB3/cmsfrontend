@@ -85,7 +85,8 @@ function AllNewsSection({ language, ShowallNewsLink = true }) {
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-12 p-6 max-w-[1339px] mx-auto   ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {newsData.map((news, index) => (
-              <div
+              <Link
+                to={"/news/sdf"}
                 key={index}
                 className="relative rounded-lg overflow-hidden shadow-lg  text-white h-[284px]     "
               >
@@ -107,7 +108,7 @@ function AllNewsSection({ language, ShowallNewsLink = true }) {
                     {news.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

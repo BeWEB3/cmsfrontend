@@ -32,7 +32,7 @@ const ServiceSection = ({ language }) => {
 
   return (
     <section id="services" className="pb-36 pt-6 bg-[#00567D] relative w-full ">
-      <div className="absolute w-full bg-[#00567D] xl:h-[150px] md:h-[120px] h-[80px] xl:top-[-130px] top-[-110px] lg:block hidden  z-[2]" />
+      <div className="absolute w-full bg-[#00567D] xl:h-[150px] md:h-[120px] h-[80px] xl:top-[-140px] top-[-110px] lg:block hidden  z-[2]" />
       <div className="w-full mx-auto px-4 lg:pt-0 pt-10 ">
         <h2 className="text-white text-[50px] font-bold leading-[50px] text-center mb-16">
           {language === "ar" ? "الأهداف" : "Objectives"}
