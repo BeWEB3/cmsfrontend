@@ -18,7 +18,7 @@ const HeroSectionWithImg = ({ language, Title, newsTitle = false }) => {
         className="relative z-[1] 2xl:h-[1100px] lg:h-[830px] md:h-[650px] h-[600px] object-cover w-full " // Lower z-index for the image
       />
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
-      <div className="absolute sm:left-4 left-[50%] sm:translate-x-[unset] translate-x-[-50%]  sm:top-[50%] sm:bottom-[unset] bottom-[7rem] sm:translate-y-[-100%] flex sm:flex-col flex-row gap-2 text-white z-[3]  [&>a>img]:sm:w-[30px] [&>a>img]:w-[35px]       ">
+      <div className="absolute sm:left-4 left-[50%] sm:translate-x-[unset] translate-x-[-50%]  sm:top-[50%] sm:bottom-[unset] bottom-[7rem] sm:translate-y-[-100%] flex sm:flex-col flex-row gap-4 text-white z-[3]  [&>a>img]:sm:w-[30px] [&>a>img]:w-[35px]       ">
         <Link to={""} target="_blank">
           <img src={Facebook} alt="" />
         </Link>

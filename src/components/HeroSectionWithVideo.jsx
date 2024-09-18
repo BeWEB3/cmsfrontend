@@ -58,7 +58,7 @@ const HeroSectionWithVideo = ({ language }) => {
     <div className=" relative  ">
       <video
         ref={videoRef}
-        className="w-full xl:h-[1200px] lg:h-[830px] md:h-[650px] h-[600px] object-cover "
+        className="w-full xl:h-[1100px] lg:h-[830px] md:h-[650px] h-[600px] object-cover "
         onTimeUpdate={handleProgress}
         loop
       >
@@ -89,7 +89,7 @@ const HeroSectionWithVideo = ({ language }) => {
         </button>
       </div>
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
-      <div className="absolute left-4 top-[50%] translate-y-[-100%] flex flex-col gap-2 text-white z-[3]">
+      <div className="absolute left-4 top-[50%] translate-y-[-100%] flex flex-col gap-4 text-white z-[3]">
         <Link to={""} target="_blank">
           <img src={Facebook} alt="" />
         </Link>
@@ -106,7 +106,7 @@ const HeroSectionWithVideo = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
+        className="absolute bottom-0 z-[4] bg-transparent w-full xl:h-[280px] lg:block hidden "
       />
     </div>
   );

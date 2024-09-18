@@ -4,12 +4,12 @@ import React from "react";
 
 const CompetitionNetwork = ({ language }) => {
   return (
-    <div className="relative bg-[#00567D]  py-16 mb-[10rem] ">
+    <div className="relative bg-[#00567D]  py-16 xl:pb-[8rem]  lg:mb-[10rem] mb-[5rem] ">
       <div className=" mx-auto px-4 flex justify-center gap-8 mb-24 ">
         {/* Arabic Section */}
         {language === "ar" && (
           <div className="bg-[#E2ECF0] text-[#00567D] p-6 rounded-md shadow-lg w-full max-w-[1128px]">
-            <h2 className="text-[36px] font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText mb-4">
+            <h2 className="sm:text-[36px] text-[25px] font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText before:left-[unset] before:right-0 mb-4">
               شبكة المنافسة العربية
             </h2>
             <div className="text-lg leading-relaxed text-right">
@@ -43,7 +43,7 @@ const CompetitionNetwork = ({ language }) => {
         {/* English Section */}
         {language === "en" && (
           <div className="bg-[#E2ECF0] text-[#00567D] p-6 rounded-md shadow-lg w-full max-w-[1128px]">
-            <h2 className="text-[36px] font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText mb-4   ">
+            <h2 className="sm:text-[36px] text-[25px]  font-bold leading-[36px] text-right text-[#0069A7] leftLineOnText mb-4   ">
               Arab Competition Network
             </h2>
             <div className="text-lg leading-relaxed text-left">
@@ -83,7 +83,7 @@ const CompetitionNetwork = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-[-120px] z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
+        className="absolute bottom-[-140px] z-[4] bg-transparent  w-full xl:h-[280px] lg:block hidden  "
       />
     </div>
   );

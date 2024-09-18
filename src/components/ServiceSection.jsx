@@ -31,20 +31,17 @@ const ServiceSection = ({ language }) => {
   ];
 
   return (
-    <section
-      id="services"
-      className="pb-28 pt-10 bg-[#00567D] relative w-full "
-    >
-      <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px] top-[-80px] lg:block hidden  z-[2]" />
+    <section id="services" className="pb-36 pt-6 bg-[#00567D] relative w-full ">
+      <div className="absolute w-full bg-[#00567D] xl:h-[150px] md:h-[120px] h-[80px] xl:top-[-130px] top-[-110px] lg:block hidden  z-[2]" />
       <div className="w-full mx-auto px-4 lg:pt-0 pt-10 ">
         <h2 className="text-white text-[50px] font-bold leading-[50px] text-center mb-16">
           {language === "ar" ? "الأهداف" : "Objectives"}
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 max-w-[1400px] mx-auto  ">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-[#0C5F8F] p-8 pb-14 rounded-[19px] shadow-md text-center hover:shadow-lg transition duration-300 text-white flex flex-col items-center "
+              className="bg-[#0C5F8F] p-8 pb-14 rounded-[19px] shadow-sm text-center hover:shadow-lg transition duration-300 text-white flex flex-col items-center "
             >
               <div className="flex justify-center mb-6">
                 <img src={service.icon} alt="" />
@@ -52,8 +49,8 @@ const ServiceSection = ({ language }) => {
               <h3 className="text-[32px] font-bold leading-[32px] text-center  ">
                 {service.title}
               </h3>
-              <div className=" max-w-[230px] w-full h-[2px] bg-white  mt-3 mb-6 " />
-              <p className="text-[19px] font-normal leading-[22.04px] text-center max-w-[299px] mx-auto   ">
+              <div className=" max-w-[230px] w-full h-[2px] bg-white  mt-4 mb-8 " />
+              <p className="text-[19px] font-normal leading-[22.04px] text-center max-w-[340px] mx-auto   ">
                 {service.description}
               </p>
             </div>

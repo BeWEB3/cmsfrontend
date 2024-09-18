@@ -20,10 +20,10 @@ const ContactForm = ({ language }) => {
   const translations = {
     en: {
       title: "Send Us A Message",
-      firstName: "First Name",
-      lastName: "Last Name",
-      email: "Email Address",
-      message: "Message",
+      firstName: "1. First Name",
+      lastName: "2. Last Name",
+      email: "3. Email Address",
+      message: "4. Message",
     },
     ar: {
       title: "أرسل لنا رسالة",
@@ -43,7 +43,7 @@ const ContactForm = ({ language }) => {
           language === "ar" ? "rtl" : "ltr"
         }`}
       >
-        <h2 className="text-[50px] font-bold leading-[50px] text-center text-white mb-16 max-w-[1100px] mx-auto   ">
+        <h2 className="sm:text-[50px] text-[30px] font-bold leading-[50px] text-center text-white mb-16 max-w-[1100px] mx-auto   ">
           {t.title}
         </h2>
         <form
@@ -54,9 +54,10 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
+                className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                1. {t.firstName}
+                {language === "ar" && "١. "}
+                {t.firstName}
               </label>
               <input
                 type="text"
@@ -71,9 +72,11 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
+                className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                2. {t.lastName}
+                {language === "ar" && "٢. "}
+
+                {t.lastName}
               </label>
               <input
                 type="text"
@@ -88,9 +91,11 @@ const ContactForm = ({ language }) => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
+                className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                3. {t.email}
+                {language === "ar" && "٣. "}
+
+                {t.email}
               </label>
               <input
                 type="email"
@@ -106,9 +111,11 @@ const ContactForm = ({ language }) => {
           <div className=" pt-8  ">
             <label
               htmlFor="message"
-              className="block text-white text-[31px] font-bold leading-[31px]  mb-4 "
+              className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
             >
-              4. {t.message}
+              {language === "ar" && "٤. "}
+
+              {t.message}
             </label>
             <textarea
               id="message"

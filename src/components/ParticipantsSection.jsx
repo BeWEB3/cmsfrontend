@@ -122,7 +122,7 @@ const ParticipantsSection = ({ language }) => {
   const currentParticipants = participants[language] || participants["en"];
 
   return (
-    <div className=" py-16  pb-[18rem]  relative">
+    <div className=" py-16  sm:pb-[18rem] pb-[6rem]  relative">
       <div className=" mx-auto">
         <h2 className="text-[50px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
           {language === "ar" ? "المشاركين" : "Participants"}
@@ -150,7 +150,11 @@ const ParticipantsSection = ({ language }) => {
               </p>
 
               <div className=" w-full">
-                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText  ">
+                <h4
+                  className={`text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText ${
+                    language === "ar" && "before:left-[unset]  "
+                  } `}
+                >
                   {participant.qualificationsName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
@@ -164,7 +168,11 @@ const ParticipantsSection = ({ language }) => {
                   ))}
                 </ul>
 
-                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
+                <h4
+                  className={`text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText ${
+                    language === "ar" && "before:left-[unset]  "
+                  } `}
+                >
                   {participant.experienceName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
@@ -178,7 +186,11 @@ const ParticipantsSection = ({ language }) => {
                   ))}
                 </ul>
 
-                <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
+                <h4
+                  className={`text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText ${
+                    language === "ar" && "before:left-[unset]  "
+                  } `}
+                >
                   {participant.membershipsName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700">
@@ -200,7 +212,7 @@ const ParticipantsSection = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
+        className="absolute bottom-[-20px] z-[4] bg-transparent  w-full xl:h-[280px] lg:block hidden "
       />
     </div>
   );
