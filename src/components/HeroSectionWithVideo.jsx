@@ -10,7 +10,7 @@ import { Pause, Play } from "lucide-react";
 const HeroSectionWithVideo = ({ language }) => {
   const videoRef = useRef(null);
   const progressRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -61,6 +61,8 @@ const HeroSectionWithVideo = ({ language }) => {
         className="w-full xl:h-[1100px] lg:h-[830px] md:h-[650px] h-[600px] object-cover "
         onTimeUpdate={handleProgress}
         loop
+        muted
+        autoPlay
       >
         <source src="videos/herovideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.

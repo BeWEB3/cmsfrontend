@@ -33,7 +33,7 @@ const NotFound = ({ language }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#00000088] flex flex-col">
+    <div className="min-h-screen bg-[#00000088] flex flex-col pt-16">
       {/* Assume Header component is rendered here */}
       <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 text-center">
@@ -56,7 +56,7 @@ const NotFound = ({ language }) => {
             <div className="transition-opacity duration-500 ease-in-out delay-300 opacity-0 animate-fadeIn">
               <Link
                 to="/"
-                className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#00567D] hover:bg-[#00557dd0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00567D] transition-colors duration-300"
               >
                 <Home className="mr-2" size={16} />
                 {content[language].homeButton}
@@ -66,7 +66,7 @@ const NotFound = ({ language }) => {
             <div className="transition-opacity duration-500 ease-in-out delay-500 opacity-0 animate-fadeIn">
               <button
                 onClick={() => window.history.back()}
-                className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-[#00567D] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2  transition-colors duration-300"
               >
                 <ArrowLeft className="mr-2" size={16} />
                 {content[language].backButton}
