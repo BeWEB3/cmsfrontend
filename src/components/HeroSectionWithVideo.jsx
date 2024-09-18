@@ -58,7 +58,7 @@ const HeroSectionWithVideo = ({ language }) => {
     <div className=" relative  ">
       <video
         ref={videoRef}
-        className="w-full lg:h-[830px] md:h-[650px] h-[600px] object-cover "
+        className="w-full xl:h-[1200px] lg:h-[830px] md:h-[650px] h-[600px] object-cover "
         onTimeUpdate={handleProgress}
         loop
       >
@@ -66,7 +66,7 @@ const HeroSectionWithVideo = ({ language }) => {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute bottom-[40%] z-10 right-6 flex items-center gap-4  ">
+      <div className="absolute lg:bottom-[40%] bottom-[10%] z-10 right-6 flex items-center gap-4  ">
         <div
           className="w-[200px] h-1 bg-[#ffffffaf]  cursor-pointer relative flex items-center "
           onClick={handleSeek}
@@ -102,11 +102,11 @@ const HeroSectionWithVideo = ({ language }) => {
       </div>
 
       {/* Artboard Image */}
-      {/* <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] bottom-[-5px] z-[2]" /> */}
+
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent  w-full  "
+        className="absolute bottom-0 z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
       />
     </div>
   );

@@ -11,17 +11,23 @@ const ParticipantsSection = ({ language }) => {
         title:
           "Chairman of the Board of Directors of the General Authority for Competition",
         image: participantIcon,
+        qualificationsName: "qualifications",
+
         qualifications: [
           "Doctorate in Economics: Colorado State University (USA) 2000 AD",
           "Master in Business Administration: Colorado State University (USA) 2000",
           "Master in Economics: University of Portland (USA) 1998",
           "Bachelor of Law: King Saud University, 1987 AD",
         ],
+        experienceName: "experience",
+
         experience: [
           "Advisor to the Royal Court with the rank of Minister and Chairman of the Board of Directors of the General Authority for Competition from 2021-2026.",
           "Deputy Governor for Research and International Affairs at the Saudi Monetary Agency from 2013-2016.",
           "Executive Director of the Kingdom’s Office at the International Monetary Fund from 2011-2013.",
         ],
+        membershipsName: "memberships",
+
         memberships: [
           "Member of the Board of Directors of the Saudi Fund for Development from 2020-2011 AD.",
           "Member of the Board of Directors of the Advisory Board of the Saudi Tourism Information and Research Center 'MAS'.",
@@ -34,17 +40,23 @@ const ParticipantsSection = ({ language }) => {
         title:
           "Chairman of the Board of Directors of the General Authority for Competition",
         image: participantIcon,
+        qualificationsName: "qualifications",
+
         qualifications: [
           "Doctorate in Economics: Colorado State University (USA) 2000 AD",
           "Master in Business Administration: Colorado State University (USA) 2000",
           "Master in Economics: University of Portland (USA) 1998",
           "Bachelor of Law: King Saud University, 1987 AD",
         ],
+        experienceName: "experience",
+
         experience: [
           "Advisor to the Royal Court with the rank of Minister and Chairman of the Board of Directors of the General Authority for Competition from 2021-2026.",
           "Deputy Governor for Research and International Affairs at the Saudi Monetary Agency from 2013-2016.",
           "Executive Director of the Kingdom’s Office at the International Monetary Fund from 2011-2013.",
         ],
+        membershipsName: "memberships",
+
         memberships: [
           "Member of the Board of Directors of the Saudi Fund for Development from 2020-2011 AD.",
           "Member of the Board of Directors of the Advisory Board of the Saudi Tourism Information and Research Center 'MAS'.",
@@ -58,17 +70,20 @@ const ParticipantsSection = ({ language }) => {
         name: "معالي الدكتور أحمد بن عبد الكريم الخليفي",
         title: "رئيس مجلس إدارة الهيئة العامة للمنافسة",
         image: participantIcon,
+        qualificationsName: "المؤهلات العلمية",
         qualifications: [
           "دكتوراه في الاقتصاد: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000 م",
           "ماجستير في إدارة الأعمال: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000",
           "ماجستير في الاقتصاد: جامعة بورتلاند (الولايات المتحدة الأمريكية) 1998",
           "بكالوريوس في القانون: جامعة الملك سعود، 1987 م",
         ],
+        experienceName: "الخبرة العملية",
         experience: [
           "مستشار في الديوان الملكي برتبة وزير ورئيس مجلس إدارة الهيئة العامة للمنافسة من 2021 إلى 2026.",
           "نائب محافظ البحوث والشؤون الدولية في مؤسسة النقد العربي السعودي من 2013 إلى 2016.",
           "المدير التنفيذي لمكتب المملكة العربية السعودية في صندوق النقد الدولي من 2011 إلى 2013.",
         ],
+        membershipsName: "العضويات",
         memberships: [
           "عضو مجلس إدارة صندوق التنمية السعودي من 2020 إلى 2011 م.",
           "عضو مجلس إدارة المجلس الاستشاري لمركز المعلومات والبحوث السياحية 'ماس'.",
@@ -80,17 +95,20 @@ const ParticipantsSection = ({ language }) => {
         name: "معالي الدكتور أحمد بن عبد الكريم الخليفي",
         title: "رئيس مجلس إدارة الهيئة العامة للمنافسة",
         image: participantIcon,
+        qualificationsName: "المؤهلات العلمية",
         qualifications: [
           "دكتوراه في الاقتصاد: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000 م",
           "ماجستير في إدارة الأعمال: جامعة ولاية كولورادو (الولايات المتحدة الأمريكية) 2000",
           "ماجستير في الاقتصاد: جامعة بورتلاند (الولايات المتحدة الأمريكية) 1998",
           "بكالوريوس في القانون: جامعة الملك سعود، 1987 م",
         ],
+        experienceName: "الخبرة العملية",
         experience: [
           "مستشار في الديوان الملكي برتبة وزير ورئيس مجلس إدارة الهيئة العامة للمنافسة من 2021 إلى 2026.",
           "نائب محافظ البحوث والشؤون الدولية في مؤسسة النقد العربي السعودي من 2013 إلى 2016.",
           "المدير التنفيذي لمكتب المملكة العربية السعودية في صندوق النقد الدولي من 2011 إلى 2013.",
         ],
+        membershipsName: "العضويات",
         memberships: [
           "عضو مجلس إدارة صندوق التنمية السعودي من 2020 إلى 2011 م.",
           "عضو مجلس إدارة المجلس الاستشاري لمركز المعلومات والبحوث السياحية 'ماس'.",
@@ -104,7 +122,7 @@ const ParticipantsSection = ({ language }) => {
   const currentParticipants = participants[language] || participants["en"];
 
   return (
-    <div className=" py-16 pb-[18rem]  relative">
+    <div className=" py-16  pb-[18rem]  relative">
       <div className=" mx-auto">
         <h2 className="text-[50px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
           {language === "ar" ? "المشاركين" : "Participants"}
@@ -133,7 +151,7 @@ const ParticipantsSection = ({ language }) => {
 
               <div className=" w-full">
                 <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2  leftLineOnText  ">
-                  Academic Qualifications
+                  {participant.qualificationsName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
                   {participant.qualifications.map((qualification, i) => (
@@ -147,7 +165,7 @@ const ParticipantsSection = ({ language }) => {
                 </ul>
 
                 <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
-                  Practical Experience
+                  {participant.experienceName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700 mb-4">
                   {participant.experience.map((exp, i) => (
@@ -161,7 +179,7 @@ const ParticipantsSection = ({ language }) => {
                 </ul>
 
                 <h4 className="text-[16px] font-bold leading-[16px]  text-[#00567D]  mb-2 leftLineOnText">
-                  Memberships
+                  {participant.membershipsName}
                 </h4>
                 <ul className="list-disc list-inside space-y-1 text-gray-700">
                   {participant.memberships.map((membership, i) => (
@@ -182,7 +200,7 @@ const ParticipantsSection = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent  w-full  "
+        className="absolute bottom-0 z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
       />
     </div>
   );

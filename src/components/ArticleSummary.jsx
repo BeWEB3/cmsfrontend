@@ -23,10 +23,10 @@ const ArticleSummary = ({ language }) => {
 
   return (
     <div className="py-24 relative">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] top-[-118px]  z-[2]" />
+      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px]  top-[-90px] md:block hidden z-[2]" />
 
       <div className=" px-6  ">
-        <h2 className=" text-[60px] font-bold leading-[66px] text-center text-[#00567D] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-50%)] before:absolute before:bottom-[-2px] before:left-[50%] before:translate-x-[-50%] pb-1  mb-10">
+        <h2 className=" lg:text-[60px] text-[40px] font-bold lg:leading-[66px] leading-[40px] text-center text-[#00567D] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-50%)] before:absolute before:bottom-[-2px] before:left-[50%] before:translate-x-[-50%] pb-1  mb-10">
           {t.title}
         </h2>
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] p-6 max-w-[1339px] mx-auto">
@@ -34,7 +34,7 @@ const ArticleSummary = ({ language }) => {
             {t.content.split("\n\n").map((paragraph, index) => (
               <p
                 key={index}
-                className="mb-4 text-[40px] font-normal leading-[77.2px]  text-[#00567D]  "
+                className="mb-4 lg:text-[40px] text-[25px] font-normal lg:leading-[77.2px] leading-[50px] text-[#00567D]  "
               >
                 {paragraph}
               </p>

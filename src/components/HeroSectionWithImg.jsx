@@ -54,7 +54,7 @@ const HeroSectionWithImg = ({ language, Title, newsTitle = false }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent  w-full  "
+        className="absolute bottom-0 z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
       />
     </div>
   );

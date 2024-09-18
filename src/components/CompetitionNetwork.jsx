@@ -4,7 +4,7 @@ import React from "react";
 
 const CompetitionNetwork = ({ language }) => {
   return (
-    <div className="relative bg-[#00567D] py-16 mb-[10rem] ">
+    <div className="relative bg-[#00567D]  py-16 mb-[10rem] ">
       <div className=" mx-auto px-4 flex justify-center gap-8 mb-24 ">
         {/* Arabic Section */}
         {language === "ar" && (
@@ -83,7 +83,7 @@ const CompetitionNetwork = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-[-120px] z-[4] bg-transparent  w-full  "
+        className="absolute bottom-[-120px] z-[4] bg-transparent  w-full 2xl:hidden lg:block hidden  "
       />
     </div>
   );

@@ -27,7 +27,7 @@ const countryData = [
 const CountryFlags = ({ language }) => {
   return (
     <div className="relative py-24  ">
-      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] top-[-118px]  z-[2]" />
+      <div className="absolute w-full bg-[white] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px] top-[-80px] md:block hidden  z-[2]" />
       <div className=" px-6   ">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] p-6 max-w-[1339px] mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">

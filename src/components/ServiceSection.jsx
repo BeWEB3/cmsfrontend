@@ -31,13 +31,16 @@ const ServiceSection = ({ language }) => {
   ];
 
   return (
-    <section id="services" className="pb-28 pt-10 bg-[#00567D] relative ">
-      <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] top-[-118px]  z-[2]" />
-      <div className="container mx-auto px-4">
+    <section
+      id="services"
+      className="pb-28 pt-10 bg-[#00567D] relative w-full "
+    >
+      <div className="absolute w-full bg-[#00567D] xl:h-[120px] md:h-[90px] h-[50px] xl:top-[-118px] top-[-80px] lg:block hidden  z-[2]" />
+      <div className="w-full mx-auto px-4 lg:pt-0 pt-10 ">
         <h2 className="text-white text-[50px] font-bold leading-[50px] text-center mb-16">
           {language === "ar" ? "الأهداف" : "Objectives"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
