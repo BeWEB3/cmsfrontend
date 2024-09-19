@@ -108,7 +108,7 @@ const HeroSectionWithVideo = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-0 z-[4] bg-transparent w-full xl:h-[280px] lg:block hidden "
+        className=" sm:[object-fit:unset] object-cover absolute xl:bottom-[-20px] lg:bottom-[0px] md:bottom-[-80px] sm:bottom-[-70px] bottom-[-50px] z-[4] bg-transparent  w-full xl:h-[280px] sm:h-[unset] h-[90px]"
       />
     </div>
   );

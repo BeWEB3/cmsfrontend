@@ -34,7 +34,7 @@ const ArticleSummary = ({ language }) => {
             {t.content.split("\n\n").map((paragraph, index) => (
               <p
                 key={index}
-                className="mb-4 lg:text-[40px] text-[25px] font-normal lg:leading-[77.2px] leading-[50px] text-[#00567D]  "
+                className="mb-4 lg:text-[40px] text-[20px] font-normal lg:leading-[77px] leading-[30px] text-[#00567D]  "
               >
                 {paragraph}
               </p>

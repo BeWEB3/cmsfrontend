@@ -4,8 +4,8 @@ import React from "react";
 
 const CompetitionNetwork = ({ language }) => {
   return (
-    <div className="relative bg-[#00567D]  py-16 xl:pb-[8rem]  lg:mb-[10rem] mb-[5rem] ">
-      <div className=" mx-auto px-4 flex justify-center gap-8 mb-24 ">
+    <div className="relative bg-[#00567D]  sm:py-20 py-6 xl:pb-[8rem]  lg:mb-[10rem] mb-[5rem] ">
+      <div className=" mx-auto px-4 flex justify-center gap-8 sm:mb-24 mb-8 ">
         {/* Arabic Section */}
         {language === "ar" && (
           <div className="bg-[#E2ECF0] text-[#00567D] sm:p-6 p-4 rounded-md shadow-lg w-full max-w-[1128px]">
@@ -83,7 +83,7 @@ const CompetitionNetwork = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-[-140px] z-[4] bg-transparent  w-full xl:h-[280px] lg:block hidden  "
+        className="  sm:[object-fit:unset] object-cover absolute xl:bottom-[-135px] lg:bottom-[-115px] md:bottom-[-90px] sm:bottom-[-70px] bottom-[-55px] z-[4] bg-transparent  w-full xl:h-[280px] sm:h-[unset] h-[90px]   "
       />
     </div>
   );

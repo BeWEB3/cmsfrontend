@@ -45,7 +45,7 @@ const NewsSection = ({ language }) => {
   return (
     <div className="bg-white py-10 pb-[6rem] ">
       <div className="container mx-auto px-4">
-        <h2 className="text-[36px] font-bold leading-[36px] text-center text-[#0069A7] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-70%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-1  mb-8">
+        <h2 className="sm:text-[36px] text-[30px] font-bold leading-[36px] text-center text-[#0069A7] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-70%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-1  mb-8">
           {language === "ar" ? "أخبار المنافسة" : "News of Al-Monafsa"}
         </h2>
 
@@ -70,7 +70,7 @@ const NewsSection = ({ language }) => {
                   language === "ar" ? "right-0" : "left-0"
                 }  `}
               >
-                <h3 className="text-[22px] font-bold leading-[27.28px] text-white mb-2">
+                <h3 className="sm:text-[22px] text-[19px] font-bold sm:leading-[27px] leading-[22px] text-white mb-2">
                   {news.title}
                 </h3>
               </div>
@@ -80,7 +80,7 @@ const NewsSection = ({ language }) => {
         <Link
           to={"/news"}
           className={
-            " block text-[36px] font-bold leading-[36px] text-center text-[#0069A7] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-40%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-1 mt-8 "
+            " block sm:text-[36px] text-[30px] font-bold leading-[36px] text-center text-[#0069A7] relative w-fit mx-auto before:content-[''] before:h-[2px] before:bg-[#0069A7] before:w-[calc(100%-40%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-1 mt-8 "
           }
         >
           {language === "ar" ? "اقرأ المزيد" : "Read More"}

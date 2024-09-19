@@ -124,7 +124,7 @@ const ParticipantsSection = ({ language }) => {
   return (
     <div className=" py-16  sm:pb-[18rem] pb-[6rem]  relative">
       <div className=" mx-auto">
-        <h2 className="text-[50px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
+        <h2 className="sm:text-[50px] text-[36px] font-bold leading-[50px] text-center mb-10 text-[#00567D]  ">
           {language === "ar" ? "المشاركين" : "Participants"}
         </h2>
         <div
@@ -212,7 +212,7 @@ const ParticipantsSection = ({ language }) => {
       <img
         src={artBoard}
         alt=""
-        className="absolute bottom-[-20px] z-[4] bg-transparent  w-full xl:h-[280px] lg:block hidden "
+        className=" sm:[object-fit:unset] object-cover absolute xl:bottom-[-35px] lg:bottom-[-25px] md:bottom-[-5px] sm:bottom-[-20px] bottom-[-10px] z-[4] bg-transparent  w-full xl:h-[280px] sm:h-[unset] h-[90px] "
       />
     </div>
   );
