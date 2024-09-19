@@ -61,7 +61,7 @@ const Header = ({ language, toggleLanguage }) => {
       <div className="max-w-[1400px] left-[50%] translate-x-[-50%] top-0 w-full mx-auto sm:px-4 px-1 py-2 absolute z-50">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="flex items-end sm:gap-2 gap-1 ">
+            <div className="flex items-end sm:gap-2 gap-2 ">
               <img
                 src={logo1}
                 alt="Logo"
@@ -71,7 +71,7 @@ const Header = ({ language, toggleLanguage }) => {
               <img
                 src={logo2}
                 alt="Logo"
-                className="sm:h-[96px] sm:w-[109px] h-[70px] w-[70px] ml-[-10px]"
+                className="sm:h-[96px] sm:w-[109px] h-[65px] w-[70px] ml-[-10px]"
               />
             </div>
             <nav
@@ -123,16 +123,16 @@ const Header = ({ language, toggleLanguage }) => {
             </nav>
           </div>
           <div className="flex items-center sm:space-x-4 sm:gap-0 gap-1">
-            <div>
-              <div className="flex items-center sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]">
-                <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[8px] text-white">
+            <div className=" w-fit ">
+              <div className="flex items-center justify-between sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]">
+                <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
                   <Phone size={12} />
                   <Link to={"tel:+2035351900"}>+2035351900</Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Mail size={12} />
                   <Link to={"mailto:info@eca.org.eg"}>info@eca.org.eg</Link>
                 </div>
-                <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[8px] text-white">
+                <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
                   <button
                     onClick={toggleLanguage}
                     className={`${language === "en" ? "" : ""}`}

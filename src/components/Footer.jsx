@@ -94,7 +94,7 @@ const Footer = ({ language }) => {
             </ul>
           </div>
           <div className="sm:col-span-2 lg:order-3 order-1">
-            <div className="flex lg:justify-end justify-start items-end gap-4">
+            <div className="flex lg:justify-end justify-start items-end sm:gap-4 gap-2 ">
               <img
                 src={logo1}
                 alt="Logo"
@@ -104,8 +104,8 @@ const Footer = ({ language }) => {
               <img
                 src={logo2}
                 alt="Logo"
-                className={`sm:h-[155px] sm:w-[176px] h-[125px] w-[130px] ${
-                  language === "ar" ? "mr-[-25px]" : "ml-[-25px]"
+                className={`sm:h-[155px] sm:w-[176px] h-[120px] w-[130px] ${
+                  language === "ar" ? "mr-[-25px] ml-[-5px] " : "ml-[-15px]"
                 }`}
               />
             </div>

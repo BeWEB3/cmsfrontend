@@ -64,7 +64,7 @@ const ContactInfo = ({ language }) => {
             <img
               src={img}
               alt="Network Logo"
-              className="md:w-[242px] md:h-[342.93px] w-[200px] h-[280px]   "
+              className="md:w-[242px] md:h-[342px] w-[200px] h-[280px]   "
             />
           </div>
         </div>
