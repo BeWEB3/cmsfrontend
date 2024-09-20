@@ -35,6 +35,7 @@ const App = () => {
         }`}
       >
         <Header language={language} toggleLanguage={toggleLanguage} />
+
         <main className="flex-grow w-full   ">
           <Routes>
             <Route path="/" element={<HomePage language={language} />} />

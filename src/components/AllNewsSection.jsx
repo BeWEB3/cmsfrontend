@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import newImg from "../pics/NewsImg.png";
 
-function AllNewsSection({ language, ShowallNewsLink = true }) {
+function AllNewsSection({ language, ShowallNewsLink = true, AllNews }) {
   const newsData = [
     {
       date: language === "ar" ? "منذ 5 أيام" : "5 days ago",
