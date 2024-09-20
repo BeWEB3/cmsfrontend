@@ -1,39 +1,35 @@
-import React, { useEffect, useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
 import ServiceSection from "../components/ServiceSection";
 import ParticipantsSection from "../components/ParticipantsSection";
 import CompetitionNetwork from "../components/CompetitionNetwork";
 import NewsSection from "../components/NewsSection";
-// import LoadingSpinner from "../components/LoadingSpinner";
-import { APiFunctions } from "../API/AccountApiLayer";
 import PageLoader from "./PageLoader";
+import { APiFunctions } from "../API/AccountApiLayer";
 
 const HomePage = ({ language }) => {
-  const fetchHomeData = useCallback(() => APiFunctions.GETWithSlug("home"), []);
+  const fetchHomeData = useCallback(() => APiFunctions.GETHomeData(), []);
 
   const {
-    data: homeData,
+    data: homedata,
     isLoading,
     isError,
     error,
-  } = useQuery("homeData", fetchHomeData, {
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    cacheTime: 10 * 60 * 1000, // 10 minutes
+  } = useQuery("homedata", fetchHomeData, {
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
   });
 
   const memoizedSections = useMemo(() => {
-    if (!homeData || !homeData.contentSections) return null;
+    if (!homedata || !homedata.data) return null;
 
     return {
-      objectives: homeData.contentSections.find(
-        (section) => section.sectionName === "Objectives"
-      ),
-      participants: homeData.contentSections.find(
-        (section) => section.sectionName === "Participants"
-      ),
+      objectives: homedata.data?.section1,
+      participants: homedata.data?.section2,
+      competitionNetwork: homedata.data?.section3,
     };
-  }, [homeData]);
+  }, [homedata]);
 
   const [progress, setProgress] = useState(0);
 
@@ -55,7 +51,7 @@ const HomePage = ({ language }) => {
 
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
-      <HeroSectionWithVideo language={language} />
+      <HeroSectionWithVideo language={language} HeroVideoData />
       <div dir={language === "ar" ? "rtl" : "ltr"}>
         <ServiceSection
           language={language}
@@ -67,7 +63,10 @@ const HomePage = ({ language }) => {
           data={memoizedSections?.participants}
         />
 
-        <CompetitionNetwork language={language} />
+        <CompetitionNetwork
+          language={language}
+          data={memoizedSections?.competitionNetwork}
+        />
 
         <NewsSection language={language} />
       </div>

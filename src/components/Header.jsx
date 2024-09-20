@@ -58,10 +58,14 @@ const Header = ({ language, toggleLanguage }) => {
 
   return (
     <header className="w-full relative" dir={language === "ar" ? "rtl" : "ltr"}>
-      <div className="max-w-[1400px] left-[50%] translate-x-[-50%] top-0 w-full mx-auto sm:px-4 px-1 py-2 absolute z-50">
+      <div
+        className={`max-w-[1400px] left-[50%] translate-x-[-50%] top-0 w-full mx-auto sm:px-4 px-3 py-2 absolute z-50 ${
+          isMenuOpen && " lg:bg-transparent bg-[#00567D]"
+        } `}
+      >
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="flex items-end sm:gap-2 gap-2 ">
+            <div className="flex items-end sm:gap-2 gap-3 sm:min-w-[unset] min-w-[120px]  ">
               <img
                 src={logo1}
                 alt="Logo"
@@ -123,14 +127,24 @@ const Header = ({ language, toggleLanguage }) => {
             </nav>
           </div>
           <div className="flex items-center sm:space-x-4 sm:gap-0 gap-1">
-            <div className=" w-fit ">
+            <div className=" sm:block hidden w-fit ">
               <div className="flex items-center justify-between sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]">
                 <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
-                  <Phone size={12} />
-                  <Link to={"tel:+2035351900"}>+2035351900</Link>
+                  <Link
+                    className=" flex items-center gap-1 "
+                    to={"tel:+2035351900"}
+                  >
+                    <Phone size={12} />
+                    <span className=" ">+2035351900</span>
+                  </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
-                  <Mail size={12} />
-                  <Link to={"mailto:info@eca.org.eg"}>info@eca.org.eg</Link>
+                  <Link
+                    className=" flex items-center gap-1 "
+                    to={"mailto:info@eca.org.eg"}
+                  >
+                    <Mail size={12} />
+                    <span className=" ">info@eca.org.eg</span>
+                  </Link>
                 </div>
                 <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
                   <button
@@ -149,7 +163,7 @@ const Header = ({ language, toggleLanguage }) => {
                 </div>
               </div>
               <div className="flex justify-end items-center pt-2">
-                <label className="relative w-fit">
+                <label className="relative w-full">
                   <Search
                     size={16}
                     color="white"
@@ -163,7 +177,7 @@ const Header = ({ language, toggleLanguage }) => {
                     id="search"
                     lang={language}
                     placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
-                    className="border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[27px] max-w-[214px] w-full mx-auto py-[2px] focus:outline-none bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]"
+                    className="border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[27px] max-w-[214px] w-full mx-auto py-[2px] focus:outline-none focus:ring-0   bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]"
                   />
                 </label>
               </div>
@@ -183,14 +197,72 @@ const Header = ({ language, toggleLanguage }) => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="xl:hidden absolute bg-white w-full mt-[7rem] z-40 drop-shadow-2xl ">
-          <nav className="px-4 mt-2 pb-4 space-y-2">
+        <div className="xl:hidden absolute bg-[#00567D] w-full sm:pt-[7rem] pt-[6rem] z-40 drop-shadow-2xl ">
+          <div className=" sm:hidden block px-6  ">
+            <div className=" w-full ">
+              <div className="flex justify-end items-center pt-2">
+                <label className="relative w-full">
+                  <Search
+                    size={16}
+                    color="white"
+                    className={`absolute top-[50%] translate-y-[-50%] ${
+                      language === "ar" ? "right-3" : "left-3"
+                    }`}
+                  />
+                  <input
+                    type="search"
+                    name="search"
+                    id="search"
+                    lang={language}
+                    placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
+                    className="border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[34px] sm:max-w-[214px] w-full mx-auto py-[2px] focus:outline-none focus:ring-0   bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]"
+                  />
+                </label>
+              </div>
+              <div className=" mt-3 pt-2 flex items-center justify-between sm:gap-6 gap-1 border-t-[1px] border-t-[solid] border-t-[white] pb-[2px]">
+                <div className="flex items-center gap-1 [&_*]:text-[13px] text-white">
+                  <Link
+                    className=" flex items-center gap-1 "
+                    to={"tel:+2035351900"}
+                  >
+                    <Phone size={12} />
+                    <span className=" ">+2035351900</span>
+                  </Link>
+                  <div className="h-[12px] w-[1px] bg-white" />
+                  <Link
+                    className=" flex items-center gap-1 "
+                    to={"mailto:info@eca.org.eg"}
+                  >
+                    <Mail size={12} />
+                    <span className=" ">info@eca.org.eg</span>
+                  </Link>
+                </div>
+                <div className="flex items-center [&_*]:text-[13px] text-white">
+                  <button
+                    onClick={toggleLanguage}
+                    className={`${language === "en" ? "" : ""}`}
+                  >
+                    EN
+                  </button>
+                  <div className="mx-[1px] h-[8px] w-[1px] bg-white" />
+                  <button
+                    onClick={toggleLanguage}
+                    className={`${language === "ar" ? "" : ""}`}
+                  >
+                    AR
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <nav className="px-4 mt-4 pb-4 space-y-2">
             {navItems.map((item, index) => (
               <NavLink
                 key={index}
                 to={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-black  font-bold text-[19px] transition-colors duration-200"
+                className="block px-3 py-[4px] rounded-md text-white  text-[24px] font-normal leading-[24px]  transition-colors duration-200"
               >
                 {item.label}
               </NavLink>
@@ -198,7 +270,7 @@ const Header = ({ language, toggleLanguage }) => {
             <div className="relative  ">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center justify-between w-full px-3 py-2 rounded-md  text-black  font-bold text-[19px]  transition-colors duration-300"
+                className="flex items-center justify-between w-full px-3 py-[4px] rounded-md  text-white  text-[24px] font-normal leading-[24px]   transition-colors duration-300"
               >
                 {language === "ar" ? "الرئيسية" : "Executive Reg."}
                 <ChevronDown
@@ -209,7 +281,7 @@ const Header = ({ language, toggleLanguage }) => {
                 />
               </button>
               <div
-                className={`pl-6 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`pl-2 mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
                   isDropdownOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
@@ -221,7 +293,7 @@ const Header = ({ language, toggleLanguage }) => {
                       setIsMenuOpen(false); // Close menu on dropdown link click
                       setIsDropdownOpen(false); // Optionally close dropdown as well
                     }}
-                    className="block px-3 py-2 rounded-md  text-black   text-[19px] font-medium  hover:bg-gray-100 transition-colors duration-200"
+                    className="block px-3 py-[2px] rounded-md  text-white   text-[19px] font-medium   transition-colors duration-200"
                   >
                     {item.label}
                   </NavLink>

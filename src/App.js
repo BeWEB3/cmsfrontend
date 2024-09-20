@@ -41,7 +41,7 @@ const App = () => {
             <Route path="/" element={<HomePage language={language} />} />
             <Route path="/news" element={<NewsPage language={language} />} />
             <Route
-              path="/news/:name"
+              path="/news/:uid"
               element={<SubNewsPage language={language} />}
             />
             <Route

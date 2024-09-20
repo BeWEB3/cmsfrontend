@@ -7,7 +7,7 @@ import Twitter from "../pics/Twitter.svg";
 import artBoard from "../pics/Artboard.png";
 import { Pause, Play } from "lucide-react";
 
-const HeroSectionWithVideo = ({ language }) => {
+const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);

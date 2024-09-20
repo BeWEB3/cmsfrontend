@@ -18,8 +18,6 @@ function NewsPage({ language }) {
     cacheTime: 10 * 60 * 1000, // 10 minutes
   });
 
-  console.log(newsData);
-
   const memoizedSections = useMemo(() => {
     if (!newsData || !newsData?.data) return null;
 

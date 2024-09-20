@@ -67,7 +67,7 @@ const ContactForm = ({ language }) => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full px-6 py-3 bg-white rounded-full    "
+                className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]   "
                 required
               />
             </div>
@@ -86,7 +86,7 @@ const ContactForm = ({ language }) => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full px-6 py-3 bg-white rounded-full "
+                className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
                 required
               />
             </div>
@@ -105,7 +105,7 @@ const ContactForm = ({ language }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-6 py-3 bg-white rounded-full "
+                className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
                 required
               />
             </div>
@@ -125,14 +125,14 @@ const ContactForm = ({ language }) => {
               value={formData.message}
               onChange={handleChange}
               rows="6"
-              className="w-full px-6 py-3 bg-white rounded-lg "
+              className=" max-h-[350px] min-h-[180px]  w-full px-6 py-3 bg-white rounded-lg  focus:outline-none focus:ring-2 focus:ring-[white]  "
               required
             ></textarea>
           </div>
           <div>
             <button
               type="submit"
-              className="w-full bg-white text-[#00567D]  font-bold py-2 px-4 rounded  transition duration-300"
+              className=" mt-6 w-full bg-white text-[#00567D]  font-bold py-2 px-4 rounded  transition duration-300 hover:bg-[#ffffffd2] active:scale-[0.97]  "
             >
               {t.submit}
             </button>

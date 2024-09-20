@@ -9,7 +9,12 @@ import artBoard from "../pics/Artboard.png";
 
 import Calender from "../pics/Calendar.png";
 
-const HeroSectionWithImg = ({ language, Title, newsTitle = false }) => {
+const HeroSectionWithImg = ({
+  language,
+  Title,
+  newsTitle = false,
+  newsObj,
+}) => {
   return (
     <div className=" relative  ">
       <img
@@ -35,10 +40,19 @@ const HeroSectionWithImg = ({ language, Title, newsTitle = false }) => {
           <div className=" absolute top-[45%] translate-x-[-50%] translate-y-[-50%] left-[50%] z-[3]  ">
             <div className=" text-white flex items-center justify-center gap-1 mb-3 text-[21px] font-normal leading-[26.04px] text-center  ">
               <img src={Calender} alt="" width={"40px"} height={"40px"} />
-              <span>22 Aug 2022</span>
+              <span>
+                {new Date(newsObj?.date).toLocaleDateString(
+                  language === "ar" ? "ar-SA" : "en-US"
+                )}
+              </span>
+              {/* <span>{newsObj.date}</span> */}
             </div>
             <h2 className=" block w-full mx-auto before:content-[''] before:h-[2px] before:bg-[white] before:w-[calc(100%+10%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-2  text-white  lg:text-[50px] sm:text-[30px] text-[25px] font-bold lg:leading-[50px] sm:leading-[30px] leading-[22px]  text-center    ">
-              {Title ? (language === "ar" ? Title.ar : Title.en) : ""}
+              {newsObj?.title
+                ? language === "ar"
+                  ? newsObj?.title?.ar
+                  : newsObj?.title?.en
+                : ""}
             </h2>
           </div>
         </>
