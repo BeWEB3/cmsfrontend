@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import logo1 from "../pics/Logo1.svg";
@@ -7,8 +7,50 @@ import logo2 from "../pics/Logo2.svg";
 import Facebook from "../pics/Facebook F.svg";
 import Youtube from "../pics/YouTube.svg";
 import TwitterX from "../pics/TwitterX.svg";
+import { APiFunctions } from "../API/AccountApiLayer";
+import { useQuery } from "react-query";
 
 const Footer = ({ language }) => {
+  const fetchNewsData = useCallback(
+    () => APiFunctions.GETWithSlug("footer"),
+    []
+  );
+
+  const {
+    data: footerData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("footerData", fetchNewsData, {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+  });
+
+  const memoizedSections = useMemo(() => {
+    if (!footerData || !footerData?.data) return null;
+
+    return footerData.data;
+  }, [footerData]);
+
+  const socialLinks = memoizedSections?.contentSections[0]?.contentItems;
+
+  const getSocialData = (contentType) => {
+    const linkItem = socialLinks?.find(
+      (item) => item.contentType === `${contentType} Link`
+    );
+    const imageItem = socialLinks?.find(
+      (item) => item.contentType === `${contentType} Image`
+    );
+    return { link: linkItem?.en, image: imageItem?.url };
+  };
+
+  const twitter = getSocialData("Twitter");
+  const facebook = getSocialData("Facebook");
+  const youtube = getSocialData("Youtube");
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
+
   const content = {
     ar: {
       title1: "روابط ذات صلة",
@@ -113,14 +155,19 @@ const Footer = ({ language }) => {
         </div>
         <div className="w-full h-[2px] bg-white" />
         <div className="flex items-center justify-center my-10 gap-2 [&>a]:rounded-full [&>a]:w-[40px] [&>a]:h-[40px] [&>a]:border-white [&>a]:border-[1px] [&>a]:border-solid [&>a]:flex [&>a]:items-center [&>a]:justify-center">
-          <Link to="/twitter" className="hover:text-gray-300">
-            <img src={TwitterX} alt="" width="20px" height="20px" />
+          <Link to={twitter.link} className="hover:text-gray-300">
+            <img src={twitter.image} alt="Twitter" width="20px" height="20px" />
           </Link>
-          <Link to="/facebook" className="hover:text-gray-300">
-            <img src={Facebook} alt="" width="20px" height="20px" />
+          <Link to={facebook.link} className="hover:text-gray-300">
+            <img
+              src={facebook.image}
+              alt="Facebook"
+              width="20px"
+              height="20px"
+            />
           </Link>
-          <Link to="/youtube" className="hover:text-gray-300">
-            <img src={Youtube} alt="" width="20px" height="20px" />
+          <Link to={youtube.link} className="hover:text-gray-300">
+            <img src={youtube.image} alt="YouTube" width="20px" height="20px" />
           </Link>
         </div>
         <div className="mt-8 flex justify-center items-center">

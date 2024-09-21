@@ -27,6 +27,9 @@ axiosInstance.interceptors.response.use(
     if (error) {
       toast.error(error.response.data.Message || "An error occurred");
     }
+    if (error.status === 500) {
+      window.location.href = "/not-found";
+    }
     lastError = error;
     return Promise.reject(error);
   }

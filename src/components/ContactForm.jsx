@@ -1,4 +1,6 @@
+import { Check, X } from "lucide-react";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const ContactForm = ({ language }) => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,34 @@ const ContactForm = ({ language }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulating API call
+        if (Math.random() > 0.1) {
+          // 90% success rate
+          resolve();
+        } else {
+          reject();
+        }
+      }, 2000);
+    });
+
+    toast.promise(promise, {
+      loading: translations[language].submitting,
+      success: () => (
+        <div className="flex items-center space-x-2">
+          <Check className="text-green-500" size={18} />
+          <span>{translations[language].success}</span>
+        </div>
+      ),
+      error: () => (
+        <div className="flex items-center space-x-2">
+          <X className="text-red-500" size={18} />
+          <span>{translations[language].error}</span>
+        </div>
+      ),
+    });
   };
 
   const translations = {
@@ -25,14 +55,20 @@ const ContactForm = ({ language }) => {
       email: "3. Email Address",
       message: "4. Message",
       submit: "Submit",
+      submitting: "Sending your message...",
+      success: "Message sent successfully!",
+      error: "Failed to send message. Please try again.",
     },
     ar: {
       title: "أرسل لنا رسالة",
-      firstName: "الاسم الأول",
-      lastName: "اسم العائلة",
-      email: "عنوان البريد الإلكتروني",
-      message: "الرسالة",
+      firstName: "١. الاسم الأول",
+      lastName: "٢. اسم العائلة",
+      email: "٣. عنوان البريد الإلكتروني",
+      message: "٤. الرسالة",
       submit: "إرسال",
+      submitting: "جاري إرسال رسالتك...",
+      success: "تم إرسال الرسالة بنجاح!",
+      error: "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
     },
   };
 

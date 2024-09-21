@@ -2,7 +2,7 @@ import React from "react";
 import artBoard from "../pics/Artboard.png";
 
 const CompetitionNetwork = ({ language, data }) => {
-  const content = data?.section3?.contentItems;
+  const content = data?.contentItems;
 
   return (
     <div className="relative bg-[#00567D] sm:py-20 py-6 xl:pb-[8rem] lg:mb-[10rem] mb-[5rem]">

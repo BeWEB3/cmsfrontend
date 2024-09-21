@@ -19,6 +19,12 @@ export const APiFunctions = {
       url: `get_home_content`,
     });
   },
+  GETWithSlug: function (slug) {
+    return axiosInstance.request({
+      method: "GET",
+      url: `get_cms_content?slug=${slug}`,
+    });
+  },
   // GETWithSlug: function (slug) {
   //   return axiosInstance.request({
   //     method: "GET",

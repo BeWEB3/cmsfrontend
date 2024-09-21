@@ -27,7 +27,7 @@ const HomePage = ({ language }) => {
     return {
       objectives: homedata.data?.section1,
       participants: homedata.data?.section2,
-      competitionNetwork: homedata.data?.section3,
+      competitionNet: homedata.data?.section3,
     };
   }, [homedata]);
 
@@ -65,7 +65,7 @@ const HomePage = ({ language }) => {
 
         <CompetitionNetwork
           language={language}
-          data={memoizedSections?.competitionNetwork}
+          data={memoizedSections?.competitionNet}
         />
 
         <NewsSection language={language} />

@@ -45,7 +45,7 @@ const App = () => {
               element={<SubNewsPage language={language} />}
             />
             <Route
-              path="/contact-us"
+              path="/contactus"
               element={<ContactUsPage language={language} />}
             />
             <Route

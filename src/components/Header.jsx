@@ -1,9 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { Mail, Menu, Phone, Search, X, ChevronDown } from "lucide-react";
 
 import logo1 from "../pics/Logo1.svg";
 import logo2 from "../pics/Logo2.svg";
 import { Link, NavLink } from "react-router-dom";
+import { APiFunctions } from "../API/AccountApiLayer";
+import { useQuery } from "react-query";
 
 const Header = ({ language, toggleLanguage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +64,30 @@ const Header = ({ language, toggleLanguage }) => {
     };
   }, []);
 
+  const fetchNewsData = useCallback(
+    () => APiFunctions.GETWithSlug("header"),
+    []
+  );
+
+  const {
+    data: homeData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("homeData", fetchNewsData, {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+  });
+
+  const memoizedHome = useMemo(() => {
+    if (!homeData || !homeData?.data) return null;
+
+    return homeData.data;
+  }, [homeData]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
+
   return (
     <header className="w-full relative" dir={language === "ar" ? "rtl" : "ltr"}>
       <div
@@ -69,26 +101,39 @@ const Header = ({ language, toggleLanguage }) => {
               <img
                 src={logo1}
                 alt="Logo"
-                className="sm:h-[83px] sm:w-[61px] h-[60px] w-[40px] object-contain object-center"
+                className="sm:h-[88px] sm:w-[61px] h-[60px] w-[40px] object-contain object-center"
               />
-              <div className="sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px]" />
+              <div
+                className={`sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px] ${
+                  language === "en" ? "mr-[2px] " : ""
+                }  `}
+              />
               <img
                 src={logo2}
                 alt="Logo"
-                className="sm:h-[96px] sm:w-[109px] h-[65px] w-[70px] ml-[-10px]"
+                className={`sm:h-[96px] sm:w-[109px] h-[65px] w-[70px] 
+                  
+                  ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "} 
+                  `}
               />
             </div>
             <nav
               className="hidden xl:flex items-center gap-4"
               dir={language === "ar" && "ltr"}
             >
-              {navItems.map((item, index) => (
+              {memoizedHome?.outsideDropdownLinks?.map((item, index) => (
                 <NavLink
                   key={index}
-                  to={item.href}
+                  to={
+                    item?.slug
+                      ? item?.slug === "home"
+                        ? "/"
+                        : item?.slug
+                      : item?.content?.en
+                  }
                   className="text-white font-normal text-[19px] hover:text-gray-200 transition-colors duration-300"
                 >
-                  {item.label}
+                  {item?.content[language]}
                 </NavLink>
               ))}
               <div
@@ -98,7 +143,7 @@ const Header = ({ language, toggleLanguage }) => {
                 ref={dropdownRef}
               >
                 <button className="text-white font-normal text-[19px] flex items-center gap-[2px] hover:text-gray-200 transition-colors duration-300">
-                  {language === "ar" ? "الرئيسية" : "Executive Reg."}
+                  {language === "ar" ? "المزيد من الروابط" : "More Links"}
                   <ChevronDown
                     className={` mt-1 transform transition-transform duration-300 ${
                       isDropdownOpen ? "rotate-180" : ""
@@ -107,19 +152,19 @@ const Header = ({ language, toggleLanguage }) => {
                   />
                 </button>
                 <div
-                  className={`absolute top-full left-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full ${
+                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[150px] ${
                     isDropdownOpen
                       ? "opacity-100 visible translate-y-0"
                       : "opacity-0 invisible -translate-y-2"
                   }`}
                 >
-                  {dropdownItems.map((item, index) => (
+                  {memoizedHome?.insideDropdownLinks?.map((item, index) => (
                     <NavLink
                       key={index}
-                      to={item.href}
+                      to={item?.slug ? item?.slug : item?.content?.en}
                       className="block text-nowrap px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors duration-200"
                     >
-                      {item.label}
+                      {item?.content[language]}
                     </NavLink>
                   ))}
                 </div>
@@ -257,14 +302,20 @@ const Header = ({ language, toggleLanguage }) => {
           </div>
 
           <nav className="px-4 mt-4 pb-4 space-y-2">
-            {navItems.map((item, index) => (
+            {memoizedHome?.outsideDropdownLinks?.map((item, index) => (
               <NavLink
                 key={index}
-                to={item.href}
+                to={
+                  item?.slug
+                    ? item?.slug === "home"
+                      ? "/"
+                      : item?.slug
+                    : item?.content?.en
+                }
                 onClick={() => setIsMenuOpen(false)}
                 className="block px-3 py-[4px] rounded-md text-white  text-[24px] font-normal leading-[24px]  transition-colors duration-200"
               >
-                {item.label}
+                {item?.content[language]}
               </NavLink>
             ))}
             <div className="relative  ">
@@ -272,7 +323,7 @@ const Header = ({ language, toggleLanguage }) => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center justify-between w-full px-3 py-[4px] rounded-md  text-white  text-[24px] font-normal leading-[24px]   transition-colors duration-300"
               >
-                {language === "ar" ? "الرئيسية" : "Executive Reg."}
+                {language === "ar" ? "المزيد من الروابط" : "More Links"}
                 <ChevronDown
                   className={`ml-1 transform transition-transform duration-300 ${
                     isDropdownOpen ? "rotate-180" : ""
@@ -285,17 +336,17 @@ const Header = ({ language, toggleLanguage }) => {
                   isDropdownOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                {dropdownItems.map((item, index) => (
+                {memoizedHome?.insideDropdownLinks?.map((item, index) => (
                   <NavLink
                     key={index}
-                    to={item.href}
+                    to={item?.slug ? item?.slug : item?.content?.en}
                     onClick={() => {
                       setIsMenuOpen(false); // Close menu on dropdown link click
                       setIsDropdownOpen(false); // Optionally close dropdown as well
                     }}
                     className="block px-3 py-[2px] rounded-md  text-white   text-[19px] font-medium   transition-colors duration-200"
                   >
-                    {item.label}
+                    {item?.content[language]}
                   </NavLink>
                 ))}
               </div>
