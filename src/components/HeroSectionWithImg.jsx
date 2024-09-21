@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import heroVideo from "../pics/HeroVideoImg.png";
-import Facebook from "../pics/Facebook F.svg";
-import Youtube from "../pics/YouTube.svg";
-import Twitter from "../pics/Twitter.svg";
+// import Facebook from "../pics/Facebook F.svg";
+// import Youtube from "../pics/YouTube.svg";
+// import Twitter from "../pics/Twitter.svg";
 import artBoard from "../pics/Artboard.png";
 
 import Calender from "../pics/Calendar.png";
+import { Facebook, Twitter, Youtube } from "lucide-react";
 
 const HeroSectionWithImg = ({
   language,
@@ -25,13 +26,17 @@ const HeroSectionWithImg = ({
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute sm:left-4 left-[50%] sm:translate-x-[unset] translate-x-[-50%]  sm:top-[50%] sm:bottom-[unset] bottom-[7rem] sm:translate-y-[-100%] flex sm:flex-col flex-row gap-4 text-white z-[3]  [&>a>img]:sm:w-[30px] [&>a>img]:w-[35px]       ">
         <Link to={""} target="_blank">
-          <img src={Facebook} alt="" />
+          {/* <img src={Facebook} alt="" /> */}
+          <Facebook />
         </Link>
         <Link to={""} target="_blank">
-          <img src={Youtube} alt="" />
+          {/* <img src={Youtube} alt="" />
+           */}
+          <Youtube />
         </Link>
         <Link to={""} target="_blank">
-          <img src={Twitter} alt="" />
+          {/* <img src={Twitter} alt="" /> */}
+          <Twitter />
         </Link>
       </div>
 

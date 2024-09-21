@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import logo1 from "../pics/Logo1.svg";
 import logo2 from "../pics/Logo2.svg";
 
-import Facebook from "../pics/Facebook F.svg";
-import Youtube from "../pics/YouTube.svg";
-import TwitterX from "../pics/TwitterX.svg";
+// import Facebook from "../pics/Facebook F.svg";
+// import Youtube from "../pics/YouTube.svg";
+// import TwitterX from "../pics/TwitterX.svg";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
+import { Facebook, Youtube } from "lucide-react";
 
 const Footer = ({ language }) => {
   const fetchNewsData = useCallback(
@@ -41,7 +42,7 @@ const Footer = ({ language }) => {
     const imageItem = socialLinks?.find(
       (item) => item.contentType === `${contentType} Image`
     );
-    return { link: linkItem?.en, image: imageItem?.url };
+    return { link: linkItem?.content?.en, image: imageItem?.url };
   };
 
   const twitter = getSocialData("Twitter");
@@ -136,7 +137,10 @@ const Footer = ({ language }) => {
             </ul>
           </div>
           <div className="sm:col-span-2 lg:order-3 order-1">
-            <div className="flex lg:justify-end justify-start items-end sm:gap-4 gap-2 ">
+            <Link
+              to={"/"}
+              className="flex lg:justify-end justify-start items-end sm:gap-4 gap-2 "
+            >
               <img
                 src={logo1}
                 alt="Logo"
@@ -150,24 +154,39 @@ const Footer = ({ language }) => {
                   language === "ar" ? "mr-[-25px] ml-[-5px] " : "ml-[-15px]"
                 }`}
               />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="w-full h-[2px] bg-white" />
         <div className="flex items-center justify-center my-10 gap-2 [&>a]:rounded-full [&>a]:w-[40px] [&>a]:h-[40px] [&>a]:border-white [&>a]:border-[1px] [&>a]:border-solid [&>a]:flex [&>a]:items-center [&>a]:justify-center">
-          <Link to={twitter.link} className="hover:text-gray-300">
-            <img src={twitter.image} alt="Twitter" width="20px" height="20px" />
+          <Link
+            target="_blank"
+            to={twitter.link}
+            className="hover:text-gray-300"
+          >
+            <i className="fa-brands fa-x-twitter"></i>
+            {/* <img src={twitter.image} alt="Twitter" width="20px" height="20px" /> */}
           </Link>
-          <Link to={facebook.link} className="hover:text-gray-300">
-            <img
+          <Link
+            target="_blank"
+            to={facebook.link}
+            className="hover:text-gray-300"
+          >
+            <Facebook />
+            {/* <img
               src={facebook.image}
               alt="Facebook"
               width="20px"
               height="20px"
-            />
+            /> */}
           </Link>
-          <Link to={youtube.link} className="hover:text-gray-300">
-            <img src={youtube.image} alt="YouTube" width="20px" height="20px" />
+          <Link
+            target="_blank"
+            to={youtube.link}
+            className="hover:text-gray-300"
+          >
+            <Youtube />
+            {/* <img src={youtube.image} alt="YouTube" width="20px" height="20px" /> */}
           </Link>
         </div>
         <div className="mt-8 flex justify-center items-center">

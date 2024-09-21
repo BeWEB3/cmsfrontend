@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Facebook from "../pics/Facebook F.svg";
-import Youtube from "../pics/YouTube.svg";
-import Twitter from "../pics/Twitter.svg";
+// import Facebook from "../pics/Facebook F.svg";
+// import Youtube from "../pics/YouTube.svg";
+// import Twitter from "../pics/Twitter.svg";
 import artBoard from "../pics/Artboard.png";
-import { Pause, Play } from "lucide-react";
+import { Facebook, Pause, Play, Twitter, Youtube } from "lucide-react";
 
 const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
   const videoRef = useRef(null);
@@ -93,13 +93,17 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute left-4 top-[50%] translate-y-[-100%] flex flex-col gap-4 text-white z-[3]">
         <Link to={""} target="_blank">
-          <img src={Facebook} alt="" />
+          {/* <img src={Facebook} alt="" /> */}
+          <Facebook />
         </Link>
         <Link to={""} target="_blank">
-          <img src={Youtube} alt="" />
+          {/* <img src={Youtube} alt="" />
+           */}
+          <Youtube />
         </Link>
         <Link to={""} target="_blank">
-          <img src={Twitter} alt="" />
+          {/* <img src={Twitter} alt="" /> */}
+          <Twitter />
         </Link>
       </div>
 
