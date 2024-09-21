@@ -94,7 +94,6 @@ const ContactForm = ({ language }) => {
                 htmlFor="firstName"
                 className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                {language === "ar" && "١. "}
                 {t.firstName}
               </label>
               <input
@@ -112,8 +111,6 @@ const ContactForm = ({ language }) => {
                 htmlFor="lastName"
                 className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                {language === "ar" && "٢. "}
-
                 {t.lastName}
               </label>
               <input
@@ -131,8 +128,6 @@ const ContactForm = ({ language }) => {
                 htmlFor="email"
                 className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
               >
-                {language === "ar" && "٣. "}
-
                 {t.email}
               </label>
               <input
@@ -151,8 +146,6 @@ const ContactForm = ({ language }) => {
               htmlFor="message"
               className="block text-white sm:text-[31px] text-[22px] font-bold leading-[31px]  mb-4 "
             >
-              {language === "ar" && "٤. "}
-
               {t.message}
             </label>
             <textarea

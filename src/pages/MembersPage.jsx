@@ -17,20 +17,20 @@ function MembersPage({ language }) {
   );
 
   const {
-    data: homedata,
+    data: membersdata,
     isLoading,
     isError,
     error,
-  } = useQuery("homedata", fetchHomeData, {
+  } = useQuery("membersdata", fetchHomeData, {
     staleTime: 5 * 60 * 1000,
     cacheTime: 10 * 60 * 1000,
   });
 
   const memoizedSections = useMemo(() => {
-    if (!homedata || !homedata.data) return null;
+    if (!membersdata || !membersdata?.data) return null;
 
-    return homedata.data;
-  }, [homedata]);
+    return membersdata?.data;
+  }, [membersdata]);
 
   const [progress, setProgress] = useState(0);
 

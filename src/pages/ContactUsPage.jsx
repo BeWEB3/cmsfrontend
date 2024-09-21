@@ -18,20 +18,20 @@ function ContactUsPage({ language }) {
   );
 
   const {
-    data: homedata,
+    data: contactdata,
     isLoading,
     isError,
     error,
-  } = useQuery("homedata", fetchHomeData, {
+  } = useQuery("contactdata", fetchHomeData, {
     staleTime: 5 * 60 * 1000,
     cacheTime: 10 * 60 * 1000,
   });
 
   const memoizedSections = useMemo(() => {
-    if (!homedata || !homedata.data) return null;
+    if (!contactdata || !contactdata?.data) return null;
 
-    return homedata.data;
-  }, [homedata]);
+    return contactdata?.data;
+  }, [contactdata]);
 
   const [progress, setProgress] = useState(0);
 
