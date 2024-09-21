@@ -97,7 +97,10 @@ const Header = ({ language, toggleLanguage }) => {
       >
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="flex items-end sm:gap-2 gap-3 sm:min-w-[unset] min-w-[120px]  ">
+            <Link
+              to={"/"}
+              className="flex items-end sm:gap-2 gap-3 sm:min-w-[unset] min-w-[120px]  "
+            >
               <img
                 src={logo1}
                 alt="Logo"
@@ -116,7 +119,7 @@ const Header = ({ language, toggleLanguage }) => {
                   ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "} 
                   `}
               />
-            </div>
+            </Link>
             <nav
               className="hidden xl:flex items-center gap-4"
               dir={language === "ar" && "ltr"}
