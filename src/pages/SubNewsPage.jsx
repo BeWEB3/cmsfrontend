@@ -17,7 +17,7 @@ function SubNewsPage({ language }) {
     isLoading,
     isError,
     error,
-  } = useQuery("oneNews", fetchHomeData, {
+  } = useQuery(["oneNews", uid], fetchHomeData, {
     staleTime: 5 * 60 * 1000, // 5 minutes
     cacheTime: 10 * 60 * 1000, // 10 minutes
   });
@@ -27,8 +27,6 @@ function SubNewsPage({ language }) {
 
     return oneNews.data;
   }, [oneNews]);
-
-  // console.log(memoizedNews);
 
   const [progress, setProgress] = useState(0);
 

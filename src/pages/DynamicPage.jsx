@@ -23,7 +23,7 @@ const DynamicPage = ({ language, toggleLanguage }) => {
     isLoading,
     isError,
     error,
-  } = useQuery("pageData", fetchPageData, {
+  } = useQuery(["pageData", slug], fetchPageData, {
     staleTime: 5 * 60 * 1000,
     cacheTime: 10 * 60 * 1000,
   });
