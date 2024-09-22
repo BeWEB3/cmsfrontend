@@ -2,7 +2,7 @@ import React from "react";
 
 const TempleteContentSection = ({ language, data }) => {
   const getContent = (item) =>
-    item.content[language] || item.content["en"] || "";
+    item?.content[language] || item?.content["en"] || "";
 
   const renderContentItem = (item) => {
     switch (item.contentType.toLowerCase()) {
@@ -37,10 +37,14 @@ const TempleteContentSection = ({ language, data }) => {
       case "image":
         return (
           <div
-            key={item.id}
+            key={item?.id}
             className="bg-gray-200 py-6 flex items-center justify-center mb-4 max-w-[505px] mx-auto w-full"
           >
-            <img src={item.url} alt={item.alt} className="max-w-full h-auto" />
+            <img
+              src={item?.url}
+              alt={item?.alt}
+              className="max-w-full h-auto"
+            />
           </div>
         );
       default:
@@ -55,9 +59,9 @@ const TempleteContentSection = ({ language, data }) => {
       <div className="sm:px-6 px-4">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-6 p-2 max-w-[1339px] mx-auto">
           <div className="p-4">
-            {data.contentItems
+            {data?.contentItems
               // .sort((a, b) => a.order - b.order)
-              .map(renderContentItem)}
+              ?.map(renderContentItem)}
           </div>
         </div>
       </div>

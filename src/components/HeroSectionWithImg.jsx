@@ -25,16 +25,12 @@ const HeroSectionWithImg = ({
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute sm:left-4 left-[50%] sm:translate-x-[unset] translate-x-[-50%]  sm:top-[50%] sm:bottom-[unset] bottom-[7rem] sm:translate-y-[-100%] flex sm:flex-col flex-row gap-4 text-white z-[3]  [&>a>img]:sm:w-[30px] [&>a>img]:w-[35px]       ">
         <Link to={""} target="_blank">
-          {/* <img src={Facebook} alt="" /> */}
           <Facebook />
         </Link>
         <Link to={""} target="_blank">
-          {/* <img src={Youtube} alt="" />
-           */}
           <Youtube />
         </Link>
         <Link to={""} target="_blank">
-          {/* <img src={Twitter} alt="" /> */}
           <Twitter />
         </Link>
       </div>
@@ -49,7 +45,6 @@ const HeroSectionWithImg = ({
                   language === "ar" ? "ar-SA" : "en-US"
                 )}
               </span>
-              {/* <span>{newsObj.date}</span> */}
             </div>
             <h2 className=" block w-full mx-auto before:content-[''] before:h-[2px] before:bg-[white] before:w-[calc(100%+10%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-2  text-white  lg:text-[50px] sm:text-[30px] text-[25px] font-bold lg:leading-[50px] sm:leading-[30px] leading-[22px]  text-center    ">
               {newsObj?.title
