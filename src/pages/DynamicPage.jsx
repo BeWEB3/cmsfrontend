@@ -59,14 +59,16 @@ const DynamicPage = ({ language, toggleLanguage }) => {
         return (
           <HeroSectionWithImg
             key={section?.sectionID}
-            data={{
-              Title: section?.contentItems.find(
+            Title={
+              section?.contentItems.find(
                 (item) => item?.contentType === "Headline"
-              )?.content[language],
-              backgroundImg: section?.contentItems.find(
+              )?.content
+            }
+            backgroundImg={
+              section?.contentItems.find(
                 (item) => item?.contentType === "Background Image"
-              )?.url,
-            }}
+              )?.url
+            }
             language={language}
           />
         );
