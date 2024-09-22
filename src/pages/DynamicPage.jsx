@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 // import ServiceSection from "../components/ServiceSection";
 // import TeamSection from "../components/TeamSection";
-import AboutSection from "../components/AboutSection";
+// import AboutSection from "../components/AboutSection";
 // import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
 import HeroSectionWithImg from "../components/HeroSectionWithImg";
 import { APiFunctions } from "../API/AccountApiLayer";
