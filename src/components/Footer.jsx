@@ -150,7 +150,7 @@ const Footer = ({ language }) => {
               <img
                 src={logo2}
                 alt="Logo"
-                className={`sm:h-[155px] sm:w-[176px] h-[120px] w-[130px] ${
+                className={`sm:h-[140px] sm:w-[160px] h-[120px] w-[130px] ${
                   language === "ar" ? "mr-[-25px] ml-[-5px] " : "ml-[-15px]"
                 }`}
               />

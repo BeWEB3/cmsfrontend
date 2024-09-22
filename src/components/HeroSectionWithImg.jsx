@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import heroVideo from "../pics/HeroVideoImg.png";
-// import Facebook from "../pics/Facebook F.svg";
-// import Youtube from "../pics/YouTube.svg";
-// import Twitter from "../pics/Twitter.svg";
+
 import artBoard from "../pics/Artboard.png";
 
 import Calender from "../pics/Calendar.png";
@@ -15,11 +13,12 @@ const HeroSectionWithImg = ({
   Title,
   newsTitle = false,
   newsObj,
+  backgroundImg = heroVideo,
 }) => {
   return (
     <div className=" relative  ">
       <img
-        src={heroVideo}
+        src={backgroundImg}
         alt=""
         className="relative z-[1] 2xl:h-[1100px] lg:h-[830px] md:h-[650px] h-[600px] object-cover w-full " // Lower z-index for the image
       />

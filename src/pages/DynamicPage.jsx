@@ -1,91 +1,93 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import ServiceSection from "../components/ServiceSection";
-import TeamSection from "../components/TeamSection";
+// import ServiceSection from "../components/ServiceSection";
+// import TeamSection from "../components/TeamSection";
 import AboutSection from "../components/AboutSection";
-import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
+// import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
 import HeroSectionWithImg from "../components/HeroSectionWithImg";
+import { APiFunctions } from "../API/AccountApiLayer";
+import { useQuery } from "react-query";
+import PageLoader from "./PageLoader";
+import TempleteContentSection from "../components/TempleteContentSection";
 
 const DynamicPage = ({ language, toggleLanguage }) => {
   const { slug } = useParams();
-  const [pageData, setPageData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const fetchPageData = useCallback(
+    () => APiFunctions.GETWithSlug(`${slug}`),
+    [slug]
+  );
+
+  const {
+    data: pageData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("pageData", fetchPageData, {
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
+
+  const memoizedSections = useMemo(() => {
+    if (!pageData || !pageData.data) return null;
+    return pageData.data?.contentSections;
+  }, [pageData]);
+
+  // console.log(memoizedSections);
+
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const fetchPageData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`/api/pages/${slug}`);
-        setPageData(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch page data");
-        setLoading(false);
-      }
-    };
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          clearInterval(timer);
+          return 100;
+        }
+        return Math.min(oldProgress + 10, 100);
+      });
+    }, 500);
 
-    fetchPageData();
-  }, [slug]);
+    return () => clearInterval(timer);
+  }, []);
 
-  if (loading) return <div className="text-center py-8">Loading...</div>;
-  if (error)
-    return <div className="text-center py-8 text-red-500">{error}</div>;
-  if (!pageData) return <div className="text-center py-8">Page not found</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
-  const renderComponent = (component) => {
-    switch (component.type) {
-      case "heroimg":
+  const renderSection = (section) => {
+    switch (section?.sectionName) {
+      case "Hero Section":
         return (
           <HeroSectionWithImg
-            key={component.id}
-            {...component.data}
+            key={section?.sectionID}
+            data={{
+              Title: section?.contentItems.find(
+                (item) => item?.contentType === "Headline"
+              )?.content[language],
+              backgroundImg: section?.contentItems.find(
+                (item) => item?.contentType === "Background Image"
+              )?.url,
+            }}
             language={language}
           />
         );
-      case "herovideo":
+      case "Paragraph":
         return (
-          <HeroSectionWithVideo
-            key={component.id}
-            {...component.data}
+          <TempleteContentSection
+            key={section?.sectionID}
+            data={section}
             language={language}
           />
         );
-      case "services":
-        return (
-          <ServiceSection
-            key={component.id}
-            {...component.data}
-            language={language}
-          />
-        );
-      case "team":
-        return (
-          <TeamSection
-            key={component.id}
-            {...component.data}
-            language={language}
-          />
-        );
-      case "about":
-        return (
-          <AboutSection
-            key={component.id}
-            {...component.data}
-            language={language}
-          />
-        );
+      // Add more cases for other section types as needed
       default:
         return null;
     }
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center py-8">{pageData.title}</h1>
-      {pageData.components.map(renderComponent)}
-    </div>
+    <PageLoader isLoading={isLoading} progress={progress}>
+      {memoizedSections && memoizedSections?.map(renderSection)}
+    </PageLoader>
   );
 };
 

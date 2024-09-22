@@ -28,6 +28,8 @@ function SubNewsPage({ language }) {
     return oneNews.data;
   }, [oneNews]);
 
+  // console.log(memoizedNews);
+
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -51,8 +53,6 @@ function SubNewsPage({ language }) {
     ar: "عنوان المقال",
   };
 
-  console.log(memoizedNews);
-
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
       <HeroSectionWithImg
@@ -60,8 +60,9 @@ function SubNewsPage({ language }) {
         language={language}
         newsTitle={true}
         newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
+        backgroundImg={memoizedNews?.image}
       />
-      <ArticleSummary language={language} AticalData={memoizedNews} />
+      <ArticleSummary language={language} data={memoizedNews} />
       <NewsSection language={language} />
     </PageLoader>
   );

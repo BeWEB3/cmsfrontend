@@ -131,7 +131,11 @@ const Header = ({ language, toggleLanguage }) => {
                     item?.slug
                       ? item?.slug === "home"
                         ? "/"
-                        : item?.slug
+                        : item?.slug === "members"
+                        ? "/members"
+                        : item?.slug === "contactus"
+                        ? "contactus"
+                        : `/page/${item?.slug}`
                       : item?.content?.en
                   }
                   className="text-white font-normal text-[19px] hover:text-gray-200 transition-colors duration-300"
@@ -139,6 +143,7 @@ const Header = ({ language, toggleLanguage }) => {
                   {item?.content[language]}
                 </NavLink>
               ))}
+
               <div
                 className="relative"
                 onMouseEnter={handleDropdownEnter}
@@ -164,7 +169,17 @@ const Header = ({ language, toggleLanguage }) => {
                   {memoizedHome?.insideDropdownLinks?.map((item, index) => (
                     <NavLink
                       key={index}
-                      to={item?.slug ? item?.slug : item?.content?.en}
+                      to={
+                        item?.slug
+                          ? item?.slug === "home"
+                            ? "/"
+                            : item?.slug === "members"
+                            ? "/members"
+                            : item?.slug === "contactus"
+                            ? "contactus"
+                            : `/page/${item?.slug}`
+                          : item?.content?.en
+                      }
                       className="block text-nowrap px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors duration-200"
                     >
                       {item?.content[language]}
@@ -312,7 +327,11 @@ const Header = ({ language, toggleLanguage }) => {
                   item?.slug
                     ? item?.slug === "home"
                       ? "/"
-                      : item?.slug
+                      : item?.slug === "members"
+                      ? "/members"
+                      : item?.slug === "contactus"
+                      ? "contactus"
+                      : `/page/${item?.slug}`
                     : item?.content?.en
                 }
                 onClick={() => setIsMenuOpen(false)}
@@ -342,7 +361,17 @@ const Header = ({ language, toggleLanguage }) => {
                 {memoizedHome?.insideDropdownLinks?.map((item, index) => (
                   <NavLink
                     key={index}
-                    to={item?.slug ? item?.slug : item?.content?.en}
+                    to={
+                      item?.slug
+                        ? item?.slug === "home"
+                          ? "/"
+                          : item?.slug === "members"
+                          ? "/members"
+                          : item?.slug === "contactus"
+                          ? "contactus"
+                          : `/page/${item?.slug}`
+                        : item?.content?.en
+                    }
                     onClick={() => {
                       setIsMenuOpen(false); // Close menu on dropdown link click
                       setIsDropdownOpen(false); // Optionally close dropdown as well

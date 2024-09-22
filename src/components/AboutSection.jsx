@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutSection = ({ language }) => {
+const AboutSection = ({ language, data }) => {
   return (
     <section id="about" className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">

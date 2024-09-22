@@ -11,6 +11,7 @@ import MembersPage from "./pages/MembersPage.jsx";
 import TemplatePage from "./pages/TemplatePage.jsx";
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
 import NotFound from "./pages/NotFoundPage.jsx";
+import DynamicPage from "./pages/DynamicPage.jsx";
 
 const App = () => {
   const [language, setLanguage] = useState(() => {
@@ -56,16 +57,16 @@ const App = () => {
               path="/template"
               element={<TemplatePage language={language} />}
             />
-            <Route path="*" element={<NotFound language={language} />} />
-            {/* <Route
-              path="/:slug"
+            <Route
+              path="page/:slug"
               element={
                 <DynamicPage
                   language={language}
                   toggleLanguage={toggleLanguage}
                 />
               }
-            /> */}
+            />
+            <Route path="*" element={<NotFound language={language} />} />
           </Routes>
         </main>
         <Footer language={language} />
