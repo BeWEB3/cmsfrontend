@@ -1,10 +1,12 @@
 import React, { useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import newImg from "../pics/NewsImg.png";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 
 const NewsSection = ({ language }) => {
+  const location = useLocation();
+
   const fetchNewsData = useCallback(() => APiFunctions.GETAllNews(), []);
 
   const {
@@ -20,10 +22,12 @@ const NewsSection = ({ language }) => {
   const memoizedTrendingNews = useMemo(() => {
     if (!allNews || !allNews?.data) return [];
 
+    const isTrendingPage = location.pathname === "/" ? true : false;
+
     return allNews.data
-      .filter((news) => news.isTrending)
+      .filter((news) => (isTrendingPage ? news?.isTrending : !news?.isTrending))
       .sort((a, b) => a.trendingRank - b.trendingRank);
-  }, [allNews]);
+  }, [allNews, location.pathname]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
