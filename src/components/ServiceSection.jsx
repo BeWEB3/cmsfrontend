@@ -22,7 +22,7 @@ const ServiceSection = ({ language, data }) => {
             >
               <div className="flex justify-center mb-6">
                 <img
-                  src={service?.image}
+                  src={service?.image || Bulb}
                   alt=""
                   className=" w-[90px] h-[90px] "
                 />

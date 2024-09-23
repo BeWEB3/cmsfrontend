@@ -19,31 +19,31 @@ const Header = ({ language, toggleLanguage }) => {
   const dropdownRef = useRef(null);
   const dropdownTimerRef = useRef(null);
 
-  const navItems = [
-    { label: language === "ar" ? "اللائحة التنفيذية" : "Home", href: "/" },
-    {
-      label: language === "ar" ? "الأهداف المتحققة" : "Achieved Goals",
-      href: "/achieved-goals",
-    },
-    {
-      label:
-        language === "ar" ? "الأهداف الاستراتيجية" : "Strategic Objectives",
-      href: "/strategic-objectives",
-    },
-    {
-      label: language === "ar" ? "رئاسة الشبكة" : "Network Presidency",
-      href: "/network-presidency",
-    },
-    { label: language === "ar" ? "أعضاء الشبكة" : "Members", href: "/members" },
-  ];
+  // const navItems = [
+  //   { label: language === "ar" ? "اللائحة التنفيذية" : "Home", href: "/" },
+  //   {
+  //     label: language === "ar" ? "الأهداف المتحققة" : "Achieved Goals",
+  //     href: "/achieved-goals",
+  //   },
+  //   {
+  //     label:
+  //       language === "ar" ? "الأهداف الاستراتيجية" : "Strategic Objectives",
+  //     href: "/strategic-objectives",
+  //   },
+  //   {
+  //     label: language === "ar" ? "رئاسة الشبكة" : "Network Presidency",
+  //     href: "/network-presidency",
+  //   },
+  //   { label: language === "ar" ? "أعضاء الشبكة" : "Members", href: "/members" },
+  // ];
 
-  const dropdownItems = [
-    {
-      label: language === "ar" ? "اتصل بنا" : "Contact us",
-      href: "/contact-us",
-    },
-    { label: language === "ar" ? "نموذج" : "Template", href: "/template" },
-  ];
+  // const dropdownItems = [
+  //   {
+  //     label: language === "ar" ? "اتصل بنا" : "Contact us",
+  //     href: "/contact-us",
+  //   },
+  //   { label: language === "ar" ? "نموذج" : "Template", href: "/template" },
+  // ];
 
   const handleDropdownEnter = () => {
     clearTimeout(dropdownTimerRef.current);

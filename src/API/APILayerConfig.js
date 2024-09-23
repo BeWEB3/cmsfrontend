@@ -1,5 +1,4 @@
 import axios from "axios";
-import { toast } from "sonner";
 
 const API = `https://cmsapi.validatione.com/api/`;
 

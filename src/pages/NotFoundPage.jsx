@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, Home, ArrowLeft } from "lucide-react";
+import { Home, ArrowLeft } from "lucide-react";
 
 const NotFound = ({ language }) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
