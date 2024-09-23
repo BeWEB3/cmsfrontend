@@ -25,9 +25,10 @@ const HomePage = ({ language }) => {
     if (!homedata || !homedata.data) return null;
 
     return {
-      objectives: homedata.data?.section1,
-      participants: homedata.data?.section2,
-      competitionNet: homedata.data?.section3,
+      heroSection: homedata.data?.section1,
+      objectives: homedata.data?.section2,
+      participants: homedata.data?.section3,
+      competitionNet: homedata.data?.section4,
     };
   }, [homedata]);
 
@@ -51,7 +52,10 @@ const HomePage = ({ language }) => {
 
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
-      <HeroSectionWithVideo language={language} HeroVideoData />
+      <HeroSectionWithVideo
+        language={language}
+        HeroVideoData={memoizedSections?.heroSection}
+      />
       <div dir={language === "ar" ? "rtl" : "ltr"}>
         <ServiceSection
           language={language}

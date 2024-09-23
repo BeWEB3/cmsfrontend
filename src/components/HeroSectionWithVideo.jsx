@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-// import Facebook from "../pics/Facebook F.svg";
-// import Youtube from "../pics/YouTube.svg";
-// import Twitter from "../pics/Twitter.svg";
 import artBoard from "../pics/Artboard.png";
 import { Facebook, Pause, Play, Twitter, Youtube } from "lucide-react";
 
 const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
+  const videoUrl = HeroVideoData?.contentItems?.video;
+  const socialLinks = HeroVideoData?.contentItems?.socialLinks;
+
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -60,11 +60,12 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
         ref={videoRef}
         className="w-full xl:h-[1100px] lg:h-[830px] md:h-[650px] h-[600px] object-cover "
         onTimeUpdate={handleProgress}
-        loop
-        muted
-        autoPlay
+        loop={true}
+        muted={true}
+        autoPlay={true}
+        playsInline={true}
       >
-        <source src="videos/herovideo.mp4" type="video/mp4" />
+        <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -92,19 +93,37 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
       </div>
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute left-4 top-[50%] translate-y-[-100%] flex flex-col gap-4 text-white z-[3]">
-        <Link to={""} target="_blank">
-          {/* <img src={Facebook} alt="" /> */}
-          <Facebook />
-        </Link>
-        <Link to={""} target="_blank">
-          {/* <img src={Youtube} alt="" />
-           */}
-          <Youtube />
-        </Link>
-        <Link to={""} target="_blank">
-          {/* <img src={Twitter} alt="" /> */}
-          <Twitter />
-        </Link>
+        {socialLinks && (
+          <>
+            {socialLinks.twitter && (
+              <Link
+                to={socialLinks.twitter.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter />
+              </Link>
+            )}
+            {socialLinks.facebook && (
+              <Link
+                to={socialLinks.facebook.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Facebook />
+              </Link>
+            )}
+            {socialLinks.youtube && (
+              <Link
+                to={socialLinks.youtube.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Youtube />
+              </Link>
+            )}
+          </>
+        )}
       </div>
 
       {/* Artboard Image */}

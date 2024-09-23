@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import heroVideo from "../pics/HeroVideoImg.png";
+import heroVideoImg from "../pics/HeroVideoImg.png";
 
 import artBoard from "../pics/Artboard.png";
 
 import Calender from "../pics/Calendar.png";
 import { Facebook, Twitter, Youtube } from "lucide-react";
+import { APiFunctions } from "../API/AccountApiLayer";
+import { useQuery } from "react-query";
 
 const HeroSectionWithImg = ({
   language,
   Title,
   newsTitle = false,
   newsObj,
-  backgroundImg = heroVideo,
+  backgroundImg = heroVideoImg,
 }) => {
+  const fetchHomeData = useCallback(() => APiFunctions.GETSocialLinks(), []);
+
+  const {
+    data: socialLinksData,
+    // isLoading,
+    // isError,
+    // error,
+  } = useQuery("socialLinksData", fetchHomeData, {
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+  });
+
+  const memoizedLinks = useMemo(() => {
+    if (!socialLinksData || !socialLinksData?.data) return null;
+
+    return socialLinksData.data;
+  }, [socialLinksData]);
+
   return (
     <div className=" relative  ">
       <img
@@ -24,15 +44,22 @@ const HeroSectionWithImg = ({
       />
       <div className="absolute inset-0 bg-black opacity-70 z-[2]" />
       <div className="absolute sm:left-4 left-[50%] sm:translate-x-[unset] translate-x-[-50%]  sm:top-[50%] sm:bottom-[unset] bottom-[7rem] sm:translate-y-[-100%] flex sm:flex-col flex-row gap-4 text-white z-[3]  [&>a>img]:sm:w-[30px] [&>a>img]:w-[35px]       ">
-        <Link to={""} target="_blank">
-          <Facebook />
-        </Link>
-        <Link to={""} target="_blank">
-          <Youtube />
-        </Link>
-        <Link to={""} target="_blank">
-          <Twitter />
-        </Link>
+        {memoizedLinks &&
+          memoizedLinks?.map((item) => {
+            return (
+              <>
+                <Link to={item?.url} target="_blank">
+                  {item?.platform === "Twitter" ? (
+                    <Twitter />
+                  ) : item?.platform === "Facebook" ? (
+                    <Facebook />
+                  ) : (
+                    <Youtube />
+                  )}
+                </Link>
+              </>
+            );
+          })}
       </div>
 
       {newsTitle ? (

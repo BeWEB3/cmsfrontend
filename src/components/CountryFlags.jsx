@@ -1,7 +1,7 @@
 import React from "react";
 
 const CountryFlags = ({ language, data }) => {
-  const flagsData = data?.contentSections[0]?.contentItems;
+  const flagsData = data?.contentItems;
 
   // Group the data by country
   const countries = [];

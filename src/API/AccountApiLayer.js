@@ -25,4 +25,22 @@ export const APiFunctions = {
       url: `get_cms_content?slug=${slug}`,
     });
   },
+  GETSocialLinks: function (slug) {
+    return axiosInstance.request({
+      method: "GET",
+      url: `get_social_links`,
+    });
+  },
+  POSTContact: function (dat) {
+    return axiosInstance.request({
+      method: "POST",
+      url: `contactus`,
+      data: {
+        firstName: "arbaz",
+        lastName: "khan",
+        email: "arbaz.bajay@gmail.com",
+        message: "test",
+      },
+    });
+  },
 };

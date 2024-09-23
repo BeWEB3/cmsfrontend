@@ -2,23 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function AllNewsSection({ language, ShowallNewsLink = true, AllNews }) {
-  // const sortNewsArray = (newsArray) => {
-  //   return newsArray.sort((a, b) => {
-  //     // First, sort by isTrending (true comes before false)
-  //     if (a.isTrending && !b.isTrending) return -1;
-  //     if (!a.isTrending && b.isTrending) return 1;
+  const sortNewsArray = (newsArray) => {
+    return newsArray.sort((a, b) => {
+      // First, sort by isTrending (true comes before false)
+      if (a.isTrending && !b.isTrending) return -1;
+      if (!a.isTrending && b.isTrending) return 1;
 
-  //     // If both are trending, sort by trendingRank
-  //     if (a.isTrending && b.isTrending) {
-  //       return a.trendingRank - b.trendingRank;
-  //     }
+      // If both are trending, sort by trendingRank
+      if (a.isTrending && b.isTrending) {
+        return a.trendingRank - b.trendingRank;
+      }
 
-  //     // If neither are trending, sort by createdAt date (most recent first)
-  //     return new Date(b.createdAt) - new Date(a.createdAt);
-  //   });
-  // };
+      // If neither are trending, sort by createdAt date (most recent first)
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+  };
 
-  // const sortedNewsArray = sortNewsArray(AllNews);
+  const sortedNewsArray = sortNewsArray(AllNews);
 
   // console.log(sortedNewsArray);
 
@@ -28,7 +28,7 @@ function AllNewsSection({ language, ShowallNewsLink = true, AllNews }) {
       <div className="px-6 py-24">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-12 p-6 max-w-[1339px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AllNews.map((news, index) => (
+            {sortedNewsArray?.map((news, index) => (
               <Link
                 to={`/news/${news.uid}`}
                 key={index}

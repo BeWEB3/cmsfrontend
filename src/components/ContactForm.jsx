@@ -1,6 +1,6 @@
-import { Check, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
+import { APiFunctions } from "../API/AccountApiLayer";
 
 const ContactForm = ({ language }) => {
   const [formData, setFormData] = useState({
@@ -14,37 +14,29 @@ const ContactForm = ({ language }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
 
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Simulating API call
-        if (Math.random() > 0.1) {
-          // 90% success rate
-          resolve();
-        } else {
-          reject();
-        }
-      }, 2000);
-    });
-
-    toast.promise(promise, {
-      loading: translations[language].submitting,
-      success: () => (
-        <div className="flex items-center space-x-2">
-          <Check className="text-green-500" size={18} />
-          <span>{translations[language].success}</span>
-        </div>
-      ),
-      error: () => (
-        <div className="flex items-center space-x-2">
-          <X className="text-red-500" size={18} />
-          <span>{translations[language].error}</span>
-        </div>
-      ),
-    });
+    try {
+      await APiFunctions.POSTContact(formData)
+        .then((res) => {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            message: "",
+          });
+          toast.success(res.data.message);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      toast.error(error.message);
+    }
   };
 
   const translations = {

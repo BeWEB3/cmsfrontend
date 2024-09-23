@@ -6,11 +6,6 @@ import { APiFunctions } from "../API/AccountApiLayer";
 import PageLoader from "./PageLoader";
 
 function MembersPage({ language }) {
-  const tiltles = {
-    ar: "أعضاء شبكة المنافسة العربية",
-    en: "Members of the Arab Competition Network",
-  };
-
   const fetchHomeData = useCallback(
     () => APiFunctions.GETWithSlug("members"),
     []
@@ -29,7 +24,14 @@ function MembersPage({ language }) {
   const memoizedSections = useMemo(() => {
     if (!membersdata || !membersdata?.data) return null;
 
-    return membersdata?.data;
+    return {
+      heroSection: membersdata?.data?.contentSections?.find(
+        (section) => section?.sectionName === "Hero Section"
+      ),
+      flagsSection: membersdata?.data.contentSections?.find(
+        (section) => section?.sectionName === "Section 2"
+      ),
+    };
   }, [membersdata]);
 
   const [progress, setProgress] = useState(0);
@@ -52,8 +54,20 @@ function MembersPage({ language }) {
 
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
-      <HeroSectionWithImg Title={tiltles} language={language} />
-      <CountryFlags language={language} data={memoizedSections} />
+      <HeroSectionWithImg
+        Title={
+          memoizedSections?.heroSection?.contentItems?.find(
+            (item) => item?.contentType === "Headline"
+          )?.content
+        }
+        backgroundImg={
+          memoizedSections?.heroSection?.contentItems?.find(
+            (item) => item?.contentType === "Background Image"
+          )?.url
+        }
+        language={language}
+      />
+      <CountryFlags language={language} data={memoizedSections?.flagsSection} />
     </PageLoader>
   );
 }

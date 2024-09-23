@@ -7,11 +7,6 @@ import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
 
 function ContactUsPage({ language }) {
-  const title = {
-    ar: "اتصل بنا",
-    en: "Contact Us",
-  };
-
   const fetchHomeData = useCallback(
     () => APiFunctions.GETWithSlug("contactus"),
     []
@@ -30,7 +25,14 @@ function ContactUsPage({ language }) {
   const memoizedSections = useMemo(() => {
     if (!contactdata || !contactdata?.data) return null;
 
-    return contactdata?.data;
+    return {
+      heroSection: contactdata?.data?.contentSections?.find(
+        (section) => section?.sectionName === "Hero Section"
+      ),
+      contactSection: contactdata?.data.contentSections?.find(
+        (section) => section?.sectionName === "Section 1"
+      ),
+    };
   }, [contactdata]);
 
   const [progress, setProgress] = useState(0);
@@ -53,11 +55,24 @@ function ContactUsPage({ language }) {
 
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
-      <HeroSectionWithImg language={language} Title={title} />
+      <HeroSectionWithImg
+        language={language}
+        Title={
+          memoizedSections?.heroSection?.contentItems?.find(
+            (item) => item?.contentType === "Headline"
+          )?.content
+        }
+        backgroundImg={
+          memoizedSections?.heroSection?.contentItems?.find(
+            (item) => item?.contentType === "Background Image"
+          )?.url
+        }
+      />
       <ContactInfo
         language={language}
-        data={memoizedSections?.contentSections[0]}
+        data={memoizedSections?.contactSection}
       />
+      {/* memoizedSections?.contentSections[0] */}
       <ContactForm language={language} />
     </PageLoader>
   );
