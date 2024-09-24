@@ -10,7 +10,7 @@ import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
 import TempleteContentSection from "../components/TempleteContentSection";
 
-const DynamicPage = ({ language, toggleLanguage }) => {
+const DynamicPage = ({ language }) => {
   const { slug } = useParams();
 
   const fetchPageData = useCallback(
@@ -32,8 +32,6 @@ const DynamicPage = ({ language, toggleLanguage }) => {
     if (!pageData || !pageData.data) return null;
     return pageData.data?.contentSections;
   }, [pageData]);
-
-  console.log(memoizedSections);
 
   const [progress, setProgress] = useState(0);
 

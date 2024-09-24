@@ -58,12 +58,7 @@ const App = () => {
             /> */}
             <Route
               path="page/:slug"
-              element={
-                <DynamicPage
-                  language={language}
-                  toggleLanguage={toggleLanguage}
-                />
-              }
+              element={<DynamicPage language={language} />}
             />
             <Route path="*" element={<NotFound language={language} />} />
           </Routes>

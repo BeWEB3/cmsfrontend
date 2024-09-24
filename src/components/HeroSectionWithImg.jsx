@@ -47,17 +47,15 @@ const HeroSectionWithImg = ({
         {memoizedLinks &&
           memoizedLinks?.map((item) => {
             return (
-              <>
-                <Link to={item?.url} target="_blank">
-                  {item?.platform === "Twitter" ? (
-                    <Twitter />
-                  ) : item?.platform === "Facebook" ? (
-                    <Facebook />
-                  ) : (
-                    <Youtube />
-                  )}
-                </Link>
-              </>
+              <Link key={item?.platform} to={item?.url} target="_blank">
+                {item?.platform === "Twitter" ? (
+                  <Twitter key={item?.platform} />
+                ) : item?.platform === "Facebook" ? (
+                  <Facebook key={item?.platform} />
+                ) : (
+                  <Youtube key={item?.platform} />
+                )}
+              </Link>
             );
           })}
       </div>
