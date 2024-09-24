@@ -23,6 +23,19 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
     }
   }, []);
 
+  // Add a useEffect to check if the video is playable
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.addEventListener("canplaythrough", () => {
+        videoElement.play();
+      });
+      videoElement.addEventListener("error", (error) => {
+        console.error("Error playing video:", error);
+      });
+    }
+  }, [videoUrl]);
+
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
