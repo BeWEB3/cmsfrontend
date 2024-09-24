@@ -7,7 +7,7 @@ import PageLoader from "./PageLoader";
 
 function MembersPage({ language }) {
   const fetchHomeData = useCallback(
-    () => APiFunctions.GETWithSlug("members"),
+    () => APiFunctions.GETWithSlug("networkpresidency"),
     []
   );
 
@@ -33,6 +33,8 @@ function MembersPage({ language }) {
       ),
     };
   }, [membersdata]);
+
+  // console.log(memoizedSections?.flagsSection);
 
   const [progress, setProgress] = useState(0);
 
@@ -67,7 +69,12 @@ function MembersPage({ language }) {
         }
         language={language}
       />
-      <CountryFlags language={language} data={memoizedSections?.flagsSection} />
+      {memoizedSections?.flagsSection && (
+        <CountryFlags
+          language={language}
+          data={memoizedSections?.flagsSection}
+        />
+      )}
     </PageLoader>
   );
 }

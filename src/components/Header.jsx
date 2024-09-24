@@ -34,7 +34,7 @@ const Header = ({ language, toggleLanguage }) => {
   //     label: language === "ar" ? "رئاسة الشبكة" : "Network Presidency",
   //     href: "/network-presidency",
   //   },
-  //   { label: language === "ar" ? "أعضاء الشبكة" : "Members", href: "/members" },
+  //   { label: language === "ar" ? "أعضاء الشبكة" : "Members", href: "/network-presidency" },
   // ];
 
   // const dropdownItems = [
@@ -131,8 +131,8 @@ const Header = ({ language, toggleLanguage }) => {
                     item?.slug
                       ? item?.slug === "home"
                         ? "/"
-                        : item?.slug === "members"
-                        ? "/members"
+                        : item?.slug === "networkpresidency"
+                        ? "/network-presidency"
                         : item?.slug === "contactus"
                         ? "contactus"
                         : `/page/${item?.slug}`
@@ -173,8 +173,8 @@ const Header = ({ language, toggleLanguage }) => {
                         item?.slug
                           ? item?.slug === "home"
                             ? "/"
-                            : item?.slug === "members"
-                            ? "/members"
+                            : item?.slug === "networkpresidency"
+                            ? "/network-presidency"
                             : item?.slug === "contactus"
                             ? "contactus"
                             : `/page/${item?.slug}`
@@ -327,8 +327,8 @@ const Header = ({ language, toggleLanguage }) => {
                   item?.slug
                     ? item?.slug === "home"
                       ? "/"
-                      : item?.slug === "members"
-                      ? "/members"
+                      : item?.slug === "networkpresidency"
+                      ? "/network-presidency"
                       : item?.slug === "contactus"
                       ? "contactus"
                       : `/page/${item?.slug}`
@@ -365,8 +365,8 @@ const Header = ({ language, toggleLanguage }) => {
                       item?.slug
                         ? item?.slug === "home"
                           ? "/"
-                          : item?.slug === "members"
-                          ? "/members"
+                          : item?.slug === "networkpresidency"
+                          ? "/network-presidency"
                           : item?.slug === "contactus"
                           ? "contactus"
                           : `/page/${item?.slug}`

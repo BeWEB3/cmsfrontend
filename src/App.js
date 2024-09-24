@@ -49,7 +49,7 @@ const App = () => {
               element={<ContactUsPage language={language} />}
             />
             <Route
-              path="/members"
+              path="/network-presidency"
               element={<MembersPage language={language} />}
             />
             {/* <Route

@@ -33,6 +33,8 @@ const DynamicPage = ({ language }) => {
     return pageData.data?.contentSections;
   }, [pageData]);
 
+  console.log(memoizedSections);
+
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {

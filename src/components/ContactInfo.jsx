@@ -18,7 +18,7 @@ const ContactInfo = ({ language, data }) => {
       <div className="absolute w-full bg-[white] xl:h-[150px] md:h-[120px] h-[50px] xl:top-[-135px] top-[-110px] md:block hidden z-[2]" />
       <div className="px-6">
         <div className="bg-white rounded-[31px] [box-shadow:0_0_10px_3px_#7B7B7B40] sm:p-12 p-6 max-w-[1339px] mx-auto w-full flex justify-between items-center xl:flex-nowrap flex-wrap gap-10">
-          <div className="grid grid-cols-2 md:gap-24 sm:gap-12 gap-2 lg:order-1 order-2 lg:w-[unset] w-full">
+          <div className="grid sm:grid-cols-2 md:gap-24 sm:gap-12 gap-2 lg:order-1 order-2 lg:w-[unset] w-full">
             <div className="flex md:gap-2 gap-1 flex-col w-full">
               <h3 className="md:text-[47px] text-[18px] font-bold md:leading-[47px] leading-[26px] text-[#00567D]">
                 {getContent("Fax Number Heading")}
