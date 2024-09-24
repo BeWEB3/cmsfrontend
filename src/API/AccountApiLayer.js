@@ -35,12 +35,7 @@ export const APiFunctions = {
     return axiosInstance.request({
       method: "POST",
       url: `contactus`,
-      data: {
-        firstName: "arbaz",
-        lastName: "khan",
-        email: "arbaz.bajay@gmail.com",
-        message: "test",
-      },
+      data: dat,
     });
   },
 };

@@ -33,6 +33,8 @@ const DynamicPage = ({ language, toggleLanguage }) => {
     return pageData.data?.contentSections;
   }, [pageData]);
 
+  console.log(memoizedSections);
+
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -78,6 +80,7 @@ const DynamicPage = ({ language, toggleLanguage }) => {
             language={language}
           />
         );
+
       // Add more cases for other section types as needed
       default:
         return null;

@@ -122,7 +122,7 @@ const Header = ({ language, toggleLanguage }) => {
             </Link>
             <nav
               className="hidden xl:flex items-center gap-4"
-              dir={language === "ar" && "ltr"}
+              // dir={language === "ar" && "ltr"}
             >
               {memoizedHome?.outsideDropdownLinks?.map((item, index) => (
                 <NavLink
@@ -160,7 +160,7 @@ const Header = ({ language, toggleLanguage }) => {
                   />
                 </button>
                 <div
-                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[150px] ${
+                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[180px] ${
                     isDropdownOpen
                       ? "opacity-100 visible translate-y-0"
                       : "opacity-0 invisible -translate-y-2"

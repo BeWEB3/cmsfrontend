@@ -16,7 +16,6 @@ const ContactForm = ({ language }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
 
     try {
       await APiFunctions.POSTContact(formData)
@@ -28,13 +27,11 @@ const ContactForm = ({ language }) => {
             message: "",
           });
           toast.success(res.data.message);
-          console.log(res);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     } catch (error) {
-      console.error("Error submitting the form:", error);
       toast.error(error.message);
     }
   };
