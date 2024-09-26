@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { toast } from "sonner";
 import { APiFunctions } from "../API/AccountApiLayer";
 import {
   GoogleReCaptchaProvider,
   useGoogleReCaptcha,
 } from "react-google-recaptcha-v3";
+import DOMPurify from "dompurify";
 
 const ContactFormContent = ({ language }) => {
   const [formData, setFormData] = useState({
@@ -17,9 +18,54 @@ const ContactFormContent = ({ language }) => {
   const [loading, setLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const sanitizeInput = (input, fieldName) => {
+    let sanitized = DOMPurify.sanitize(input);
+
+    sanitized = sanitized.replace(/[^\x20-\x7E]/g, " ");
+
+    switch (fieldName) {
+      case "firstName":
+      case "lastName":
+        sanitized = sanitized.replace(/[^a-zA-Z\s-]/g, " ");
+        break;
+      case "email":
+        sanitized = sanitized.toLowerCase();
+        break;
+      case "message":
+        sanitized = sanitized.trim().replace(/\s{2,}/g, " ");
+
+        if (sanitized.length > 1000) {
+          sanitized = sanitized.slice(0, 1000);
+          toast.warning("Message truncated to 1000 characters.");
+        }
+        break;
+      default:
+        break;
+    }
+
+    return sanitized.trim();
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handlePaste = useCallback((e) => {
+    e.preventDefault();
+    toast.error("Pasting is not allowed. Please type your input.");
+  }, []);
+
+  const handleBlur = useCallback((e) => {
+    if (e.target.name === "email") {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)) {
+        toast.error("Please enter a valid email address.");
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,11 +75,18 @@ const ContactFormContent = ({ language }) => {
       return;
     }
 
+    const sanitizedFormData = {
+      firstName: sanitizeInput(formData.firstName, "firstName"),
+      lastName: sanitizeInput(formData.lastName, "lastName"),
+      email: sanitizeInput(formData.email, "email"),
+      message: sanitizeInput(formData.message, "message"),
+    };
+
     setLoading(true);
 
     try {
       const token = await executeRecaptcha("submit_contact_form");
-      const formDataWithToken = { ...formData, recaptchaToken: token };
+      const formDataWithToken = { ...sanitizedFormData, recaptchaToken: token };
 
       await APiFunctions.POSTContact(formDataWithToken)
         .then((res) => {
@@ -116,6 +169,8 @@ const ContactFormContent = ({ language }) => {
                 value={formData.firstName}
                 lang={language}
                 onChange={handleChange}
+                onPaste={handlePaste}
+                onBlur={handleBlur}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]   "
                 required
               />
@@ -134,6 +189,8 @@ const ContactFormContent = ({ language }) => {
                 lang={language}
                 value={formData.lastName}
                 onChange={handleChange}
+                onPaste={handlePaste}
+                onBlur={handleBlur}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
                 required
               />
@@ -152,6 +209,8 @@ const ContactFormContent = ({ language }) => {
                 lang={language}
                 value={formData.email}
                 onChange={handleChange}
+                onPaste={handlePaste}
+                onBlur={handleBlur}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
                 required
               />
@@ -170,6 +229,8 @@ const ContactFormContent = ({ language }) => {
               lang={language}
               value={formData.message}
               onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={handleBlur}
               rows="6"
               className=" max-h-[350px] min-h-[180px]  w-full px-6 py-3 bg-white rounded-lg  focus:outline-none focus:ring-2 focus:ring-[white]  "
               required
