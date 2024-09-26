@@ -121,7 +121,7 @@ const Header = ({ language, toggleLanguage }) => {
               />
             </Link>
             <nav
-              className="hidden xl:flex items-center gap-4"
+              className="hidden xl:flex items-center xl:gap-4 gap-2"
               // dir={language === "ar" && "ltr"}
             >
               {memoizedHome?.outsideDropdownLinks?.map((item, index) => (

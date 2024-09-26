@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "sonner";
 import { APiFunctions } from "../API/AccountApiLayer";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
-const ContactForm = ({ language }) => {
+const ContactFormContent = ({ language }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -11,6 +15,7 @@ const ContactForm = ({ language }) => {
   });
 
   const [loading, setLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,10 +23,19 @@ const ContactForm = ({ language }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!executeRecaptcha) {
+      console.error("Execute recaptcha not available");
+      toast.error(t.error);
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await APiFunctions.POSTContact(formData)
+      const token = await executeRecaptcha("submit_contact_form");
+      const formDataWithToken = { ...formData, recaptchaToken: token };
+
+      await APiFunctions.POSTContact(formDataWithToken)
         .then((res) => {
           setFormData({
             firstName: "",
@@ -32,13 +46,15 @@ const ContactForm = ({ language }) => {
           toast.success(res.data.message);
         })
         .catch((err) => {
-          // console.log(err);
+          console.error(err);
+          toast.error(t.error);
         })
         .finally(() => {
           setLoading(false);
         });
     } catch (error) {
-      toast.error(error.message);
+      console.error(error);
+      toast.error(t.error);
       setLoading(false);
     }
   };
@@ -76,6 +92,7 @@ const ContactForm = ({ language }) => {
         className={`bg-[#00567D] sm:px-8 px-4 xl:rounded-none rounded-[13px] shadow-lg w-full sm:py-12 py-8   my-16 ${
           language === "ar" ? "rtl" : "ltr"
         }`}
+        dir={language === "ar" ? "rtl" : "ltr"}
       >
         <h2 className="sm:text-[50px] text-[26px] font-bold leading-[50px] text-center text-white sm:mb-16 mb-8 max-w-[1100px] mx-auto   ">
           {t.title}
@@ -97,6 +114,7 @@ const ContactForm = ({ language }) => {
                 id="firstName"
                 name="firstName"
                 value={formData.firstName}
+                lang={language}
                 onChange={handleChange}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]   "
                 required
@@ -113,6 +131,7 @@ const ContactForm = ({ language }) => {
                 type="text"
                 id="lastName"
                 name="lastName"
+                lang={language}
                 value={formData.lastName}
                 onChange={handleChange}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
@@ -130,6 +149,7 @@ const ContactForm = ({ language }) => {
                 type="email"
                 id="email"
                 name="email"
+                lang={language}
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-6 py-3 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-[white]  "
@@ -147,6 +167,7 @@ const ContactForm = ({ language }) => {
             <textarea
               id="message"
               name="message"
+              lang={language}
               value={formData.message}
               onChange={handleChange}
               rows="6"
@@ -160,12 +181,22 @@ const ContactForm = ({ language }) => {
               disabled={loading}
               className=" mt-6 w-full bg-white text-[#00567D]  font-bold py-2 px-4 rounded  transition duration-300 hover:bg-[#ffffffd2] active:scale-[0.97]  disabled:opacity-60 "
             >
-              {t.submit}
+              {loading ? t.submitting : t.submit}
             </button>
           </div>
         </form>
       </div>
     </div>
+  );
+};
+
+const ContactForm = ({ language }) => {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+    >
+      <ContactFormContent language={language} />
+    </GoogleReCaptchaProvider>
   );
 };
 

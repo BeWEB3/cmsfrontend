@@ -39,7 +39,10 @@ const NewsSection = ({ language }) => {
           {language === "ar" ? "أخبار المنافسة" : "News of Al-Monafsa"}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          dir={language === "ar" ? "rtl" : "ltr"}
+        >
           {memoizedTrendingNews.map((news, index) => (
             <Link
               to={`/news/${news.uid}`}

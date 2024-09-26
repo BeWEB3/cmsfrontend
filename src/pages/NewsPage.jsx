@@ -52,11 +52,13 @@ function NewsPage({ language }) {
         newsTitle={false}
       />
       {memoizedSections && memoizedSections.AllnewsData ? (
-        <AllNewsSection
-          language={language}
-          ShowallNewsLink={false}
-          AllNews={memoizedSections.AllnewsData}
-        />
+        <div dir={language === "ar" ? "rtl" : "ltr"}>
+          <AllNewsSection
+            language={language}
+            ShowallNewsLink={false}
+            AllNews={memoizedSections.AllnewsData}
+          />
+        </div>
       ) : (
         <div className="flex justify-center items-center h-64">
           <p className="text-xl text-gray-500">

@@ -84,8 +84,8 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
 
       <div className="absolute lg:bottom-[40%] bottom-[10%] z-10 right-6 flex items-center gap-4  ">
         <div
-          className="w-[200px] h-1 bg-[#ffffffaf]  cursor-pointer relative flex items-center "
-          onClick={handleSeek}
+          className="w-[200px] h-1 bg-[#ffffffaf]   relative flex items-center "
+          // onClick={handleSeek}
           ref={progressRef}
         >
           <div
