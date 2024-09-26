@@ -9,6 +9,7 @@ import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
 import TempleteContentSection from "../components/TempleteContentSection";
+import TextEditorComponent from "../components/TextEditor";
 
 const DynamicPage = ({ language }) => {
   const { slug } = useParams();
@@ -75,6 +76,15 @@ const DynamicPage = ({ language }) => {
       case "Paragraph":
         return (
           <TempleteContentSection
+            key={section?.sectionID}
+            data={section}
+            language={language}
+          />
+        );
+
+      case "Text Editor":
+        return (
+          <TextEditorComponent
             key={section?.sectionID}
             data={section}
             language={language}
