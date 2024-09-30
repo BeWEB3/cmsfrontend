@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import { toast } from "sonner";
 import { APiFunctions } from "../API/AccountApiLayer";
 import {
@@ -86,6 +86,11 @@ const ContactFormContent = ({ language }) => {
 
     try {
       const token = await executeRecaptcha("submit_contact_form");
+
+      if (!token) {
+        toast.error("Failed to generate reCAPTCHA token. Please try again.");
+        return;
+      }
       const formDataWithToken = { ...sanitizedFormData, recaptchaToken: token };
 
       await APiFunctions.POSTContact(formDataWithToken)

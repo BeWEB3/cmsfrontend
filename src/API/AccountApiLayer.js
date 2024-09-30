@@ -32,12 +32,16 @@ export const APiFunctions = {
     });
   },
   POSTContact: function (dat) {
-    // console.log(dat);
-
     return axiosInstance.request({
       method: "POST",
       url: `contactus`,
       data: dat,
+    });
+  },
+  POSTSearch: function (dat) {
+    return axiosInstance.request({
+      method: "POST",
+      url: `search?query=${dat}`,
     });
   },
 };
