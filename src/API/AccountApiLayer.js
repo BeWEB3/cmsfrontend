@@ -38,9 +38,9 @@ export const APiFunctions = {
       data: dat,
     });
   },
-  POSTSearch: function (dat) {
+  GETSearch: function (dat) {
     return axiosInstance.request({
-      method: "POST",
+      method: "GET",
       url: `search?query=${dat}`,
     });
   },

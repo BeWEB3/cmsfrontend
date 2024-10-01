@@ -6,44 +6,97 @@ import React, {
   useMemo,
 } from "react";
 import { Mail, Menu, Phone, Search, X, ChevronDown } from "lucide-react";
-
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { APiFunctions } from "../API/AccountApiLayer";
 import logo1 from "../pics/Logo1.svg";
 import logo2 from "../pics/Logo2.svg";
-import { Link, NavLink } from "react-router-dom";
-import { APiFunctions } from "../API/AccountApiLayer";
-import { useQuery } from "react-query";
+
+// Debounce hook
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
 
 const Header = ({ language, toggleLanguage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   const dropdownRef = useRef(null);
   const dropdownTimerRef = useRef(null);
+  const searchInputRef = useRef(null);
+  const mobileSearchInputRef = useRef(null);
+  const navigate = useNavigate();
 
-  // const navItems = [
-  //   { label: language === "ar" ? "اللائحة التنفيذية" : "Home", href: "/" },
-  //   {
-  //     label: language === "ar" ? "الأهداف المتحققة" : "Achieved Goals",
-  //     href: "/achieved-goals",
-  //   },
-  //   {
-  //     label:
-  //       language === "ar" ? "الأهداف الاستراتيجية" : "Strategic Objectives",
-  //     href: "/strategic-objectives",
-  //   },
-  //   {
-  //     label: language === "ar" ? "رئاسة الشبكة" : "Network Presidency",
-  //     href: "/network-presidency",
-  //   },
-  //   { label: language === "ar" ? "أعضاء الشبكة" : "Members", href: "/network-presidency" },
-  // ];
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  // const dropdownItems = [
-  //   {
-  //     label: language === "ar" ? "اتصل بنا" : "Contact us",
-  //     href: "/contact-us",
-  //   },
-  //   { label: language === "ar" ? "نموذج" : "Template", href: "/template" },
-  // ];
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+      setSearchResults([]);
+    }
+  };
+
+  const fetchSearchResults = useCallback(async () => {
+    if (debouncedSearchTerm.trim()) {
+      setIsSearching(true);
+      try {
+        const response = await APiFunctions.GETSearch(
+          debouncedSearchTerm.trim()
+        );
+        console.log(response.data);
+
+        setSearchResults(response.data || []);
+      } catch (error) {
+        console.error("Search error:", error);
+        setSearchResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    } else {
+      setSearchResults([]);
+    }
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    fetchSearchResults();
+  }, [fetchSearchResults]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target) &&
+        mobileSearchInputRef.current &&
+        !mobileSearchInputRef.current.contains(event.target)
+      ) {
+        setSearchResults([]);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDropdownEnter = () => {
     clearTimeout(dropdownTimerRef.current);
@@ -75,18 +128,78 @@ const Header = ({ language, toggleLanguage }) => {
     isError,
     error,
   } = useQuery("homeData", fetchNewsData, {
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    cacheTime: 10 * 60 * 1000, // 10 minutes
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
   });
 
   const memoizedHome = useMemo(() => {
     if (!homeData || !homeData?.data) return null;
-
     return homeData.data;
   }, [homeData]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
+
+  const renderSearchInput = (isMobile = false) => (
+    <form
+      onSubmit={handleSearchSubmit}
+      className="relative w-full"
+      ref={isMobile ? mobileSearchInputRef : searchInputRef}
+    >
+      <Search
+        size={16}
+        color="white"
+        className={`absolute top-[50%] translate-y-[-50%] ${
+          language === "ar" ? "right-3" : "left-3"
+        }`}
+      />
+      <input
+        type="search"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        lang={language}
+        placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
+        className={`border-white border-solid border-[1px] rounded-[30px] px-[2rem] ${
+          isMobile ? "h-[34px] w-full" : "h-[27px] max-w-[214px] w-full"
+        } mx-auto py-[2px] focus:outline-none focus:ring-0 bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]`}
+      />
+      {(searchResults.length > 0 || isSearching) && (
+        <div className="absolute z-50 w-full sm:max-w-[230px] mt-1 bg-[#00567D] rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-hidden  ">
+          {isSearching ? (
+            <div className="p-2 text-white">Searching...</div>
+          ) : (
+            searchResults.map((result, index) => (
+              <Link
+                key={index}
+                to={
+                  result?.slug
+                    ? result?.slug === "home"
+                      ? "/"
+                      : result?.slug === "networkpresidency"
+                      ? "/network-presidency"
+                      : result?.slug === "contactus"
+                      ? "contactus"
+                      : `/page/${result?.slug}`
+                    : result?.content?.en
+                }
+                className="block px-4 py-2 text-sm text-white hover:bg-gray-100 hover:text-[#00567D]  "
+                onClick={() => {
+                  setSearchResults([]);
+                  setIsMenuOpen(false);
+                }}
+              >
+                {result[language]?.length >= 20 ? (
+                  <>{result[language]?.substring(0, 20)}...</>
+                ) : (
+                  result[language]?.substring(0, 20)
+                )}
+              </Link>
+            ))
+          )}
+        </div>
+      )}
+    </form>
+  );
 
   return (
     <header className="w-full relative" dir={language === "ar" ? "rtl" : "ltr"}>
@@ -99,7 +212,7 @@ const Header = ({ language, toggleLanguage }) => {
           <div className="flex items-center gap-4">
             <Link
               to={"/"}
-              className="flex items-end sm:gap-2 gap-3 sm:min-w-[unset] min-w-[120px]  "
+              className="flex items-end sm:gap-2 gap-3 sm:min-w-[unset] min-w-[120px]"
             >
               <img
                 src={logo1}
@@ -109,21 +222,16 @@ const Header = ({ language, toggleLanguage }) => {
               <div
                 className={`sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px] ${
                   language === "en" ? "mr-[2px] " : ""
-                }  `}
+                }`}
               />
               <img
                 src={logo2}
                 alt="Logo"
                 className={`sm:h-[96px] sm:w-[109px] h-[65px] w-[70px] 
-                  
-                  ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "} 
-                  `}
+                  ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "}`}
               />
             </Link>
-            <nav
-              className="hidden xl:flex items-center xl:gap-4 gap-2"
-              // dir={language === "ar" && "ltr"}
-            >
+            <nav className="hidden xl:flex items-center xl:gap-4 gap-2">
               {memoizedHome?.outsideDropdownLinks?.map((item, index) => (
                 <NavLink
                   key={index}
@@ -143,7 +251,6 @@ const Header = ({ language, toggleLanguage }) => {
                   {item?.content[language]}
                 </NavLink>
               ))}
-
               <div
                 className="relative"
                 onMouseEnter={handleDropdownEnter}
@@ -190,23 +297,23 @@ const Header = ({ language, toggleLanguage }) => {
             </nav>
           </div>
           <div className="flex items-center sm:space-x-4 sm:gap-0 gap-1">
-            <div className=" sm:block hidden w-fit ">
+            <div className="sm:block hidden w-fit">
               <div className="flex items-center justify-between sm:gap-6 gap-1 border-b-[1px] border-b-[solid] border-b-[white] pb-[3px]">
                 <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
                   <Link
-                    className=" flex items-center gap-1 "
+                    className="flex items-center gap-1"
                     to={"tel:+2035351900"}
                   >
                     <Phone size={12} />
-                    <span className=" ">+2035351900</span>
+                    <span className="">+2035351900</span>
                   </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
-                    className=" flex items-center gap-1 "
+                    className="flex items-center gap-1"
                     to={"mailto:info@eca.org.eg"}
                   >
                     <Mail size={12} />
-                    <span className=" ">info@eca.org.eg</span>
+                    <span className="">info@eca.org.eg</span>
                   </Link>
                 </div>
                 <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
@@ -226,23 +333,7 @@ const Header = ({ language, toggleLanguage }) => {
                 </div>
               </div>
               <div className="flex justify-end items-center pt-2">
-                <label className="relative w-full">
-                  <Search
-                    size={16}
-                    color="white"
-                    className={`absolute top-[50%] translate-y-[-50%] ${
-                      language === "ar" ? "right-3" : "left-3"
-                    }`}
-                  />
-                  <input
-                    type="search"
-                    name="search"
-                    id="search"
-                    lang={language}
-                    placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
-                    className="border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[27px] max-w-[214px] w-full mx-auto py-[2px] focus:outline-none focus:ring-0   bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]"
-                  />
-                </label>
+                {renderSearchInput()}
               </div>
             </div>
 
@@ -260,44 +351,28 @@ const Header = ({ language, toggleLanguage }) => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="xl:hidden absolute bg-[#00567D] w-full sm:pt-[7rem] pt-[6rem] z-40 drop-shadow-2xl ">
-          <div className=" sm:hidden block px-6  ">
-            <div className=" w-full ">
+        <div className="xl:hidden absolute bg-[#00567D] w-full sm:pt-[7rem] pt-[6rem] z-40 drop-shadow-2xl">
+          <div className="sm:hidden block px-6">
+            <div className="w-full">
               <div className="flex justify-end items-center pt-2">
-                <label className="relative w-full">
-                  <Search
-                    size={16}
-                    color="white"
-                    className={`absolute top-[50%] translate-y-[-50%] ${
-                      language === "ar" ? "right-3" : "left-3"
-                    }`}
-                  />
-                  <input
-                    type="search"
-                    name="search"
-                    id="search"
-                    lang={language}
-                    placeholder={`${language === "ar" ? "ابحث هنا" : "Search"}`}
-                    className="border-white border-solid border-[1px] rounded-[30px] px-[2rem] h-[34px] sm:max-w-[214px] w-full mx-auto py-[2px] focus:outline-none focus:ring-0   bg-transparent text-white placeholder:text-white text-[12px] font-normal leading-[13.8px]"
-                  />
-                </label>
+                {renderSearchInput(true)}
               </div>
-              <div className=" mt-3 pt-2 flex items-center justify-between sm:gap-6 gap-1 border-t-[1px] border-t-[solid] border-t-[white] pb-[2px]">
+              <div className="mt-3 pt-2 flex items-center justify-between sm:gap-6 gap-1 border-t-[1px] border-t-[solid] border-t-[white] pb-[2px]">
                 <div className="flex items-center gap-1 [&_*]:text-[13px] text-white">
                   <Link
-                    className=" flex items-center gap-1 "
+                    className="flex items-center gap-1"
                     to={"tel:+2035351900"}
                   >
                     <Phone size={12} />
-                    <span className=" ">+2035351900</span>
+                    <span className="">+2035351900</span>
                   </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
-                    className=" flex items-center gap-1 "
+                    className="flex items-center gap-1"
                     to={"mailto:info@eca.org.eg"}
                   >
                     <Mail size={12} />
-                    <span className=" ">info@eca.org.eg</span>
+                    <span className="">info@eca.org.eg</span>
                   </Link>
                 </div>
                 <div className="flex items-center [&_*]:text-[13px] text-white">
@@ -318,7 +393,6 @@ const Header = ({ language, toggleLanguage }) => {
               </div>
             </div>
           </div>
-
           <nav className="px-4 mt-4 pb-4 space-y-2">
             {memoizedHome?.outsideDropdownLinks?.map((item, index) => (
               <NavLink
