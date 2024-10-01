@@ -28,7 +28,7 @@ const TempleteContentSection = ({ language, data }) => {
         return (
           <p
             key={item.id}
-            className="text-[#596064] text-[30px] font-normal leading-[57.9px] text-center mb-4"
+            className="text-[#596064] md:text-[30px] text-[22px] font-normal md:leading-[57.9px] leading-[34px] text-center mb-4"
           >
             {getContent(item)}
           </p>

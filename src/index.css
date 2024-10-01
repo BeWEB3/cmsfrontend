@@ -16,6 +16,22 @@ body,
   transition: all 0.2s linear;
 }
 
+.ql-align-center {
+  text-align: center !important;
+}
+
+.ql-align-right {
+  text-align: right !important;
+}
+
+.ql-align-justify {
+  text-align: justify !important;
+}
+
+.ql-align-left {
+  text-align: left !important;
+}
+
 @layer components {
   .leftLineOnText {
     @apply relative pb-1 !mb-3 w-fit before:content-[''] before:h-[2px] before:bg-[#00567D] before:w-[calc(100%-40%)] before:absolute before:bottom-[-4px] before:left-0;
