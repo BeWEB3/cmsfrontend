@@ -4,6 +4,7 @@ import AllNewsSection from "../components/AllNewsSection";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
+import WorkShopSection from "../components/WorkShopSection";
 
 function WorkShops({ language }) {
   const fetchNewsData = useCallback(() => APiFunctions.GETAllNews(), []);
@@ -53,16 +54,16 @@ function WorkShops({ language }) {
       />
       {memoizedSections && memoizedSections.AllnewsData ? (
         <div dir={language === "ar" ? "rtl" : "ltr"}>
-          <AllNewsSection
+          <WorkShopSection
             language={language}
             ShowallNewsLink={false}
-            AllNews={memoizedSections.AllnewsData}
+            AllWorkShops={memoizedSections.AllnewsData}
           />
         </div>
       ) : (
         <div className="flex justify-center items-center h-64">
           <p className="text-xl text-gray-500">
-            No news available at the moment.
+            No workshops available at the moment.
           </p>
         </div>
       )}

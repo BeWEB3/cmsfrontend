@@ -4,23 +4,18 @@ import { Link } from "react-router-dom";
 function AllNewsSection({ language, ShowallNewsLink = true, AllNews }) {
   const sortNewsArray = (newsArray) => {
     return newsArray.sort((a, b) => {
-      // First, sort by isTrending (true comes before false)
       if (a.isTrending && !b.isTrending) return -1;
       if (!a.isTrending && b.isTrending) return 1;
 
-      // If both are trending, sort by trendingRank
       if (a.isTrending && b.isTrending) {
         return a.trendingRank - b.trendingRank;
       }
 
-      // If neither are trending, sort by createdAt date (most recent first)
       return new Date(b.createdAt) - new Date(a.createdAt);
     });
   };
 
   const sortedNewsArray = sortNewsArray(AllNews);
-
-  // console.log(sortedNewsArray);
 
   return (
     <div className="relative">
