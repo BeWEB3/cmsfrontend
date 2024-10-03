@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
@@ -9,9 +9,11 @@ import NotFound from "./pages/NotFoundPage.jsx";
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const NewsPage = lazy(() => import("./pages/NewsPage.jsx"));
 const SubNewsPage = lazy(() => import("./pages/SubNewsPage.jsx"));
+const AllEvents = lazy(() => import("./pages/AllEvents.jsx"));
+const Event = lazy(() => import("./pages/Event.jsx"));
+const WorkShops = lazy(() => import("./pages/WorkShops.jsx"));
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage.jsx"));
 const MembersPage = lazy(() => import("./pages/MembersPage.jsx"));
-// const TemplatePage = lazy(() => import("./pages/TemplatePage.jsx"));
 const DynamicPage = lazy(() => import("./pages/DynamicPage.jsx"));
 
 const App = () => {
@@ -48,6 +50,18 @@ const App = () => {
                 element={<SubNewsPage language={language} />}
               />
               <Route
+                path="/events"
+                element={<AllEvents language={language} />}
+              />
+              <Route
+                path="/event/:uid"
+                element={<Event language={language} />}
+              />
+              <Route
+                path="/workshops"
+                element={<WorkShops language={language} />}
+              />
+              <Route
                 path="/contactus"
                 element={<ContactUsPage language={language} />}
               />
@@ -55,10 +69,7 @@ const App = () => {
                 path="/network-presidency"
                 element={<MembersPage language={language} />}
               />
-              {/* <Route
-              path="/template"
-              element={<TemplatePage language={language} />}
-            /> */}
+
               <Route
                 path="page/:slug"
                 element={<DynamicPage language={language} />}
