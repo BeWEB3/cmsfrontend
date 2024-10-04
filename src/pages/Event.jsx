@@ -6,6 +6,14 @@ import NewsSection from "../components/NewsSection";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
+import EventDescription from "../components/EventDescription";
+import EventObjectives from "../components/EventObjectives";
+import EventBackground from "../components/EventBackground";
+import EventSchdule from "../components/EventSchdule";
+import EventParticipants from "../components/EventParticipants";
+import EventAttachments from "../components/EventAttachments";
+import EventSnippets from "../components/EventSnippets";
+import EventForm from "../components/EventForm";
 
 function Event({ language }) {
   const { uid } = useParams();
@@ -44,7 +52,7 @@ function Event({ language }) {
     return () => clearInterval(timer);
   }, []);
 
-  if (isError) return <div>Error: {error.message}</div>;
+  // if (isError) return <div>Error: {error.message}</div>;
 
   const title = {
     en: "Article Title",
@@ -52,17 +60,25 @@ function Event({ language }) {
   };
 
   return (
-    <PageLoader isLoading={isLoading} progress={progress}>
+    <>
+      {/* <PageLoader isLoading={isLoading} progress={progress}> */}
       <HeroSectionWithImg
         Title={title}
         language={language}
-        newsTitle={true}
-        newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
-        backgroundImg={memoizedNews?.image}
+        // newsTitle={true}
+        // newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
+        // backgroundImg={memoizedNews?.image}
       />
-      <ArticleSummary language={language} data={memoizedNews} />
-      <NewsSection language={language} />
-    </PageLoader>
+      <EventDescription language={language} />
+      <EventObjectives language={language} />
+      <EventBackground language={language} />
+      <EventSchdule language={language} />
+      <EventParticipants language={language} />
+      <EventAttachments language={language} />
+      <EventSnippets language={language} />
+      <EventForm language={language} />
+      {/* </PageLoader> */}
+    </>
   );
 }
 
