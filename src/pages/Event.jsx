@@ -65,9 +65,9 @@ function Event({ language }) {
       <HeroSectionWithImg
         Title={title}
         language={language}
-        // newsTitle={true}
-        // newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
-        // backgroundImg={memoizedNews?.image}
+        newsTitle={true}
+        newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
+        backgroundImg={memoizedNews?.image}
       />
       <EventDescription language={language} />
       <EventObjectives language={language} />
