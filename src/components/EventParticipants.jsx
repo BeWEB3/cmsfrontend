@@ -82,10 +82,10 @@ function EventParticipants({ language }) {
   return (
     <div className="w-full max-w-[1400px] mx-auto my-[6rem]  ">
       <div className="flex flex-col items-center mb-8">
-        <h2 className="text-[65px] font-bold leading-[65px] text-[#00567D] mb-2">
+        <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px] text-[#00567D] mb-2">
           {language === "en" ? "Participants" : "المشاركون"}
         </h2>
-        <div className="bg-[#0069A7] w-[10%] h-[2px]" />
+        <div className="bg-[#0069A7] w-[20%] h-[5px] rounded-md   " />
       </div>
 
       <Slider
@@ -118,7 +118,7 @@ export default EventParticipants;
 
 const ParticipantCard = ({ name, title, qualifications, language, key }) => (
   <div key={key} className=" px-2 my-4  ">
-    <div className="bg-white rounded-[34px] shadow-md px-4 py-8 flex flex-col items-center [box-shadow:0px_0px_12px_1px_#7B7B7B40] h-full max-w-[383px] text-center  gap-6  ">
+    <div className="bg-white rounded-[34px] shadow-md px-4 py-8 flex flex-col items-center [box-shadow:0px_0px_12px_1px_#7B7B7B40] h-full md:max-w-[383px] text-center  gap-6  ">
       <img src={parti} alt={name} className="rounded-full mb-2" />
       <h3
         className={`text-[18px] font-bold leading-[18px]   text-[#00567D]  w-full`}

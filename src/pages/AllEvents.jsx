@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import HeroSectionWithImg from "../components/HeroSectionWithImg";
-import AllNewsSection from "../components/AllNewsSection";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
+import AllEventsSection from "../components/AllEventsSection";
 
 function AllEvents({ language }) {
   const fetchNewsData = useCallback(() => APiFunctions.GETAllNews(), []);
@@ -53,7 +53,7 @@ function AllEvents({ language }) {
       />
       {memoizedSections && memoizedSections.AllnewsData ? (
         <div dir={language === "ar" ? "rtl" : "ltr"}>
-          <AllNewsSection
+          <AllEventsSection
             language={language}
             ShowallNewsLink={false}
             AllNews={memoizedSections.AllnewsData}

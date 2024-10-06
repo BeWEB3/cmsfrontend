@@ -82,7 +82,7 @@ const EventForm = ({ language }) => {
         </label>
         <button
           type="submit"
-          className=" bg-[#00567D] text-white border-solid border-[1px] border-white py-2 px-8 rounded text-[28px] font-bold leading-[34.72px]  "
+          className=" bg-[#00567D] text-white border-solid border-[1px] border-white py-2 px-8  text-[28px] font-bold leading-[34.72px] rounded-lg  "
         >
           {t.submit}
         </button>
@@ -94,17 +94,17 @@ const EventForm = ({ language }) => {
         <img
           src={logo1}
           alt="Logo"
-          className="sm:h-[88px] sm:w-[61px] h-[60px] w-[40px] object-contain object-center"
+          className="h-[88px] w-[61px]  object-contain object-center"
         />
         <div
-          className={`sm:block hidden sm:h-[70px] h-[60px] w-[2px] bg-white mb-[8px] ${
+          className={`block  h-[70px]  w-[2px] bg-white mb-[8px] ${
             language === "en" ? "mr-[2px] " : ""
           }`}
         />
         <img
           src={logo2}
           alt="Logo"
-          className={`sm:h-[96px] sm:w-[109px] h-[65px] w-[70px] 
+          className={`h-[96px] w-[109px]  
                   ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "}`}
         />
       </Link>

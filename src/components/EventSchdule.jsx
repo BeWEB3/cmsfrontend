@@ -53,14 +53,14 @@ function EventSchedule() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          centerPadding: "40px",
+          centerPadding: "00px",
         },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: "40px",
+          centerPadding: "00px",
         },
       },
     ],
@@ -69,10 +69,10 @@ function EventSchedule() {
   return (
     <div className="max-w-[1399px] mx-auto p-6">
       <div className="flex flex-col items-center mb-8">
-        <h2 className="text-[65px] font-bold leading-[65px] text-[#00567D] mb-2">
+        <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px] text-[#00567D] mb-2">
           Event Schedule
         </h2>
-        <div className="bg-[#0069A7] w-[10%] h-[2px]" />
+        <div className="bg-[#0069A7] w-[20%] h-[5px] rounded-md  " />
       </div>
       <div className="relative">
         <Slider
@@ -83,16 +83,16 @@ function EventSchedule() {
         >
           {scheduleItems.map((item) => (
             <div key={item.id} className="px-2 my-4">
-              <div className="bg-white border-solid border-[2px] border-[rgba(0,86,125,0.1)] [box-shadow:0px_0px_12px_1px_rgba(0,86,125,0.1)] rounded-[21px] py-12 px-10 max-w-[638px] h-[500px] flex flex-col items-center">
-                <div className="w-[102px] h-[102px] border-solid border-[4px] border-[#00567D] rounded-full flex items-center justify-center text-[#00567D] text-[63px] font-bold leading-[63px] mb-6">
+              <div className="bg-white border-solid border-[2px] border-[rgba(0,86,125,0.1)] [box-shadow:0px_0px_12px_1px_rgba(0,86,125,0.1)] rounded-[21px] py-12 px-10 md:max-w-[638px]  flex flex-col items-center">
+                <div className="md:w-[102px] w-[80px] md:h-[102px] h-[80px] border-solid border-[4px] border-[#00567D] rounded-full flex items-center justify-center text-[#00567D] md:text-[63px] text-[33px] font-bold leading-[63px] mb-6">
                   {item.id}
                 </div>
-                <p className="text-[21px] font-bold leading-[21.84px] text-[#00567D] mb-6 text-center">
+                <p className="md:text-[21px] text-[18px] font-bold leading-[21.84px] text-[#00567D] mb-6 text-center">
                   {item.time}
                 </p>
                 <div className="bg-[#0069A7] w-[40%] h-[2px] mb-6" />
                 <div className="w-full">
-                  <p className="text-[21px] font-bold leading-[30.24px] text-center text-[#090909]">
+                  <p className="overflow-y-auto flex-grow   xl:text-[21px] text-[18px] font-bold xl:leading-[30.24px] leading-[24px] text-center text-[#090909]">
                     {item.description}
                   </p>
                 </div>

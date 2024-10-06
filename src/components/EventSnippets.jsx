@@ -59,10 +59,10 @@ function EventSnippets() {
   return (
     <div className="max-w-[1399px] mx-auto p-6 my-[4rem]   ">
       <div className=" flex flex-col items-center mb-8 ">
-        <h2 className="text-[65px] font-bold leading-[65px]  text-[#00567D] mb-2">
+        <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px]  text-[#00567D] mb-2">
           Snippets from the event
         </h2>
-        <div className="bg-[#0069A7] w-[10%] h-[5px] " />
+        <div className="bg-[#0069A7] w-[20%] h-[5px]  rounded-md " />
       </div>
       <div className="relative [&_div]:!h-full   ">
         <Slider
@@ -73,8 +73,8 @@ function EventSnippets() {
         >
           {scheduleItems.map((item) => (
             <div key={item.id} className="px-2 my-4  ">
-              <div className="h-full ">
-                <img src={item.url} alt="" />
+              <div className="h-full w-full ">
+                <img src={item.url} alt="" className=" w-full  " />
               </div>
             </div>
           ))}

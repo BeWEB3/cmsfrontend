@@ -21,11 +21,11 @@ const AttachmentItem = ({ name }) => (
 function EventAttachments({ language }) {
   return (
     <div className="max-w-[760px] mx-auto p-6">
-      <h2 className="text-[39px] font-bold leading-[55.77px] text-center text-[#00567D] mb-8">
+      <h2 className="md:text-[39px] text-[29px] font-bold leading-[55.77px] text-center text-[#00567D] mb-8">
         Attachments From The Event
-        <div className="w-20 h-1 bg-[#00567D] mx-auto mt-2"></div>
+        <div className="w-20 h-1 bg-[#00567D] mx-auto mt-2 rounded-md  "></div>
       </h2>
-      <div className="grid grid-cols-3 gap-8 ">
+      <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 ">
         {attachments.map((attachment) => (
           <AttachmentItem key={attachment.id} name={attachment.name} />
         ))}
