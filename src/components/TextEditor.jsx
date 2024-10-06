@@ -27,11 +27,15 @@ const TextEditorComponent = ({ language = "en", data }) => {
       )
       .replace(
         /<ul([^>]*)class="([^"]*)"([^>]*)>/g,
-        '<ul$1class="list-disc list-inside mb-4 space-y-1 $2"$3>'
+        `<ul$1class="list-disc
+        ${language === "ar" ? "![list-style:arabic-indic]" : ""} 
+        list-inside mb-4 space-y-1 $2"$3>`
       )
       .replace(
         /<ol([^>]*)class="([^"]*)"([^>]*)>/g,
-        '<ol$1class="list-decimal list-inside mb-4 space-y-1 $2"$3>'
+        `<ol$1class=" ${
+          language === "ar" ? "![list-style:arabic-indic]" : "list-decimal"
+        }  list-inside mb-4 space-y-1 $2"$3>`
       )
       .replace(
         /<li([^>]*)class="([^"]*)"([^>]*)>/g,
@@ -67,11 +71,15 @@ const TextEditorComponent = ({ language = "en", data }) => {
         )
         .replace(
           /<ul(?![^>]*class=)([^>]*)>/g,
-          '<ul class="list-disc list-inside mb-4 space-y-1"$1>'
+          `<ul class="
+          ${language === "ar" ? "![list-style:arabic-indic]" : ""} 
+          list-inside mb-4 space-y-1"$1>`
         )
         .replace(
           /<ol(?![^>]*class=)([^>]*)>/g,
-          '<ol class="list-decimal list-inside mb-4 space-y-1"$1>'
+          `<ol class="
+          ${language === "ar" ? "![list-style:arabic-indic]" : "list-decimal "} 
+          list-inside mb-4 space-y-1"$1>`
         )
         .replace(/<li(?![^>]*class=)([^>]*)>/g, '<li class="text-gray-600"$1>'),
     };
@@ -83,6 +91,7 @@ const TextEditorComponent = ({ language = "en", data }) => {
         return (
           <div
             className="text-editor-content"
+            dir={language === "ar" ? "rtl" : "ltr"}
             dangerouslySetInnerHTML={renderContent(item.content)}
           />
         );

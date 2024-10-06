@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import imge from "../pics/NewsImg.png";
+import { Link } from "react-router-dom";
 
 const newsItems = [
   {
@@ -32,13 +33,13 @@ function EventDescription({ language }) {
       <div className="absolute w-full bg-white xl:h-[180px] md:h-[110px] h-[50px] xl:top-[-135px] top-[-110px] md:block hidden z-[2]" />
       <div className="sm:px-6 px-4 md:py-24 pt-24 pb-16  max-w-[1400px] mx-auto  ">
         <div className="flex items-center justify-between mb-4">
-          <button
-            onClick={() => {}}
+          <Link
+            to={-1}
             className="text-[#00567D] flex items-start justify-center gap-2  text-[30px] font-bold leading-[28.32px] "
           >
             <ChevronLeft className="w-6 h-6 text-[#00567D]" />
             back
-          </button>
+          </Link>
         </div>
         <div className="grid xl:grid-cols-2 gap-12 py-[1rem]   ">
           <div className="relative xl:mb-0 mb-8  ">
