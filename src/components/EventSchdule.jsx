@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// Note: You would need to import the CSS for react-slick and its default theme
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 const scheduleItems = [
   {
@@ -25,62 +30,93 @@ const scheduleItems = [
   },
 ];
 
-function EventSchdule({ language }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+function EventSchedule() {
+  let sliderRef = useRef(null);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % scheduleItems.length);
+  const next = () => {
+    sliderRef.slickNext();
   };
 
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + scheduleItems.length) % scheduleItems.length
-    );
+  const previous = () => {
+    sliderRef.slickPrev();
+  };
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "300px",
+    slidesToShow: 1,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          centerPadding: "40px",
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "40px",
+        },
+      },
+    ],
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-center text-blue-800 mb-8">
-        Event Schedule
-        <div className="w-16 h-1 bg-blue-600 mx-auto mt-2"></div>
-      </h2>
-      <div className="relative overflow-hidden">
-        <div
-          className="flex transition-transform ease-in-out duration-300"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+    <div className="max-w-[1399px] mx-auto p-6">
+      <div className="flex flex-col items-center mb-8">
+        <h2 className="text-[65px] font-bold leading-[65px] text-[#00567D] mb-2">
+          Event Schedule
+        </h2>
+        <div className="bg-[#0069A7] w-[10%] h-[2px]" />
+      </div>
+      <div className="relative">
+        <Slider
+          {...settings}
+          ref={(slider) => {
+            sliderRef = slider;
+          }}
         >
           {scheduleItems.map((item) => (
-            <div key={item.id} className="w-full flex-shrink-0 p-4">
-              <div className="bg-white rounded-lg shadow-md p-6 h-full">
-                <div className="flex items-start mb-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl mr-4">
-                    {item.id}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-blue-800">{item.time}</p>
-                    {item.title && <p className="font-medium">{item.title}</p>}
-                  </div>
+            <div key={item.id} className="px-2 my-4">
+              <div className="bg-white border-solid border-[2px] border-[rgba(0,86,125,0.1)] [box-shadow:0px_0px_12px_1px_rgba(0,86,125,0.1)] rounded-[21px] py-12 px-10 max-w-[638px] h-[500px] flex flex-col items-center">
+                <div className="w-[102px] h-[102px] border-solid border-[4px] border-[#00567D] rounded-full flex items-center justify-center text-[#00567D] text-[63px] font-bold leading-[63px] mb-6">
+                  {item.id}
                 </div>
-                <p className="text-gray-600">{item.description}</p>
+                <p className="text-[21px] font-bold leading-[21.84px] text-[#00567D] mb-6 text-center">
+                  {item.time}
+                </p>
+                <div className="bg-[#0069A7] w-[40%] h-[2px] mb-6" />
+                <div className="w-full">
+                  <p className="text-[21px] font-bold leading-[30.24px] text-center text-[#090909]">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
+        </Slider>
+        <div className="py-6 flex justify-center items-center gap-2">
+          <button
+            onClick={previous}
+            className="bg-white p-2 rounded-full shadow-md"
+          >
+            <ChevronLeft className="w-6 h-6 text-[#00567D]" />
+          </button>
+          <button
+            onClick={next}
+            className="bg-white p-2 rounded-full shadow-md"
+          >
+            <ChevronRight className="w-6 h-6 text-[#00567D]" />
+          </button>
         </div>
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
-        >
-          <ChevronLeft className="w-6 h-6 text-blue-600" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
-        >
-          <ChevronRight className="w-6 h-6 text-blue-600" />
-        </button>
       </div>
     </div>
   );
 }
-export default EventSchdule;
+
+export default EventSchedule;
