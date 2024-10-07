@@ -267,7 +267,7 @@ const Header = ({ language, toggleLanguage }) => {
                   />
                 </button>
                 <div
-                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[180px] ${
+                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[400px] ${
                     isDropdownOpen
                       ? "opacity-100 visible translate-y-0"
                       : "opacity-0 invisible -translate-y-2"
@@ -409,7 +409,7 @@ const Header = ({ language, toggleLanguage }) => {
                     : item?.content?.en
                 }
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-[4px] rounded-md text-white  text-[24px] font-normal leading-[24px]  transition-colors duration-200"
+                className="block px-3 py-[4px] rounded-md text-white  sm:text-[24px] text-[19px] font-normal leading-[24px]  transition-colors duration-200"
               >
                 {item?.content[language]}
               </NavLink>
@@ -417,7 +417,7 @@ const Header = ({ language, toggleLanguage }) => {
             <div className="relative  ">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center justify-between w-full px-3 py-[4px] rounded-md  text-white  text-[24px] font-normal leading-[24px]   transition-colors duration-300"
+                className="flex items-center justify-between w-full px-3 py-[4px] rounded-md  text-white  sm:text-[24px] text-[19px] font-normal leading-[24px]   transition-colors duration-300"
               >
                 {language === "ar" ? "المزيد من الروابط" : "More Links"}
                 <ChevronDown
@@ -428,8 +428,10 @@ const Header = ({ language, toggleLanguage }) => {
                 />
               </button>
               <div
-                className={`pl-2 mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
-                  isDropdownOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+                className={`pl-2 mt-2 space-y-2 overflow-y-auto  transition-all duration-300 ease-in-out ${
+                  isDropdownOpen
+                    ? "max-h-screen opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 {memoizedHome?.insideDropdownLinks?.map((item, index) => (
@@ -450,7 +452,7 @@ const Header = ({ language, toggleLanguage }) => {
                       setIsMenuOpen(false); // Close menu on dropdown link click
                       setIsDropdownOpen(false); // Optionally close dropdown as well
                     }}
-                    className="block px-3 py-[2px] rounded-md  text-white   text-[19px] font-medium   transition-colors duration-200"
+                    className="block px-3 py-[2px] rounded-md  text-white   sm:text-[19px] text-[16px] font-medium   transition-colors duration-200"
                   >
                     {item?.content[language]}
                   </NavLink>

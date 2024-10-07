@@ -10,7 +10,7 @@ const newsItems = [
     date: "أغسطس 24, 2023",
     title: "Title",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
 ];
 
@@ -35,7 +35,7 @@ function EventDescription({ language }) {
         <div className="flex items-center justify-between mb-4">
           <Link
             to={-1}
-            className="text-[#00567D] flex items-start justify-center gap-2  text-[30px] font-bold leading-[28.32px] "
+            className="text-[#00567D] flex items-start justify-center gap-2  text-[30px] font-bold leading-[28.32px]"
           >
             <ChevronLeft className="w-6 h-6 text-[#00567D]" />
             back
@@ -54,7 +54,6 @@ function EventDescription({ language }) {
                     className="w-full flex-shrink-0 relative overflow-hidden "
                   >
                     <div className="absolute w-full rounded-[15px] h-full bg-[linear-gradient(180deg,#00000003_0%,#00567D_100%)] left-0 top-0" />
-
                     <img
                       src={img}
                       alt={`Slide ${index + 1}`}
@@ -80,13 +79,13 @@ function EventDescription({ language }) {
             </div>
           </div>
           <div className="">
-            <p className="text-[17px] font-bold leading-[17px]    text-[#141414] mb-4">
+            <p className="text-[17px] font-bold leading-[17px] text-[#141414] mb-4">
               {newsItems[0].date}
             </p>
             <h2 className="text-[42px] font-bold leading-[52.08px] text-[#141414] mb-6">
               {newsItems[0].title}
             </h2>
-            <p className="text-[22px] font-bold leading-[27.28px]   text-[#979797]">
+            <p className="text-[22px] font-bold leading-[27.28px] text-[#979797]">
               {newsItems[0].description}
             </p>
           </div>

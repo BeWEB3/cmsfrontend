@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import HeroSectionWithImg from "../components/HeroSectionWithImg";
 import { useParams } from "react-router-dom";
-import ArticleSummary from "../components/ArticleSummary";
-import NewsSection from "../components/NewsSection";
 import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
