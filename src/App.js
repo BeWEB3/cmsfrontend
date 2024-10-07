@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
 import NotFound from "./pages/NotFoundPage.jsx";
+import SuspenseLoading from "./components/SuspenseLoading.jsx";
 
 // Lazy load the pages
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
@@ -41,7 +42,7 @@ const App = () => {
         <Header language={language} toggleLanguage={toggleLanguage} />
 
         <main className="flex-grow w-full   ">
-          <Suspense fallback={<></>}>
+          <Suspense fallback={<SuspenseLoading />}>
             <Routes>
               <Route path="/" element={<HomePage language={language} />} />
               <Route path="/news" element={<NewsPage language={language} />} />
