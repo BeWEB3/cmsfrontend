@@ -44,4 +44,10 @@ export const APiFunctions = {
       url: `search?query=${dat}`,
     });
   },
+  GETConductorData: function (month, year) {
+    return axiosInstance.request({
+      method: "GET",
+      url: `workshop?month=${month}&year=${year}`,
+    });
+  },
 };

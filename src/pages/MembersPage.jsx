@@ -4,6 +4,7 @@ import HeroSectionWithImg from "../components/HeroSectionWithImg";
 import CountryFlags from "../components/CountryFlags";
 import { APiFunctions } from "../API/AccountApiLayer";
 import PageLoader from "./PageLoader";
+import WorkShopSection from "../components/WorkShopSection";
 
 function MembersPage({ language }) {
   const fetchHomeData = useCallback(
@@ -75,6 +76,11 @@ function MembersPage({ language }) {
           data={memoizedSections?.flagsSection}
         />
       )}
+      <WorkShopSection
+        language={language}
+        ShowallNewsLink={false}
+        AllWorkShops={memoizedSections.AllnewsData}
+      />
     </PageLoader>
   );
 }

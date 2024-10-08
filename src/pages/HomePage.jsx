@@ -62,10 +62,10 @@ const HomePage = ({ language }) => {
           data={memoizedSections?.objectives}
         />
 
-        <ParticipantsSection
+        {/* <ParticipantsSection
           language={language}
           data={memoizedSections?.participants}
-        />
+        /> */}
 
         <CompetitionNetwork
           language={language}

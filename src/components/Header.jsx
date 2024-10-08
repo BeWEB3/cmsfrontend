@@ -137,7 +137,7 @@ const Header = ({ language, toggleLanguage }) => {
     return homeData.data;
   }, [homeData]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div></div>;
   if (isError) return <div>Error: {error.message}</div>;
 
   const renderSearchInput = (isMobile = false) => (
