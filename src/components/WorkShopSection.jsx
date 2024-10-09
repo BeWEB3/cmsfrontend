@@ -30,7 +30,7 @@ const WorkShopSection = ({ language }) => {
       daysOfWeek: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
     },
     ar: {
-      conductor: "الجهات المقدمة للورش",
+      conductor: "الجهة المنفذة للورشة",
       months: [
         "يناير",
         "فبراير",
@@ -80,22 +80,6 @@ const WorkShopSection = ({ language }) => {
           console.log(err);
           setError("Failed to fetch workshops. Please try again later.");
         });
-
-      // // Mock data - replace with actual API call
-      // const data = [
-      //   {
-      //     title: "Arab Competition Org",
-      //     color: "bg-[#00567D]",
-      //     dates: [3, 4, 5],
-      //   },
-      //   { title: "Market Expert", color: "bg-[#FFA800]", dates: [3, 10, 11] },
-      //   {
-      //     title: "President of the group",
-      //     color: "bg-[#006E5F]",
-      //     dates: [24, 25, 26],
-      //   },
-      // ];
-      // setWorkshops(data);
     } catch (error) {
       console.error("Error fetching workshops:", error);
     } finally {
@@ -142,16 +126,16 @@ const WorkShopSection = ({ language }) => {
               </h1>
 
               {conductors.length === 0 ? (
-                <div className="flex justify-center items-center h-64">
-                  <p className="text-xl text-gray-500">
-                    No Conductors available at the moment.
+                <div className="flex justify-center items-center h-16 w-full">
+                  <p className="text-xl !text-center text-gray-500">
+                    No Conductors available at the moment
                   </p>
                 </div>
               ) : (
                 conductors.map((item, index) => (
                   <div
                     key={index}
-                    className={`w-full px-6 md:py-4 py-2 rounded-[7px] md:text-[35px] text-[24px] font-bold leading-[43.4px] text-white`}
+                    className={`w-full px-6 md:py-4 py-2 rounded-[7px] md:text-[35px] text-[24px] font-bold leading-[43.4px] text-white  mb-4 `}
                     style={{
                       backgroundColor: item.color
                         .replace("bg-[", "")
@@ -222,9 +206,9 @@ const WorkShopSection = ({ language }) => {
                       {error}
                     </div>
                   ) : workshops.length === 0 ? (
-                    <div className="flex justify-center items-center h-64">
-                      <p className="text-xl text-gray-500">
-                        No workshops available at the moment.
+                    <div className="flex justify-center items-center h-16 w-full">
+                      <p className="text-xl !text-center text-gray-500">
+                        No workshops available at the moment
                       </p>
                     </div>
                   ) : (
@@ -243,7 +227,10 @@ const WorkShopSection = ({ language }) => {
                     ))
                   )}
                 </div>
-                <div className="flex justify-center mt-4 gap-2">
+                <div
+                  className="flex justify-center mt-4 gap-2"
+                  dir={language === "ar" ? "ltr" : ""}
+                >
                   <button
                     onClick={goToPreviousMonth}
                     className="p-3 rounded-full bg-white shadow-md hover:opacity-75 disabled:opacity-50"

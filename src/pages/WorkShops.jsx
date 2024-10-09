@@ -49,7 +49,7 @@ function WorkShops({ language }) {
     <PageLoader isLoading={isLoading} progress={progress}>
       <HeroSectionWithImg
         language={language}
-        Title={{ ar: "الأحداث والاجتماعات", en: "Events & Meetings" }}
+        Title={{ ar: "ورش العمل", en: "Workshops" }}
         newsTitle={false}
       />
       {memoizedSections && memoizedSections.AllnewsData ? (
@@ -63,7 +63,7 @@ function WorkShops({ language }) {
       ) : (
         <div className="flex justify-center items-center h-64">
           <p className="text-xl text-gray-500">
-            No workshops available at the moment.
+            No workshops available at the moment
           </p>
         </div>
       )}
