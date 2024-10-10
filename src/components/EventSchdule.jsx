@@ -43,7 +43,7 @@ function EventSchedule({ language, schedule }) {
     <div className="max-w-[1399px] mx-auto p-6">
       <div className="flex flex-col items-center mb-8">
         <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px] text-[#00567D] mb-2">
-          Event Schedule
+          {language === "ar" ? "جدول اعمال المؤتمر" : "Event Schedule"}
         </h2>
         <div className="bg-[#0069A7] w-[20%] h-[5px] rounded-md  " />
       </div>

@@ -2,25 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef } from "react";
 import Slider from "react-slick/lib/slider";
 
-import imge1 from "../pics/eventSnippetImg (1).png";
-import imge2 from "../pics/eventSnippetImg (2).png";
-
-const scheduleItems = [
-  {
-    id: 3,
-    url: imge1,
-  },
-  {
-    id: 4,
-    url: imge2,
-  },
-  {
-    id: 5,
-    url: imge1,
-  },
-];
-
-function EventSnippets() {
+function EventSnippets({ language, snippets }) {
   let sliderRef = useRef(null);
 
   const next = () => {
@@ -33,15 +15,14 @@ function EventSnippets() {
 
   const settings = {
     className: "center",
-    centerMode: true,
-    infinite: true,
+    centerMode: false,
+    infinite: false,
     slidesToShow: 3,
     centerPadding: "10px",
-
     speed: 500,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 2,
           centerPadding: "40px",
@@ -56,11 +37,16 @@ function EventSnippets() {
       },
     ],
   };
+
+  const isVideo = (url) => {
+    return url.toLowerCase().endsWith(".mp4");
+  };
+
   return (
     <div className="max-w-[1399px] mx-auto p-6 my-[4rem]   ">
       <div className=" flex flex-col items-center mb-8 ">
         <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px]  text-[#00567D] mb-2">
-          Snippets from the event
+          {language === "ar" ? "مقتطفات الفعالية" : "Snippets from the event"}
         </h2>
         <div className="bg-[#0069A7] w-[20%] h-[5px]  rounded-md " />
       </div>
@@ -71,10 +57,25 @@ function EventSnippets() {
             sliderRef = slider;
           }}
         >
-          {scheduleItems.map((item) => (
-            <div key={item.id} className="px-2 my-4  ">
-              <div className="h-full w-full ">
-                <img src={item.url} alt="" className=" w-full  " />
+          {snippets.map((item, index) => (
+            <div
+              key={index}
+              className="px-2 my-4 overflow-hidden rounded-[16px] "
+            >
+              <div className="h-full w-full overflow-hidden rounded-[16px]">
+                {isVideo(item) ? (
+                  <video
+                    src={item}
+                    className="w-full h-full object-cover"
+                    controls
+                  />
+                ) : (
+                  <img
+                    src={item}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             </div>
           ))}

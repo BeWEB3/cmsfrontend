@@ -42,7 +42,7 @@ function EventObjectives({ language, objectives }) {
     <div>
       <div className="max-w-[1300px] mx-auto md:p-8 p-4  ">
         <h2 className="text-[39px] font-bold leading-[48.36px] text-center text-[#00567D] mb-8">
-          Objectives
+          {language === "ar" ? "الأهداف" : "Objectives"}
           <div className="w-16 h-1 bg-[#00567D] mx-auto mt-2"></div>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6">
