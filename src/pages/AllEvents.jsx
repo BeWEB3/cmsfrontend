@@ -4,7 +4,6 @@ import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
 import AllEventsSection from "../components/AllEventsSection";
-import { data } from "framer-motion/client";
 
 function AllEvents({ language }) {
   const fetchNewsData = useCallback(() => APiFunctions.GETAllMeetings(), []);
@@ -18,8 +17,6 @@ function AllEvents({ language }) {
     staleTime: 5 * 60 * 1000, // 5 minutes
     cacheTime: 10 * 60 * 1000, // 10 minutes
   });
-
-  console.log(data);
 
   const memoizedSections = useMemo(() => {
     if (!eventData || !eventData?.data) return null;
