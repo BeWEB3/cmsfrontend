@@ -36,6 +36,7 @@ function AllEventsSection({ language, AllEvent }) {
                   alt="Events"
                   className="w-full  object-cover h-[237px] "
                 />
+
                 {/* <div className="absolute top-4 left-3 text-[white] text-[17px] font-extrabold leading-[17px] rounded-full bg-[#00567D] p-[8px]  ">
                   {new Date(event.eventDate).toLocaleDateString(
                     language === "ar" ? "ar-SA" : "en-US"
@@ -50,6 +51,7 @@ function AllEventsSection({ language, AllEvent }) {
                     {event.title[language]}
                   </h3>
                 </div> */}
+
                 <div className=" bg-white px-4 py-5 w-full relative z-50   ">
                   <p className="text-[25px] font-bold leading-[25px]  text-black    mb-4             ">
                     {event.title[language]}
