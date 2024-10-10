@@ -1,32 +1,62 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import imge from "../pics/NewsImg.png";
 import { Link } from "react-router-dom";
 
-const newsItems = [
-  {
-    id: 1,
-    image: [imge, imge, imge, imge, imge, imge],
-    date: "أغسطس 24, 2023",
-    title: "Title",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
-];
-
-function EventDescription({ language }) {
+function EventDescription({ language, title, description, date, images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % newsItems[0].image.length);
-  };
+  const imagesLength = useMemo(() => images?.length || 0, [images]);
 
-  const prevSlide = () => {
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesLength);
+  }, [imagesLength]);
+
+  const prevSlide = useCallback(() => {
     setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + newsItems[0].image.length) % newsItems[0].image.length
+      (prevIndex) => (prevIndex - 1 + imagesLength) % imagesLength
     );
-  };
+  }, [imagesLength]);
+
+  const formattedDate = useMemo(() => {
+    if (!date) return "";
+    return new Date(date).toLocaleDateString(
+      language === "ar" ? "ar-EG" : "en-US",
+      {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+    );
+  }, [date, language]);
+
+  const renderImage = useCallback(
+    ({ src, index }) => (
+      <div
+        key={index}
+        className="w-full flex-shrink-0 relative overflow-hidden"
+      >
+        <div className="absolute w-full rounded-[15px] h-full bg-[linear-gradient(180deg,#00000003_0%,#00567D_100%)] left-0 top-0" />
+        <img
+          src={src}
+          alt={`Slide ${index + 1}`}
+          className="w-full h-[455px] object-cover rounded-[15px]"
+        />
+      </div>
+    ),
+    []
+  );
+
+  const renderNavigationButton = useCallback(
+    ({ onClick, icon: Icon }) => (
+      <button
+        onClick={onClick}
+        className="bg-white p-2 rounded-full shadow-md mx-2"
+      >
+        <Icon className="w-6 h-6 text-[#00567D]" />
+      </button>
+    ),
+    []
+  );
 
   return (
     <div className="relative">
@@ -38,7 +68,7 @@ function EventDescription({ language }) {
             className="text-[#00567D] flex items-start justify-center gap-2  text-[30px] font-bold leading-[28.32px]"
           >
             <ChevronLeft className="w-6 h-6 text-[#00567D]" />
-            back
+            {language === "ar" ? "رجوع" : "back"}
           </Link>
         </div>
         <div className="grid xl:grid-cols-2 gap-12 py-[1rem]   ">
@@ -48,46 +78,31 @@ function EventDescription({ language }) {
                 className="flex transition-transform ease-in-out duration-300"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                {newsItems[0].image.map((img, index) => (
-                  <div
-                    key={index}
-                    className="w-full flex-shrink-0 relative overflow-hidden "
-                  >
-                    <div className="absolute w-full rounded-[15px] h-full bg-[linear-gradient(180deg,#00000003_0%,#00567D_100%)] left-0 top-0" />
-                    <img
-                      src={img}
-                      alt={`Slide ${index + 1}`}
-                      className="w-full h-[455px] object-cover rounded-[15px]"
-                    />
-                  </div>
-                ))}
+                {images?.map((img, index) => renderImage({ src: img, index }))}
               </div>
             </div>
             <div className="absolute bottom-[-10%] left-0 right-0 flex justify-center">
-              <button
-                onClick={prevSlide}
-                className="bg-white p-2 rounded-full shadow-md mx-2"
-              >
-                <ChevronLeft className="w-6 h-6 text-[#00567D]" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="bg-white p-2 rounded-full shadow-md mx-2"
-              >
-                <ChevronRight className="w-6 h-6 text-[#00567D]" />
-              </button>
+              {renderNavigationButton({
+                onClick: prevSlide,
+                icon: ChevronLeft,
+              })}
+              {renderNavigationButton({
+                onClick: nextSlide,
+                icon: ChevronRight,
+              })}
             </div>
           </div>
           <div className="">
             <p className="text-[17px] font-bold leading-[17px] text-[#141414] mb-4">
-              {newsItems[0].date}
+              {formattedDate}
             </p>
             <h2 className="text-[42px] font-bold leading-[52.08px] text-[#141414] mb-6">
-              {newsItems[0].title}
+              {title?.[language]}
             </h2>
-            <p className="text-[22px] font-bold leading-[27.28px] text-[#979797]">
-              {newsItems[0].description}
-            </p>
+            <div
+              className="text-[22px] font-bold leading-[27.28px] text-[#979797]"
+              dangerouslySetInnerHTML={{ __html: description?.[language] }}
+            />
           </div>
         </div>
       </div>

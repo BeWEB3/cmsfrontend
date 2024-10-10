@@ -7,32 +7,35 @@ import PageLoader from "./PageLoader";
 import EventDescription from "../components/EventDescription";
 import EventObjectives from "../components/EventObjectives";
 import EventBackground from "../components/EventBackground";
-import EventSchdule from "../components/EventSchdule";
 import EventParticipants from "../components/EventParticipants";
 import EventAttachments from "../components/EventAttachments";
 import EventSnippets from "../components/EventSnippets";
 import EventForm from "../components/EventForm";
+import EventSchedule from "../components/EventSchdule";
 
 function Event({ language }) {
   const { uid } = useParams();
 
-  const fetchHomeData = useCallback(() => APiFunctions.GETOneNews(uid), [uid]);
+  const fetchOneEvent = useCallback(
+    () => APiFunctions.GETMeetingbyUid(uid),
+    [uid]
+  );
 
   const {
-    data: oneNews,
+    data: oneEvent,
     isLoading,
     isError,
     error,
-  } = useQuery(["oneNews", uid], fetchHomeData, {
+  } = useQuery(["oneEvent", uid], fetchOneEvent, {
     staleTime: 5 * 60 * 1000, // 5 minutes
     cacheTime: 10 * 60 * 1000, // 10 minutes
   });
 
-  const memoizedNews = useMemo(() => {
-    if (!oneNews || !oneNews.data) return null;
+  const memoizedEvent = useMemo(() => {
+    if (!oneEvent || !oneEvent?.data) return null;
 
-    return oneNews.data;
-  }, [oneNews]);
+    return oneEvent?.data;
+  }, [oneEvent]);
 
   const [progress, setProgress] = useState(0);
 
@@ -50,7 +53,7 @@ function Event({ language }) {
     return () => clearInterval(timer);
   }, []);
 
-  // if (isError) return <div>Error: {error.message}</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   const title = {
     en: "Article Title",
@@ -59,23 +62,75 @@ function Event({ language }) {
 
   return (
     <>
-      {/* <PageLoader isLoading={isLoading} progress={progress}> */}
-      <HeroSectionWithImg
-        Title={title}
-        language={language}
-        newsTitle={true}
-        newsObj={{ title: memoizedNews?.title, date: memoizedNews?.createdAt }}
-        backgroundImg={memoizedNews?.image}
-      />
-      <EventDescription language={language} />
-      <EventObjectives language={language} />
-      <EventBackground language={language} />
-      <EventSchdule language={language} />
-      <EventParticipants language={language} />
-      <EventAttachments language={language} />
-      <EventSnippets language={language} />
-      <EventForm language={language} />
-      {/* </PageLoader> */}
+      <PageLoader isLoading={isLoading} progress={progress}>
+        <HeroSectionWithImg
+          Title={memoizedEvent?.heroSection?.title}
+          language={language}
+          newsTitle={true}
+          newsObj={{
+            title: memoizedEvent?.heroSection?.title,
+            date: memoizedEvent?.heroSection?.eventDate,
+          }}
+          backgroundImg={memoizedEvent?.heroSection?.heroImage}
+        />
+        {memoizedEvent?.gallerySection && (
+          <EventDescription
+            language={language}
+            title={memoizedEvent?.gallerySection?.title}
+            description={memoizedEvent?.gallerySection?.description}
+            images={memoizedEvent?.gallerySection?.galleryImages}
+            date={memoizedEvent?.gallerySection?.eventDate}
+          />
+        )}
+        {memoizedEvent?.objectives && memoizedEvent?.objectives?.length > 0 && (
+          <EventObjectives
+            language={language}
+            objectives={memoizedEvent?.objectives}
+          />
+        )}
+        {memoizedEvent?.eventBackground && (
+          <EventBackground
+            language={language}
+            title={memoizedEvent?.eventBackground?.title}
+            description={memoizedEvent?.eventBackground?.description}
+          />
+        )}
+        {memoizedEvent?.eventSchedule &&
+          memoizedEvent?.eventSchedule?.length > 0 && (
+            <EventSchedule
+              language={language}
+              schedule={memoizedEvent?.eventSchedule}
+            />
+          )}
+
+        {memoizedEvent?.participants &&
+          memoizedEvent?.participants?.isParticipantsVisible && (
+            <EventParticipants
+              language={language}
+              participants={memoizedEvent?.participants?.participantDetails}
+            />
+          )}
+        {memoizedEvent?.attachments &&
+          memoizedEvent?.attachments?.isAttachmentsVisible && (
+            <EventAttachments
+              language={language}
+              files={memoizedEvent?.attachments?.files}
+            />
+          )}
+
+        {memoizedEvent?.snippets &&
+          memoizedEvent?.snippets?.isSnippetsVisible && (
+            <EventSnippets
+              language={language}
+              snippets={memoizedEvent?.snippets?.snippetFiles}
+            />
+          )}
+
+        {memoizedEvent?.registrationForm &&
+          memoizedEvent?.registrationForm?.isRegistrationFormVisible && (
+            <EventForm language={language} />
+          )}
+      </PageLoader>
     </>
   );
 }

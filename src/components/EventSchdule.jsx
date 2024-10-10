@@ -2,35 +2,7 @@ import React, { useRef } from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Note: You would need to import the CSS for react-slick and its default theme
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-
-const scheduleItems = [
-  {
-    id: 3,
-    time: "اليوم الرابع 11:15 - 9:45 صباحا",
-    title: "الجلسة الأولى: القضاء وقانون المنافسة",
-    description:
-      "تهدف هذه الجلسة إلى التعرف على الدور القضائي في قضايا المنافسة وحدود الرقابة القضائية على القرارات الصادرة عن سلطات المنافسة بشأن القضايا المختلفة (الممارسات - التركز الاقتصادي) وستتضمن الجلسة مناقشات وعرض أمثلة دولية وإقليمية ووطنية",
-  },
-  {
-    id: 4,
-    time: "Day four: 9:00am-11:am Session 1: law of competition",
-    title: "",
-    description:
-      "This session aims to identify the judicial role in competition cases and the limits of judicial oversight of the decisions issued by competition authorities regarding various issues (fine - requests for economic concentration - measures) and the like. The session will include panel discussions and international, regional and national examples.",
-  },
-  {
-    id: 5,
-    time: "الجلسة الأولى: القضاء وقانون المنافسة",
-    title: "",
-    description:
-      "الدور القضائي في قضايا المنافسة وحدود الرقابة القضائية على القرارات الصادرة عن سلطات المنافسة بشأن القضايا المختلفة (الغرامات - طلبات التركز الاقتصادي - التدابير) وما شابه ذلك. وستتضمن الجلسة مناقشات وعرض أمثلة دولية وإقليمية ووطنية",
-  },
-];
-
-function EventSchedule() {
+function EventSchedule({ language, schedule }) {
   let sliderRef = useRef(null);
 
   const next = () => {
@@ -44,16 +16,17 @@ function EventSchedule() {
   const settings = {
     className: "center",
     centerMode: true,
-    infinite: true,
-    centerPadding: "300px",
+    infinite: false,
+    centerPadding: "470px",
     slidesToShow: 1,
     speed: 500,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 2,
-          centerPadding: "00px",
+          centerMode: false,
+          centerPadding: "50px",
         },
       },
       {
@@ -81,20 +54,23 @@ function EventSchedule() {
             sliderRef = slider;
           }}
         >
-          {scheduleItems.map((item) => (
-            <div key={item.id} className="px-2 my-4">
+          {schedule.map((item) => (
+            <div key={item.day} className="px-2 my-4">
               <div className="bg-white border-solid border-[2px] border-[rgba(0,86,125,0.1)] [box-shadow:0px_0px_12px_1px_rgba(0,86,125,0.1)] rounded-[21px] py-12 px-10 md:max-w-[638px]  flex flex-col items-center">
                 <div className="md:w-[102px] w-[80px] md:h-[102px] h-[80px] border-solid border-[4px] border-[#00567D] rounded-full flex items-center justify-center text-[#00567D] md:text-[63px] text-[33px] font-bold leading-[63px] mb-6">
-                  {item.id}
+                  {item.day}
                 </div>
                 <p className="md:text-[21px] text-[18px] font-bold leading-[21.84px] text-[#00567D] mb-6 text-center">
-                  {item.time}
+                  {item.timeAndTopic[language]}
                 </p>
                 <div className="bg-[#0069A7] w-[40%] h-[2px] mb-6" />
                 <div className="w-full">
-                  <p className="overflow-y-auto flex-grow   xl:text-[21px] text-[18px] font-bold xl:leading-[30.24px] leading-[24px] text-center text-[#090909]">
-                    {item.description}
-                  </p>
+                  <div
+                    className="overflow-y-auto flex-grow   xl:text-[21px] text-[18px] font-bold xl:leading-[30.24px] leading-[24px] text-center text-[#090909]"
+                    dangerouslySetInnerHTML={{
+                      __html: item.description[language],
+                    }}
+                  />
                 </div>
               </div>
             </div>
