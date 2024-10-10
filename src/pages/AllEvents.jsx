@@ -4,27 +4,30 @@ import { APiFunctions } from "../API/AccountApiLayer";
 import { useQuery } from "react-query";
 import PageLoader from "./PageLoader";
 import AllEventsSection from "../components/AllEventsSection";
+import { data } from "framer-motion/client";
 
 function AllEvents({ language }) {
-  const fetchNewsData = useCallback(() => APiFunctions.GETAllNews(), []);
+  const fetchNewsData = useCallback(() => APiFunctions.GETAllMeetings(), []);
 
   const {
-    data: newsData,
+    data: eventData,
     isLoading,
     isError,
     error,
-  } = useQuery("newsData", fetchNewsData, {
+  } = useQuery("eventData", fetchNewsData, {
     staleTime: 5 * 60 * 1000, // 5 minutes
     cacheTime: 10 * 60 * 1000, // 10 minutes
   });
 
+  console.log(data);
+
   const memoizedSections = useMemo(() => {
-    if (!newsData || !newsData?.data) return null;
+    if (!eventData || !eventData?.data) return null;
 
     return {
-      AllnewsData: newsData.data,
+      AllEventData: eventData.data,
     };
-  }, [newsData]);
+  }, [eventData]);
 
   const [progress, setProgress] = useState(0);
 
@@ -48,15 +51,15 @@ function AllEvents({ language }) {
     <PageLoader isLoading={isLoading} progress={progress}>
       <HeroSectionWithImg
         language={language}
-        Title={{ ar: "الأحداث والاجتماعات", en: "Events & Meetings" }}
+        Title={{ ar: "الأحداث والمؤتمرات", en: "Events & Meetings" }}
         newsTitle={false}
       />
-      {memoizedSections && memoizedSections.AllnewsData ? (
+      {memoizedSections && memoizedSections.AllEventData ? (
         <div dir={language === "ar" ? "rtl" : "ltr"}>
           <AllEventsSection
             language={language}
             ShowallNewsLink={false}
-            AllNews={memoizedSections.AllnewsData}
+            AllEvent={memoizedSections.AllEventData}
           />
         </div>
       ) : (

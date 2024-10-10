@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function AllEventsSection({ language, ShowallNewsLink = true, AllNews }) {
+function AllEventsSection({ language, ShowallNewsLink = true, AllEvent }) {
   const sortNewsArray = (newsArray) => {
     return newsArray.sort((a, b) => {
       if (a.isTrending && !b.isTrending) return -1;
@@ -15,7 +15,7 @@ function AllEventsSection({ language, ShowallNewsLink = true, AllNews }) {
     });
   };
 
-  const sortedNewsArray = sortNewsArray(AllNews);
+  const sortedNewsArray = sortNewsArray(AllEvent);
 
   return (
     <div className="relative">

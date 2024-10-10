@@ -25,7 +25,7 @@ export const APiFunctions = {
       url: `get_cms_content?slug=${slug}`,
     });
   },
-  GETSocialLinks: function (slug) {
+  GETSocialLinks: function () {
     return axiosInstance.request({
       method: "GET",
       url: `get_social_links`,
@@ -48,6 +48,18 @@ export const APiFunctions = {
     return axiosInstance.request({
       method: "GET",
       url: `workshop?month=${month}&year=${year}`,
+    });
+  },
+  GETAllMeetings: function () {
+    return axiosInstance.request({
+      method: "GET",
+      url: `GetAllMeetings`,
+    });
+  },
+  GETMeetingbyUid: function (uid) {
+    return axiosInstance.request({
+      method: "GET",
+      url: `GetMeetingDetailsByUID/${uid}`,
     });
   },
 };
