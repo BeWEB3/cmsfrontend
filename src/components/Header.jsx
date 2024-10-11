@@ -179,6 +179,8 @@ const Header = ({ language, toggleLanguage }) => {
                       ? "/network-presidency"
                       : result?.slug === "contactus"
                       ? "contactus"
+                      : result?.slug === "events"
+                      ? "events"
                       : `/page/${result?.slug}`
                     : result?.content?.en
                 }
@@ -243,6 +245,8 @@ const Header = ({ language, toggleLanguage }) => {
                         ? "/network-presidency"
                         : item?.slug === "contactus"
                         ? "contactus"
+                        : item?.slug === "events"
+                        ? "events"
                         : `/page/${item?.slug}`
                       : item?.content?.en
                   }
@@ -284,6 +288,8 @@ const Header = ({ language, toggleLanguage }) => {
                             ? "/network-presidency"
                             : item?.slug === "contactus"
                             ? "contactus"
+                            : item?.slug === "events"
+                            ? "events"
                             : `/page/${item?.slug}`
                           : item?.content?.en
                       }
@@ -405,6 +411,8 @@ const Header = ({ language, toggleLanguage }) => {
                       ? "/network-presidency"
                       : item?.slug === "contactus"
                       ? "contactus"
+                      : item?.slug === "events"
+                      ? "events"
                       : `/page/${item?.slug}`
                     : item?.content?.en
                 }
@@ -445,6 +453,8 @@ const Header = ({ language, toggleLanguage }) => {
                           ? "/network-presidency"
                           : item?.slug === "contactus"
                           ? "contactus"
+                          : item?.slug === "events"
+                          ? "events"
                           : `/page/${item?.slug}`
                         : item?.content?.en
                     }

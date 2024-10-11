@@ -79,7 +79,7 @@ function MembersPage({ language }) {
       <WorkShopSection
         language={language}
         ShowallNewsLink={false}
-        AllWorkShops={memoizedSections.AllnewsData}
+        AllWorkShops={memoizedSections?.AllnewsData}
       />
     </PageLoader>
   );

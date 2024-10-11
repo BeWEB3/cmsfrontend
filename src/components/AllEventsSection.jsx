@@ -52,8 +52,8 @@ function AllEventsSection({ language, AllEvent }) {
                   </h3>
                 </div> */}
 
-                <div className=" bg-white px-4 py-5 w-full relative z-50   ">
-                  <p className="text-[25px] font-bold leading-[25px]  text-black    mb-4             ">
+                <div className=" bg-white px-4 py-5 w-full relative z-50 ">
+                  <p className="text-[25px] font-bold leading-[25px]  text-black    mb-4 ">
                     {event.title[language]}
                   </p>
                   <div className=" flex items-center justify-between  ">

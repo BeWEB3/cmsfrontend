@@ -108,16 +108,20 @@ const ParticipantCard = ({
       >
         {title}
       </p> */}
-        <h4
-          className={` text-[16px] font-bold leading-[16px]  w-full text-[#00567D]   `}
-        >
-          {qualifications[language]}
-        </h4>
-        <h4
-          className={` text-[16px] font-bold leading-[16px]  w-full text-[#00567D]   `}
-        >
-          {designation[language]}
-        </h4>
+
+        <div
+          className="text-[16px] font-bold leading-[16px]  w-full text-[#00567D]  "
+          dangerouslySetInnerHTML={{
+            __html: qualifications[language],
+          }}
+        />
+        <div
+          className="text-[16px] font-bold leading-[16px]  w-full text-[#00567D]  "
+          dangerouslySetInnerHTML={{
+            __html: designation[language],
+          }}
+        />
+
         {/* <ul className={`list-disc list-inside text-sm w-full`}>
         {qualifications.map((qual, index) => (
           <li

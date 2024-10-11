@@ -55,11 +55,6 @@ function Event({ language }) {
 
   if (isError) return <div>Error: {error.message}</div>;
 
-  const title = {
-    en: "Article Title",
-    ar: "عنوان المقال",
-  };
-
   return (
     <>
       <PageLoader isLoading={isLoading} progress={progress}>
