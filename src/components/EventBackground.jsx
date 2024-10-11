@@ -11,7 +11,11 @@ function EventBackground({ language, title, description }) {
         <h3 className="md:text-[25px] text-[20px] font-bold leading-[25px]  text-[#6A7270] mb-4">
           {title[language]}
         </h3>
-        <div className="bg-[#4D5C5E] w-[40%] h-[2px] mb-4 mt-2  " />
+        <div
+          className={`bg-[#4D5C5E] w-[40%] h-[2px] mb-4 mt-2 ${
+            language === "ar" && "ml-auto"
+          }  `}
+        />
 
         <div
           className="md:text-[25px] text-[20px] font-bold leading-[32.75px] text-[#024867]  "

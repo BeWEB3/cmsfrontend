@@ -56,77 +56,75 @@ function Event({ language }) {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <>
-      <PageLoader isLoading={isLoading} progress={progress}>
-        <HeroSectionWithImg
-          Title={memoizedEvent?.heroSection?.title}
+    <PageLoader isLoading={isLoading} progress={progress}>
+      <HeroSectionWithImg
+        Title={memoizedEvent?.heroSection?.title}
+        language={language}
+        newsTitle={true}
+        newsObj={{
+          title: memoizedEvent?.heroSection?.title,
+          date: memoizedEvent?.heroSection?.eventDate,
+        }}
+        backgroundImg={memoizedEvent?.heroSection?.heroImage}
+      />
+      {memoizedEvent?.gallerySection && (
+        <EventDescription
           language={language}
-          newsTitle={true}
-          newsObj={{
-            title: memoizedEvent?.heroSection?.title,
-            date: memoizedEvent?.heroSection?.eventDate,
-          }}
-          backgroundImg={memoizedEvent?.heroSection?.heroImage}
+          title={memoizedEvent?.gallerySection?.title}
+          description={memoizedEvent?.gallerySection?.description}
+          images={memoizedEvent?.gallerySection?.galleryImages}
+          date={memoizedEvent?.gallerySection?.eventDate}
         />
-        {memoizedEvent?.gallerySection && (
-          <EventDescription
+      )}
+      {memoizedEvent?.objectives && memoizedEvent?.objectives?.length > 0 && (
+        <EventObjectives
+          language={language}
+          objectives={memoizedEvent?.objectives}
+        />
+      )}
+      {memoizedEvent?.eventBackground && (
+        <EventBackground
+          language={language}
+          title={memoizedEvent?.eventBackground?.title}
+          description={memoizedEvent?.eventBackground?.description}
+        />
+      )}
+      {memoizedEvent?.eventSchedule &&
+        memoizedEvent?.eventSchedule?.length > 0 && (
+          <EventSchedule
             language={language}
-            title={memoizedEvent?.gallerySection?.title}
-            description={memoizedEvent?.gallerySection?.description}
-            images={memoizedEvent?.gallerySection?.galleryImages}
-            date={memoizedEvent?.gallerySection?.eventDate}
+            schedule={memoizedEvent?.eventSchedule}
           />
         )}
-        {memoizedEvent?.objectives && memoizedEvent?.objectives?.length > 0 && (
-          <EventObjectives
+
+      {memoizedEvent?.participants &&
+        memoizedEvent?.participants?.isParticipantsVisible && (
+          <EventParticipants
             language={language}
-            objectives={memoizedEvent?.objectives}
+            participants={memoizedEvent?.participants?.participantDetails}
           />
         )}
-        {memoizedEvent?.eventBackground && (
-          <EventBackground
+      {memoizedEvent?.attachments &&
+        memoizedEvent?.attachments?.isAttachmentsVisible && (
+          <EventAttachments
             language={language}
-            title={memoizedEvent?.eventBackground?.title}
-            description={memoizedEvent?.eventBackground?.description}
+            files={memoizedEvent?.attachments?.files}
           />
         )}
-        {memoizedEvent?.eventSchedule &&
-          memoizedEvent?.eventSchedule?.length > 0 && (
-            <EventSchedule
-              language={language}
-              schedule={memoizedEvent?.eventSchedule}
-            />
-          )}
 
-        {memoizedEvent?.participants &&
-          memoizedEvent?.participants?.isParticipantsVisible && (
-            <EventParticipants
-              language={language}
-              participants={memoizedEvent?.participants?.participantDetails}
-            />
-          )}
-        {memoizedEvent?.attachments &&
-          memoizedEvent?.attachments?.isAttachmentsVisible && (
-            <EventAttachments
-              language={language}
-              files={memoizedEvent?.attachments?.files}
-            />
-          )}
+      {memoizedEvent?.snippets &&
+        memoizedEvent?.snippets?.isSnippetsVisible && (
+          <EventSnippets
+            language={language}
+            snippets={memoizedEvent?.snippets?.snippetFiles}
+          />
+        )}
 
-        {memoizedEvent?.snippets &&
-          memoizedEvent?.snippets?.isSnippetsVisible && (
-            <EventSnippets
-              language={language}
-              snippets={memoizedEvent?.snippets?.snippetFiles}
-            />
-          )}
-
-        {memoizedEvent?.registrationForm &&
-          memoizedEvent?.registrationForm?.isRegistrationFormVisible && (
-            <EventForm language={language} />
-          )}
-      </PageLoader>
-    </>
+      {memoizedEvent?.registrationForm &&
+        memoizedEvent?.registrationForm?.isRegistrationFormVisible && (
+          <EventForm language={language} />
+        )}
+    </PageLoader>
   );
 }
 

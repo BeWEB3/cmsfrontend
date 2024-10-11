@@ -103,6 +103,7 @@ const ParticipantCard = ({
         >
           {name[language]}
         </h3>
+
         {/* <p
         className={`text-[14px] font-bold leading-[14px]  text-[#919397] w-full`}
       >
