@@ -37,47 +37,56 @@ const EventForm = ({ language }) => {
 
   return (
     <div
-      className={`bg-[#00567D] text-white md:px-12 px-6 py-16 rounded-lg shadow-lg max-w-[820px] mx-auto my-[4rem] ${
+      className={`bg-[#00567D] text-white md:px-12 sm:px-6 px-4 py-16 rounded-lg shadow-lg max-w-[820px] mx-auto my-[4rem] ${
         language === "ar" ? "text-right" : "text-left"
       }`}
       dir={language === "en" ? "ltr" : "rtl"}
     >
       <div className="flex justify-between flex-col items-center mb-4">
-        <h2 className="md:text-[64px] text-[34px] font-bold leading-[60.41px] text-center">
+        <h2 className="md:text-[64px] text-[30px] font-bold leading-[60.41px] text-center">
           {t.title}
         </h2>
-        <div className="bg-white w-[40%] h-[4px] rounded-md my-4 " />
+        <div className="bg-white w-[40%] h-[4px] rounded-md md:my-4 mb-4 " />
       </div>
       <form className="space-y-8" onClick={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[26px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
             {t.firstName}
-            <input type="text" className="p-2 rounded text-black w-full " />
+            <input
+              type="text"
+              className="p-2 rounded text-black w-full mt-2 "
+            />
           </label>
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[26px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
             {t.lastName}
-            <input type="text" className="p-2 rounded text-black w-full " />
+            <input
+              type="text"
+              className="p-2 rounded text-black w-full mt-2 "
+            />
           </label>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[26px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
             {t.phoneNumber}
             <input
               type="tel"
-              className="w-full p-2 rounded text-black"
+              className="w-full p-2 rounded text-black mt-2"
               dir={language === "en" ? "ltr" : "rtl"}
             />
           </label>
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[26px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
             {t.emailAddress}
-            <input type="email" className="w-full p-2 rounded text-black" />
+            <input
+              type="email"
+              className="w-full p-2 rounded text-black mt-2 "
+            />
           </label>
         </div>
-        <label className=" flex flex-col gap-1 md:text-[42px] text-[26px] font-bold md:leading-[52.08px] leading-[32px] ">
+        <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
           {t.additionalComments}
           <textarea
             rows="4"
-            className="w-full p-2 rounded text-black"
+            className="w-full p-2 rounded text-black mt-2"
           ></textarea>
         </label>
         <button

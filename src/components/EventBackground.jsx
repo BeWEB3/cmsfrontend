@@ -3,12 +3,12 @@ import React from "react";
 function EventBackground({ language, title, description }) {
   return (
     <div className="max-w-[1293px] mx-auto py-[8rem] ">
-      <div className="border-solid relative p-12 border-[#00567D] border-[2px] rounded-[15px] [box-shadow:0px_0px_11px_2px_#00567D40]   ">
-        <h2 className="md:text-[52px] text-[36px] font-bold leading-[52px]  text-[#00567D] mb-8">
+      <div className="border-solid relative md:p-12 py-6 px-4 border-[#00567D] border-[2px] rounded-[15px] [box-shadow:0px_0px_11px_2px_#00567D40]   ">
+        <h2 className="md:text-[52px] text-[32px] font-bold md:leading-[52px] leading-[32px]  text-[#00567D] mb-8">
           {language === "ar" ? "خلفية عن المؤتمر" : "Background about the"}
           event
         </h2>
-        <h3 className="md:text-[25px] text-[20px] font-bold leading-[25px]  text-[#6A7270] mb-4">
+        <h3 className="md:text-[25px] text-[18px] font-bold leading-[25px]  text-[#6A7270] mb-4">
           {title[language]}
         </h3>
         <div
@@ -18,7 +18,7 @@ function EventBackground({ language, title, description }) {
         />
 
         <div
-          className="md:text-[25px] text-[20px] font-bold leading-[32.75px] text-[#024867]  "
+          className="md:text-[25px] text-[18px] font-bold leading-[32.75px] text-[#024867]  "
           dangerouslySetInnerHTML={{ __html: description?.[language] }}
         />
 

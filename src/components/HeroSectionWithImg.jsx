@@ -71,7 +71,7 @@ const HeroSectionWithImg = ({
                 )}
               </span>
             </div>
-            <h2 className=" block w-full mx-auto before:content-[''] before:h-[2px] before:bg-[white] before:w-[calc(100%+10%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-2  text-white  lg:text-[50px] sm:text-[30px] text-[25px] font-bold lg:leading-[50px] sm:leading-[30px] leading-[22px]  text-center    ">
+            <h2 className=" block w-full sm:mx-auto before:content-[''] before:h-[2px] before:bg-[white] before:w-[calc(100%+10%)] before:absolute before:bottom-[-4px] before:left-[50%] before:translate-x-[-50%] pb-2  text-white  lg:text-[50px] sm:text-[30px] text-[25px] font-bold lg:leading-[50px] sm:leading-[30px] leading-[22px]  text-center    ">
               {newsObj?.title
                 ? language === "ar"
                   ? newsObj?.title?.ar

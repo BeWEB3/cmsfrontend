@@ -30,12 +30,15 @@ const AttachmentItem = ({ name }) => {
 
 function EventAttachments({ language, files }) {
   return (
-    <div className="max-w-[760px] mx-auto p-6">
-      <h2 className="md:text-[39px] text-[29px] font-bold leading-[55.77px] text-center text-[#00567D] mb-8">
+    <div className="max-w-[760px] mx-auto md:p-6 p-2  ">
+      <h2 className="md:text-[39px] text-[28px] font-bold md:leading-[55.77px] leading-[32px] text-center text-[#00567D] mb-8">
         {language === "ar" ? "مرفقات الفعالية" : "Attachments From The Event"}
-        <div className="w-20 h-1 bg-[#00567D] mx-auto mt-2 rounded-md  "></div>
+        <div className="w-20 h-1 bg-[#00567D] mx-auto md:mt-2 rounded-md  "></div>
       </h2>
-      <div className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 ">
+      <div
+        className="grid md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 "
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
         {files.map((attachment, index) => (
           <AttachmentItem key={index} name={attachment} />
         ))}

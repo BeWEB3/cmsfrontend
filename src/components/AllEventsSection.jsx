@@ -34,7 +34,7 @@ function AllEventsSection({ language, AllEvent }) {
                 <img
                   src={event.heroImage}
                   alt="Events"
-                  className="w-full  object-cover h-[237px] "
+                  className="w-full  object-cover h-[400px] "
                 />
 
                 {/* <div className="absolute top-4 left-3 text-[white] text-[17px] font-extrabold leading-[17px] rounded-full bg-[#00567D] p-[8px]  ">
@@ -52,7 +52,7 @@ function AllEventsSection({ language, AllEvent }) {
                   </h3>
                 </div> */}
 
-                <div className=" bg-white px-4 py-5 w-full relative z-50 ">
+                <div className=" bg-white px-4 py-5 w-full absolute bottom-0 z-50  ">
                   <p className="text-[25px] font-bold leading-[25px]  text-black    mb-4 ">
                     {event.title[language]}
                   </p>

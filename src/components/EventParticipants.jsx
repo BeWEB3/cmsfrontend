@@ -42,7 +42,7 @@ function EventParticipants({ language, participants }) {
   return (
     <div className="w-full max-w-[1400px] mx-auto my-[6rem]  ">
       <div className="flex flex-col items-center mb-8">
-        <h2 className="md:text-[65px] text-[35px] font-bold leading-[65px] text-[#00567D] mb-2">
+        <h2 className="md:text-[65px] text-[30px] font-bold leading-[65px] text-[#00567D] md:mb-2">
           {language === "en" ? "Participants" : "المشاركين"}
         </h2>
         <div className="bg-[#0069A7] w-[20%] h-[5px] rounded-md   " />

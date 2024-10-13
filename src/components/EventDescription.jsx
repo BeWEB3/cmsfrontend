@@ -39,7 +39,7 @@ function EventDescription({ language, title, description, date, images }) {
         <img
           src={src}
           alt={`Slide ${index + 1}`}
-          className="w-full h-[455px] object-cover rounded-[15px]"
+          className="w-full md:h-[455px] h-[350px] object-cover rounded-[15px]"
         />
       </div>
     ),
@@ -61,13 +61,13 @@ function EventDescription({ language, title, description, date, images }) {
   return (
     <div className="relative">
       <div className="absolute w-full bg-white xl:h-[180px] md:h-[110px] h-[50px] xl:top-[-135px] top-[-110px] md:block hidden z-[2]" />
-      <div className="sm:px-6 px-4 md:py-24 pt-24 pb-16  max-w-[1400px] mx-auto  ">
+      <div className="md:px-6 sm:px-4 px-2 md:py-24 pt-24 pb-16  max-w-[1400px] mx-auto  ">
         <div className="flex items-center justify-between mb-4">
           <Link
             to={-1}
-            className="text-[#00567D] flex items-start justify-center gap-2  text-[30px] font-bold leading-[28.32px]"
+            className="text-[#00567D] flex items-start justify-center gap-2  md:text-[30px] text-[22px] font-bold md:leading-[28.32px]  leading-[21px] "
           >
-            <ChevronLeft className="w-6 h-6 text-[#00567D]" />
+            <ChevronLeft className="md:w-6 md:h-6 w-4 h-4 text-[#00567D]" />
             {language === "ar" ? "رجوع" : "back"}
           </Link>
         </div>
@@ -81,7 +81,7 @@ function EventDescription({ language, title, description, date, images }) {
                 {images?.map((img, index) => renderImage({ src: img, index }))}
               </div>
             </div>
-            <div className="absolute bottom-[-10%] left-0 right-0 flex justify-center">
+            <div className="absolute md:bottom-[-10%] bottom-[-15%] left-0 right-0 flex justify-center">
               {renderNavigationButton({
                 onClick: prevSlide,
                 icon: ChevronLeft,
@@ -93,14 +93,14 @@ function EventDescription({ language, title, description, date, images }) {
             </div>
           </div>
           <div className="">
-            <p className="text-[17px] font-bold leading-[17px] text-[#141414] mb-4">
+            <p className="md:text-[17px] text-[14px] font-bold leading-[17px] text-[#141414] mb-4">
               {formattedDate}
             </p>
-            <h2 className="text-[42px] font-bold leading-[52.08px] text-[#141414] mb-6">
+            <h2 className="md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[28px] text-[#141414] mb-6">
               {title?.[language]}
             </h2>
             <div
-              className="text-[22px] font-bold leading-[27.28px] text-[#979797]"
+              className="md:text-[22px] text-[16px] font-bold leading-[27.28px] text-[#979797]"
               dangerouslySetInnerHTML={{ __html: description?.[language] }}
             />
           </div>
