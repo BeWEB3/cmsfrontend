@@ -271,7 +271,9 @@ const Header = ({ language, toggleLanguage }) => {
                   />
                 </button>
                 <div
-                  className={`absolute top-full right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[400px] ${
+                  className={`absolute ${
+                    language === "ar" ? "top-[45px]" : " top-[65px] "
+                  }  right-0 bg-white rounded-md shadow-lg mt-1 overflow-hidden transition-all duration-300 ease-in-out w-full min-w-[400px]  ${
                     isDropdownOpen
                       ? "opacity-100 visible translate-y-0"
                       : "opacity-0 invisible -translate-y-2"

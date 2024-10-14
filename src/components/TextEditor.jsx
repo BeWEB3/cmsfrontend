@@ -1,6 +1,8 @@
+import { FileIcon } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const TextEditorComponent = ({ language = "en", data }) => {
+const TextEditorComponent = ({ language, data }) => {
   const renderContent = (content) => {
     const htmlContent = content[language] || content["en"];
 
@@ -85,6 +87,13 @@ const TextEditorComponent = ({ language = "en", data }) => {
     };
   };
 
+  const getFileName = (url) => {
+    const parts = url.split("/");
+    const fullName = parts[parts.length - 1];
+    const nameParts = fullName.split("_");
+    return nameParts[nameParts.length - 1];
+  };
+
   const renderContentItem = (item) => {
     switch (item.contentType) {
       case "Text":
@@ -102,6 +111,30 @@ const TextEditorComponent = ({ language = "en", data }) => {
             alt={`Content asset`}
             className="w-full h-auto rounded-lg shadow-md transition-transform duration-300 hover:scale-[1.02]"
           />
+        );
+      case "File Title":
+        return (
+          <h3 className="text-2xl font-medium mb-2 text-gray-700">
+            {item.content[language]}
+          </h3>
+        );
+      case "File Description":
+        return <p className="mb-4 text-gray-600">{item.content[language]}</p>;
+      case "File":
+        const fileName = getFileName(item.url);
+        return (
+          <Link
+            to={item.url}
+            download
+            target="_blank"
+            className="flex flex-col items-center p-4 bg-white rounded-[15px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] pb-8 max-w-[450px] mx-auto"
+          >
+            <FileIcon className="w-12 h-12 text-[#00567D] mb-2" />
+            <div className="bg-[#0069A7] w-[40%] h-[3px] mb-4 mt-2" />
+            <span className="text-[17px] font-bold leading-[16.05px]  text-[#00567D]">
+              {fileName}
+            </span>
+          </Link>
         );
       default:
         return null;
