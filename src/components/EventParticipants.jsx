@@ -92,8 +92,6 @@ const ParticipantCard = ({
   key,
   imagePath,
 }) => {
-  console.log(name, qualifications, designation, key, imagePath);
-
   return (
     <div key={key} className=" px-2 my-4  ">
       <div className="bg-white rounded-[34px] shadow-md px-4 py-8 flex flex-col items-center [box-shadow:0px_0px_12px_1px_#7B7B7B40] h-full lg:max-w-[383px] text-center  gap-6  ">

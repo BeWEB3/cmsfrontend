@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import logo1 from "../pics/Logo1.svg";
 import logo2 from "../pics/Logo2.svg";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import DOMPurify from "dompurify";
+import { APiFunctions } from "../API/AccountApiLayer";
 
 const translations = {
   en: {
@@ -10,9 +14,12 @@ const translations = {
     firstName: "First Name",
     lastName: "Last Name",
     phoneNumber: "Phone Number",
-    emailAddress: "Email Address",
-    additionalComments: "How can we help you?",
+    email: "Email Address",
+    message: "How can we help you?",
     submit: "Send",
+    submitting: "Sending your message...",
+    success: "Message sent successfully!",
+    error: "Failed to send message. Please try again.",
     registerNow: "Register Now",
   },
   ar: {
@@ -20,19 +27,132 @@ const translations = {
     firstName: "الاسم",
     lastName: "اسم العائلة",
     phoneNumber: "رقم الهاتف",
-    emailAddress: "البريد الإلكتروني",
-    additionalComments: "كيف يمكننا مساعدتك؟",
+    email: "البريد الإلكتروني",
+    message: "كيف يمكننا مساعدتك؟",
     submit: "إرسال",
     registerNow: "سجل الآن",
+    submitting: "جاري إرسال رسالتك...",
+    success: "تم إرسال الرسالة بنجاح!",
+    error: "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
   },
 };
 
 const EventForm = ({ language }) => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    message: "",
+  });
   const t = translations[language];
 
-  const handleSubmit = (e) => {
-    // Handle form submission here
+  const [loading, setLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const sanitizeInput = (input, fieldName) => {
+    let sanitized = DOMPurify.sanitize(input);
+
+    sanitized = sanitized.replace(/[^\x20-\x7E]/g, " ");
+
+    switch (fieldName) {
+      case "firstName":
+      case "lastName":
+        sanitized = sanitized.replace(/[^a-zA-Z\s-]/g, " ");
+        break;
+      case "phoneNumber":
+        sanitized = sanitized.toLowerCase();
+        break;
+      case "email":
+        sanitized = sanitized.toLowerCase();
+        break;
+      case "message":
+        sanitized = sanitized.trim().replace(/\s{2,}/g, " ");
+        if (sanitized.length > 1000) {
+          sanitized = sanitized.slice(0, 1000);
+          toast.warning("Message truncated to 1000 characters.");
+        }
+        break;
+      default:
+        break;
+    }
+
+    return sanitized.trim();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handlePaste = useCallback((e) => {
     e.preventDefault();
+    toast.error("Pasting is not allowed. Please type your input.");
+  }, []);
+
+  const handleBlur = useCallback((e) => {
+    if (e.target.name === "email") {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)) {
+        toast.error("Please enter a valid email address.");
+      }
+    }
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!executeRecaptcha) {
+      console.error("Execute recaptcha not available");
+      toast.error(t.error);
+      return;
+    }
+
+    const sanitizedFormData = {
+      firstName: sanitizeInput(formData.firstName, "firstName"),
+      lastName: sanitizeInput(formData.lastName, "lastName"),
+      phoneNumber: sanitizeInput(formData.phoneNumber, "phoneNumber"),
+      email: sanitizeInput(formData.email, "email"),
+      message: sanitizeInput(formData.message, "message"),
+    };
+
+    setLoading(true);
+
+    try {
+      const token = await executeRecaptcha("submit_contact_form");
+
+      if (!token) {
+        toast.error("Failed to generate reCAPTCHA token. Please try again.");
+        return;
+      }
+      const formDataWithToken = { ...sanitizedFormData, recaptchaToken: token };
+
+      console.log(formDataWithToken);
+
+      await APiFunctions.POSTContact(formDataWithToken)
+        .then((res) => {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            phoneNumber: "",
+            email: "",
+            message: "",
+          });
+          toast.success(res.data.message);
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error(t.error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+      toast.error(t.error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,50 +170,90 @@ const EventForm = ({ language }) => {
       </div>
       <form className="space-y-8" onClick={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label
+            className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
+            htmlFor="firstName"
+          >
             {t.firstName}
             <input
               type="text"
-              className="p-2 rounded text-black w-full mt-2 "
+              className="p-2 rounded text-black w-full mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px]  "
+              onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={handleBlur}
+              id="firstName"
+              name="firstName"
             />
           </label>
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label
+            className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
+            htmlFor="lastName"
+          >
             {t.lastName}
             <input
               type="text"
-              className="p-2 rounded text-black w-full mt-2 "
+              className="p-2 rounded text-black w-full mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px]  "
+              onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={handleBlur}
+              id="lastName"
+              name="lastName"
             />
           </label>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
+          <label
+            className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
+            htmlFor="phoneNumber"
+          >
             {t.phoneNumber}
             <input
               type="tel"
-              className="w-full p-2 rounded text-black mt-2"
+              className="w-full p-2 rounded text-black mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px] "
               dir={language === "en" ? "ltr" : "rtl"}
+              onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={handleBlur}
+              id="phoneNumber"
+              name="phoneNumber"
             />
           </label>
-          <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
-            {t.emailAddress}
+          <label
+            className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
+            htmlFor="email"
+          >
+            {t.email}
             <input
               type="email"
-              className="w-full p-2 rounded text-black mt-2 "
+              className="w-full p-2 rounded text-black mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px]  "
+              onChange={handleChange}
+              onPaste={handlePaste}
+              onBlur={handleBlur}
+              id="email"
+              name="email"
             />
           </label>
         </div>
-        <label className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] ">
-          {t.additionalComments}
+        <label
+          className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
+          htmlFor="message"
+        >
+          {t.message}
           <textarea
             rows="4"
-            className="w-full p-2 rounded text-black mt-2"
+            className="w-full p-2 rounded text-black mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px] "
+            onChange={handleChange}
+            onPaste={handlePaste}
+            onBlur={handleBlur}
+            id="message"
+            name="message"
           ></textarea>
         </label>
         <button
           type="submit"
-          className=" bg-[#00567D] text-white border-solid border-[1px] border-white py-2 px-8  text-[28px] font-bold leading-[34.72px] rounded-lg  "
+          className=" bg-[#00567D] text-white border-solid border-[1px] border-white py-2 px-8  text-[28px] font-bold leading-[34.72px] rounded-lg  transition duration-300 hover:bg-[#00557db0] active:scale-[0.97]  disabled:opacity-60 "
         >
-          {t.submit}
+          {loading ? t.submitting : t.submit}
         </button>
       </form>
       <Link
@@ -114,7 +274,7 @@ const EventForm = ({ language }) => {
           src={logo2}
           alt="Logo"
           className={`h-[96px] w-[109px]  
-                  ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "}`}
+          ${language === "en" ? " ml-[-8px]" : " mr-[-5px] "}`}
         />
       </Link>
     </div>
