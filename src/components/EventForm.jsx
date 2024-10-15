@@ -133,8 +133,6 @@ const EventForm = ({ language, eventuid }) => {
         eventuid,
       };
 
-      console.log(formDataWithToken);
-
       await APiFunctions.POSTRegister(formDataWithToken)
         .then((res) => {
           setFormData({
@@ -152,6 +150,13 @@ const EventForm = ({ language, eventuid }) => {
         })
         .finally(() => {
           setLoading(false);
+          setFormData({
+            firstName: "",
+            lastName: "",
+            phonenumber: "",
+            email: "",
+            message: "",
+          });
         });
     } catch (error) {
       console.error(error);
@@ -184,6 +189,7 @@ const EventForm = ({ language, eventuid }) => {
               type="text"
               className="p-2 rounded text-black w-full mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px]  "
               onChange={handleChange}
+              value={formData.firstName}
               onPaste={handlePaste}
               onBlur={handleBlur}
               id="firstName"
@@ -201,6 +207,7 @@ const EventForm = ({ language, eventuid }) => {
               onChange={handleChange}
               onPaste={handlePaste}
               onBlur={handleBlur}
+              value={formData.lastName}
               id="lastName"
               name="lastName"
             />
@@ -219,6 +226,7 @@ const EventForm = ({ language, eventuid }) => {
               onChange={handleChange}
               onPaste={handlePaste}
               onBlur={handleBlur}
+              value={formData.phonenumber}
               id="phonenumber"
               name="phonenumber"
             />
@@ -234,6 +242,7 @@ const EventForm = ({ language, eventuid }) => {
               onChange={handleChange}
               onPaste={handlePaste}
               onBlur={handleBlur}
+              value={formData.email}
               id="email"
               name="email"
             />
@@ -250,6 +259,7 @@ const EventForm = ({ language, eventuid }) => {
             onChange={handleChange}
             onPaste={handlePaste}
             onBlur={handleBlur}
+            value={formData.message}
             id="message"
             name="message"
           ></textarea>

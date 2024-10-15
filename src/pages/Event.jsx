@@ -97,13 +97,12 @@ function Event({ language }) {
           />
         )}
 
-      {memoizedEvent?.participants &&
-        memoizedEvent?.participants?.isParticipantsVisible && (
-          <EventParticipants
-            language={language}
-            participants={memoizedEvent?.participants?.participantDetails}
-          />
-        )}
+      {memoizedEvent?.participants && (
+        <EventParticipants
+          language={language}
+          participants={memoizedEvent?.participants?.participantDetails}
+        />
+      )}
       {memoizedEvent?.attachments &&
         memoizedEvent?.attachments?.isAttachmentsVisible && (
           <EventAttachments
