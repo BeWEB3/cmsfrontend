@@ -9,13 +9,14 @@ const getFileName = (url) => {
   return nameParts[nameParts.length - 1];
 };
 
-const AttachmentItem = ({ name }) => {
+const AttachmentItem = ({ name, key }) => {
   const fileName = getFileName(name);
   return (
     <Link
       to={name}
       download
       target="_blank"
+      key={key}
       className="flex flex-col items-center p-4 bg-white rounded-[15px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] pb-8   "
     >
       <FileIcon className="w-12 h-12 text-[#00567D] mb-2" />

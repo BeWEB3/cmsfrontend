@@ -38,6 +38,13 @@ export const APiFunctions = {
       data: dat,
     });
   },
+  POSTRegister: function (dat) {
+    return axiosInstance.request({
+      method: "POST",
+      url: `registerevent`,
+      data: dat,
+    });
+  },
   GETSearch: function (dat) {
     return axiosInstance.request({
       method: "GET",

@@ -13,7 +13,7 @@ const translations = {
     title: "Event Registration",
     firstName: "First Name",
     lastName: "Last Name",
-    phoneNumber: "Phone Number",
+    phonenumber: "Phone Number",
     email: "Email Address",
     message: "How can we help you?",
     submit: "Send",
@@ -26,7 +26,7 @@ const translations = {
     title: "تسجيل معنا الآن",
     firstName: "الاسم",
     lastName: "اسم العائلة",
-    phoneNumber: "رقم الهاتف",
+    phonenumber: "رقم الهاتف",
     email: "البريد الإلكتروني",
     message: "كيف يمكننا مساعدتك؟",
     submit: "إرسال",
@@ -37,13 +37,14 @@ const translations = {
   },
 };
 
-const EventForm = ({ language }) => {
+const EventForm = ({ language, eventuid }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    phoneNumber: "",
     email: "",
+    phonenumber: "",
     message: "",
+    eventuid: "",
   });
   const t = translations[language];
 
@@ -60,7 +61,7 @@ const EventForm = ({ language }) => {
       case "lastName":
         sanitized = sanitized.replace(/[^a-zA-Z\s-]/g, " ");
         break;
-      case "phoneNumber":
+      case "phonenumber":
         sanitized = sanitized.toLowerCase();
         break;
       case "email":
@@ -112,7 +113,7 @@ const EventForm = ({ language }) => {
     const sanitizedFormData = {
       firstName: sanitizeInput(formData.firstName, "firstName"),
       lastName: sanitizeInput(formData.lastName, "lastName"),
-      phoneNumber: sanitizeInput(formData.phoneNumber, "phoneNumber"),
+      phonenumber: sanitizeInput(formData.phonenumber, "phonenumber"),
       email: sanitizeInput(formData.email, "email"),
       message: sanitizeInput(formData.message, "message"),
     };
@@ -126,16 +127,20 @@ const EventForm = ({ language }) => {
         toast.error("Failed to generate reCAPTCHA token. Please try again.");
         return;
       }
-      const formDataWithToken = { ...sanitizedFormData, recaptchaToken: token };
+      const formDataWithToken = {
+        ...sanitizedFormData,
+        recaptchaToken: token,
+        eventuid,
+      };
 
       console.log(formDataWithToken);
 
-      await APiFunctions.POSTContact(formDataWithToken)
+      await APiFunctions.POSTRegister(formDataWithToken)
         .then((res) => {
           setFormData({
             firstName: "",
             lastName: "",
-            phoneNumber: "",
+            phonenumber: "",
             email: "",
             message: "",
           });
@@ -168,7 +173,7 @@ const EventForm = ({ language }) => {
         </h2>
         <div className="bg-white w-[40%] h-[4px] rounded-md md:my-4 mb-4 " />
       </div>
-      <form className="space-y-8" onClick={handleSubmit}>
+      <form className="space-y-8" onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
           <label
             className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
@@ -204,9 +209,9 @@ const EventForm = ({ language }) => {
         <div className="grid md:grid-cols-2 gap-4">
           <label
             className=" flex flex-col gap-1 md:text-[42px] text-[22px] font-bold md:leading-[52.08px] leading-[32px] "
-            htmlFor="phoneNumber"
+            htmlFor="phonenumber"
           >
-            {t.phoneNumber}
+            {t.phonenumber}
             <input
               type="tel"
               className="w-full p-2 rounded text-black mt-2 md:text-[31px] sm:text-[22px] text-[18px] font-bold leading-[31px] "
@@ -214,8 +219,8 @@ const EventForm = ({ language }) => {
               onChange={handleChange}
               onPaste={handlePaste}
               onBlur={handleBlur}
-              id="phoneNumber"
-              name="phoneNumber"
+              id="phonenumber"
+              name="phonenumber"
             />
           </label>
           <label

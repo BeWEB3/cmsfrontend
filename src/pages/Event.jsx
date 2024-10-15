@@ -122,7 +122,7 @@ function Event({ language }) {
 
       {memoizedEvent?.registrationForm &&
         memoizedEvent?.registrationForm?.isRegistrationFormVisible && (
-          <EventForm language={language} />
+          <EventForm language={language} eventuid={uid} />
         )}
     </PageLoader>
   );
