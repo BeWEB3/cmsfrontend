@@ -15,17 +15,19 @@ function EventSnippets({ language, snippets }) {
 
   const settings = {
     className: "center",
-    centerMode: false,
+    centerMode: true,
     infinite: false,
-    slidesToShow: 3,
-    centerPadding: "10px",
+    centerPadding: "470px",
+    slidesToShow: 1,
     speed: 500,
+    rtl: language === "ar" ? true : false,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 2,
-          centerPadding: "40px",
+          centerMode: false,
+          centerPadding: snippets.length >= 1 ? "00px" : "50px",
         },
       },
       {
@@ -50,7 +52,10 @@ function EventSnippets({ language, snippets }) {
         </h2>
         <div className="bg-[#0069A7] w-[20%] h-[5px]  rounded-md " />
       </div>
-      <div className="relative [&_div]:!h-full   ">
+      <div
+        className="relative [&_div]:!h-full"
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
         <Slider
           {...settings}
           ref={(slider) => {
@@ -80,7 +85,10 @@ function EventSnippets({ language, snippets }) {
             </div>
           ))}
         </Slider>
-        <div className=" py-6 flex justify-center items-center gap-2  ">
+        <div
+          className=" py-6 flex justify-center items-center gap-2 "
+          dir={language === "ar" ? "ltr" : ""}
+        >
           <button
             onClick={previous}
             className=" bg-white p-2 rounded-full shadow-md"

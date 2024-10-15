@@ -27,8 +27,8 @@ function Event({ language }) {
     isError,
     error,
   } = useQuery(["oneEvent", uid], fetchOneEvent, {
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    cacheTime: 10 * 60 * 1000, // 10 minutes
+    staleTime: 10,
+    cacheTime: 10,
   });
 
   const memoizedEvent = useMemo(() => {
@@ -36,6 +36,8 @@ function Event({ language }) {
 
     return oneEvent?.data;
   }, [oneEvent]);
+
+  console.log(oneEvent);
 
   const [progress, setProgress] = useState(0);
 

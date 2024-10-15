@@ -9,14 +9,14 @@ const getFileName = (url) => {
   return nameParts[nameParts.length - 1];
 };
 
-const AttachmentItem = ({ name, key }) => {
+const AttachmentItem = ({ name, id }) => {
   const fileName = getFileName(name);
   return (
     <Link
       to={name}
       download
       target="_blank"
-      key={key}
+      key={id}
       className="flex flex-col items-center p-4 bg-white rounded-[15px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] pb-8   "
     >
       <FileIcon className="w-12 h-12 text-[#00567D] mb-2" />
@@ -31,7 +31,7 @@ const AttachmentItem = ({ name, key }) => {
 
 function EventAttachments({ language, files }) {
   return (
-    <div className="max-w-[760px] mx-auto md:p-6 p-2  ">
+    <div className="max-w-[760px] mx-auto md:p-6 p-2 pb-[4rem] ">
       <h2 className="md:text-[39px] text-[28px] font-bold md:leading-[55.77px] leading-[32px] text-center text-[#00567D] mb-8">
         {language === "ar" ? "مرفقات الفعالية" : "Attachments From The Event"}
         <div className="w-20 h-1 bg-[#00567D] mx-auto md:mt-2 rounded-md  "></div>
@@ -41,7 +41,7 @@ function EventAttachments({ language, files }) {
         dir={language === "ar" ? "rtl" : "ltr"}
       >
         {files.map((attachment, index) => (
-          <AttachmentItem key={index} name={attachment} />
+          <AttachmentItem key={index} name={attachment} id={index} />
         ))}
       </div>
     </div>

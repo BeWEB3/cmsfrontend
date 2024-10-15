@@ -20,6 +20,7 @@ function EventParticipants({ language, participants }) {
     centerPadding: "470px",
     slidesToShow: 1,
     speed: 500,
+    rtl: language === "ar" ? true : false,
     responsive: [
       {
         breakpoint: 1200,

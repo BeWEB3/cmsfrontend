@@ -4,7 +4,7 @@ import React from "react";
 const ObjectiveCard = ({ id, Icon, title, language, key }) => (
   <div
     className="bg-white rounded-[12px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] py-8 px-4 relative"
-    key={key}
+    key={id}
   >
     <div
       className={`absolute top-3 right-6 text-[#0069A7] text-[25px] font-bold leading-[25px] ${
@@ -15,7 +15,7 @@ const ObjectiveCard = ({ id, Icon, title, language, key }) => (
     </div>
     {/* <Icon className="text-[#00567D] w-12 h-12 mb-4" /> */}
     <img src={Icon} alt="" />
-    <div className="bg-[#0069A7] w-[40%] h-[2px] mb-6" />
+    <div className="bg-[#0069A7] w-[40%] h-[2px] mb-4 mt-4 " />
     <div
       className="text-[#0069A7] md:text-[21px] text-[17px] font-bold leading-[21px] max-w-[360px]"
       dangerouslySetInnerHTML={{ __html: title }}
@@ -28,7 +28,7 @@ const ObjectiveCard = ({ id, Icon, title, language, key }) => (
 
 function EventObjectives({ language, objectives }) {
   return (
-    <div>
+    <>
       <div className="max-w-[1300px] mx-auto md:p-8 p-4  ">
         <h2 className="md:text-[39px] text-[26px] font-bold leading-[48.36px] text-center text-[#00567D] mb-8">
           {language === "ar" ? "الأهداف" : "Objectives"}
@@ -40,7 +40,6 @@ function EventObjectives({ language, objectives }) {
         >
           {objectives.map((obj, index) => (
             <ObjectiveCard
-              key={obj.id}
               id={index + 1}
               Icon={obj?.imagePath}
               title={obj?.description[language]}
@@ -49,7 +48,7 @@ function EventObjectives({ language, objectives }) {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
