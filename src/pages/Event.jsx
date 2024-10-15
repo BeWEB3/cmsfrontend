@@ -37,8 +37,6 @@ function Event({ language }) {
     return oneEvent?.data;
   }, [oneEvent]);
 
-  console.log(oneEvent);
-
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
