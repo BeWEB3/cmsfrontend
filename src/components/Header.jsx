@@ -316,32 +316,31 @@ const Header = ({ language, toggleLanguage }) => {
                 <div className="flex items-center gap-1 [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
                   <Link
                     className="flex items-center gap-1"
-                    to={"tel:+2035351900"}
+                    to={"tel:+966114406666"}
                   >
                     <Phone size={12} />
-                    <span className="">+2035351900</span>
+                    <span className="" dir={language === "ar" ? "ltr" : ""}>
+                      +966114406666
+                    </span>
                   </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
                     className="flex items-center gap-1"
-                    to={"mailto:info@eca.org.eg"}
+                    to={"mailto:acnsaudi@acn.org"}
                   >
                     <Mail size={12} />
-                    <span className="">info@eca.org.eg</span>
+                    <span className="">acnsaudi@acn.org</span>
                   </Link>
                 </div>
-                <div className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white">
-                  <button
-                    onClick={toggleLanguage}
-                    className={`${language === "en" ? "" : ""}`}
-                  >
+                <div
+                  className="flex items-center [&_*]:sm:text-[10px] [&_*]:text-[9px] text-white cursor-pointer  "
+                  onClick={toggleLanguage}
+                >
+                  <button className={`${language === "en" ? "" : ""}`}>
                     EN
                   </button>
                   <div className="mx-[1px] h-[8px] w-[1px] bg-white" />
-                  <button
-                    onClick={toggleLanguage}
-                    className={`${language === "ar" ? "" : ""}`}
-                  >
+                  <button className={`${language === "ar" ? "" : ""}`}>
                     AR
                   </button>
                 </div>
@@ -375,32 +374,29 @@ const Header = ({ language, toggleLanguage }) => {
                 <div className="flex items-center gap-1 [&_*]:text-[13px] text-white">
                   <Link
                     className="flex items-center gap-1"
-                    to={"tel:+2035351900"}
+                    to={"tel:+966114406666"}
                   >
                     <Phone size={12} />
-                    <span className="">+2035351900</span>
+                    <span className="">+966114406666</span>
                   </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
                     className="flex items-center gap-1"
-                    to={"mailto:info@eca.org.eg"}
+                    to={"mailto:acnsaudi@acn.org"}
                   >
                     <Mail size={12} />
-                    <span className="">info@eca.org.eg</span>
+                    <span className="">acnsaudi@acn.org</span>
                   </Link>
                 </div>
-                <div className="flex items-center [&_*]:text-[13px] text-white">
-                  <button
-                    onClick={toggleLanguage}
-                    className={`${language === "en" ? "" : ""}`}
-                  >
+                <div
+                  className="flex items-center [&_*]:text-[13px] text-white cursor-pointer  "
+                  onClick={toggleLanguage}
+                >
+                  <button className={`${language === "en" ? "" : ""}`}>
                     EN
                   </button>
                   <div className="mx-[1px] h-[8px] w-[1px] bg-white" />
-                  <button
-                    onClick={toggleLanguage}
-                    className={`${language === "ar" ? "" : ""}`}
-                  >
+                  <button className={`${language === "ar" ? "" : ""}`}>
                     AR
                   </button>
                 </div>
