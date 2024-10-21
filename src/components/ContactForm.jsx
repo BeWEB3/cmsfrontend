@@ -1,7 +1,10 @@
 import React, { useState, useCallback } from "react";
 import { toast } from "sonner";
 import { APiFunctions } from "../API/AccountApiLayer";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 import DOMPurify from "dompurify";
 
 const ContactFormContent = ({ language }) => {
@@ -254,7 +257,13 @@ const ContactFormContent = ({ language }) => {
 };
 
 const ContactForm = ({ language }) => {
-  return <ContactFormContent language={language} />;
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+    >
+      <ContactFormContent language={language} />;
+    </GoogleReCaptchaProvider>
+  );
 };
 
 export default ContactForm;

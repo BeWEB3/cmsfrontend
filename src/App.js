@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
 import NotFound from "./pages/NotFoundPage.jsx";
 import SuspenseLoading from "./components/SuspenseLoading.jsx";
+import Library from "./pages/Library.jsx";
 
 // Lazy load the pages
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
@@ -69,6 +70,10 @@ const App = () => {
               <Route
                 path="/network-presidency"
                 element={<MembersPage language={language} />}
+              />
+              <Route
+                path="/library"
+                element={<Library language={language} />}
               />
 
               <Route

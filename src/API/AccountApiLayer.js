@@ -69,4 +69,10 @@ export const APiFunctions = {
       url: `GetMeetingDetailsByUID/${uid}`,
     });
   },
+  GetLibraryData: function () {
+    return axiosInstance.request({
+      method: "GET",
+      url: `GetLibraryData`,
+    });
+  },
 };

@@ -181,6 +181,8 @@ const Header = ({ language, toggleLanguage }) => {
                       ? "contactus"
                       : result?.slug === "events"
                       ? "events"
+                      : result?.slug === "library"
+                      ? "library"
                       : `/page/${result?.slug}`
                     : result?.content?.en
                 }
@@ -247,6 +249,8 @@ const Header = ({ language, toggleLanguage }) => {
                         ? "contactus"
                         : item?.slug === "events"
                         ? "events"
+                        : item?.slug === "library"
+                        ? "library"
                         : `/page/${item?.slug}`
                       : item?.content?.en
                   }
@@ -292,6 +296,8 @@ const Header = ({ language, toggleLanguage }) => {
                             ? "contactus"
                             : item?.slug === "events"
                             ? "events"
+                            : item?.slug === "library"
+                            ? "library"
                             : `/page/${item?.slug}`
                           : item?.content?.en
                       }
@@ -415,6 +421,8 @@ const Header = ({ language, toggleLanguage }) => {
                       ? "contactus"
                       : item?.slug === "events"
                       ? "events"
+                      : item?.slug === "library"
+                      ? "library"
                       : `/page/${item?.slug}`
                     : item?.content?.en
                 }
@@ -457,6 +465,8 @@ const Header = ({ language, toggleLanguage }) => {
                           ? "contactus"
                           : item?.slug === "events"
                           ? "events"
+                          : item?.slug === "library"
+                          ? "library"
                           : `/page/${item?.slug}`
                         : item?.content?.en
                     }

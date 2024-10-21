@@ -4,7 +4,10 @@ import logo1 from "../pics/Logo1.svg";
 import logo2 from "../pics/Logo2.svg";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 import DOMPurify from "dompurify";
 import { APiFunctions } from "../API/AccountApiLayer";
 
@@ -296,4 +299,14 @@ const EventForm = ({ language, eventuid }) => {
   );
 };
 
-export default EventForm;
+const ContactForm = ({ language, eventuid }) => {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+    >
+      <EventForm language={language} eventuid={eventuid} />;
+    </GoogleReCaptchaProvider>
+  );
+};
+
+export default ContactForm;
