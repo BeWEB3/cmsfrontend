@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
 import NotFound from "./pages/NotFoundPage.jsx";
 import SuspenseLoading from "./components/SuspenseLoading.jsx";
-import Library from "./pages/Library.jsx";
 
 // Lazy load the pages
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
@@ -17,6 +16,7 @@ const WorkShops = lazy(() => import("./pages/WorkShops.jsx"));
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage.jsx"));
 const MembersPage = lazy(() => import("./pages/MembersPage.jsx"));
 const DynamicPage = lazy(() => import("./pages/DynamicPage.jsx"));
+const Library = lazy(() => import("./pages/Library.jsx"));
 
 const App = () => {
   const [language, setLanguage] = useState(() => {

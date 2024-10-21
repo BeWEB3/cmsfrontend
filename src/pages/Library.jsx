@@ -41,7 +41,7 @@ function Library({ language }) {
   }, []);
 
   const title = {
-    ar: "Library",
+    ar: "مكتبة",
     en: "Library",
   };
 
