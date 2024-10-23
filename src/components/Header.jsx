@@ -326,10 +326,10 @@ const Header = ({ language, toggleLanguage }) => {
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
                     className="flex items-center gap-1"
-                    to={"mailto:acnsaudi@acn.org"}
+                    to={"mailto:acn@gac.gov.sa"}
                   >
                     <Mail size={12} />
-                    <span className="">acnsaudi@acn.org</span>
+                    <span className="">acn@gac.gov.sa</span>
                   </Link>
                 </div>
                 <div
@@ -377,15 +377,17 @@ const Header = ({ language, toggleLanguage }) => {
                     to={"tel:+966114406666"}
                   >
                     <Phone size={12} />
-                    <span className="">+966114406666</span>
+                    <span className="" dir={language === "ar" ? "ltr" : ""}>
+                      +966114406666
+                    </span>
                   </Link>
                   <div className="h-[12px] w-[1px] bg-white" />
                   <Link
                     className="flex items-center gap-1"
-                    to={"mailto:acnsaudi@acn.org"}
+                    to={"mailto:acn@gac.gov.sa"}
                   >
                     <Mail size={12} />
-                    <span className="">acnsaudi@acn.org</span>
+                    <span className="">acn@gac.gov.sa</span>
                   </Link>
                 </div>
                 <div

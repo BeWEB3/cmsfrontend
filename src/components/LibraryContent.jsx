@@ -7,19 +7,19 @@ function LibraryContent({ language, data = {} }) {
 
   const pdfItems = useMemo(() => Object.entries(data), [data]);
 
-  const categories = useMemo(() => {
-    const uniqueCategories = new Set(
-      pdfItems.map(([_, item]) => item.category.name)
-    );
-    return ["All", ...uniqueCategories];
-  }, [pdfItems]);
-
   const filteredPdfItems = useMemo(() => {
     if (selectedCategory === "All") return pdfItems;
     return pdfItems.filter(
-      ([_, item]) => item.category.name === selectedCategory
+      ([_, item]) => item?.category.en === selectedCategory
     );
   }, [pdfItems, selectedCategory]);
+
+  const list = [
+    { en: "All", ar: "الكل" },
+    { en: "Report", ar: "تقرير" },
+    { en: "Publication", ar: "اصدارات" },
+    { en: "Other", ar: "اخرى" },
+  ];
 
   return (
     <div>
@@ -36,9 +36,9 @@ function LibraryContent({ language, data = {} }) {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="block w-full cursor-pointer appearance-none pl-6 pr-10 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm "
               >
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
+                {list.map((category) => (
+                  <option key={category.en} value={category.en}>
+                    {category[language]}
                   </option>
                 ))}
               </select>
@@ -48,38 +48,46 @@ function LibraryContent({ language, data = {} }) {
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:mt-8"
               dir={language === "ar" ? "rtl" : "ltr"}
             >
-              {filteredPdfItems.map(([key, item]) => (
-                <div
-                  key={key}
-                  className="flex flex-col items-center p-4 bg-white rounded-[15px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] "
-                >
-                  <div className=" ">
-                    <FileIcon className="w-12 h-12 text-[#00567D] mb-2" />
-                  </div>
-                  <div className="bg-[#0069A7] w-[40%] h-[3px] mb-4 mt-2" />
-
-                  <div className="text-center">
-                    <h3 className="font-semibold text-sm mb-1 line-clamp-1">
-                      {item.title[language]}
-                    </h3>
-                    <p className="text-xs text-gray-600 mb-2 line-clamp-2">
-                      {item.description[language]}
-                    </p>
-                    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                      {item.category.name}
-                    </span>
-                  </div>
-                  <Link
-                    to={item.url.filePath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 flex items-center text-blue-600 hover:text-blue-800"
+              {filteredPdfItems.length === 0 ? (
+                <p className=" w-full col-span-3  ">
+                  {language === "en"
+                    ? "No PDF available to display."
+                    : "لا يوجد ملف PDF لعرضه."}
+                </p>
+              ) : (
+                filteredPdfItems.map(([key, item]) => (
+                  <div
+                    key={key}
+                    className="flex flex-col items-center p-4 bg-white rounded-[15px] [box-shadow:0px_0px_11px_2px_#7B7B7B40] "
                   >
-                    <FileText size={16} className="mr-1" />
-                    <span className="text-xs">Open PDF</span>
-                  </Link>
-                </div>
-              ))}
+                    <div className=" ">
+                      <FileIcon className="w-12 h-12 text-[#00567D] mb-2" />
+                    </div>
+                    <div className="bg-[#0069A7] w-[40%] h-[3px] mb-4 mt-2" />
+
+                    <div className="text-center">
+                      <h3 className="font-semibold text-sm mb-1 line-clamp-1">
+                        {item.title[language]}
+                      </h3>
+                      <p className="text-xs text-gray-600 mb-2 line-clamp-2">
+                        {item.description[language]}
+                      </p>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                        {item.category[language]}
+                      </span>
+                    </div>
+                    <Link
+                      to={item.url.filePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 flex items-center text-blue-600 hover:text-blue-800"
+                    >
+                      <FileText size={16} className="mr-1" />
+                      <span className="text-xs">Open PDF</span>
+                    </Link>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

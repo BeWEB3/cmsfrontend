@@ -7,6 +7,8 @@ import CompetitionNetwork from "../components/CompetitionNetwork";
 import NewsSection from "../components/NewsSection";
 import PageLoader from "./PageLoader";
 import { APiFunctions } from "../API/AccountApiLayer";
+import HomeFlags from "../components/HomeFlags";
+import HeroSectionWithImg from "../components/HeroSectionWithImg";
 
 const HomePage = ({ language }) => {
   const fetchHomeData = useCallback(() => APiFunctions.GETHomeData(), []);
@@ -26,8 +28,8 @@ const HomePage = ({ language }) => {
 
     return {
       heroSection: homedata.data?.section1,
-      objectives: homedata.data?.section2,
-      participants: homedata.data?.section3,
+      FlagsData: homedata.data?.section2,
+      TableData: homedata.data?.section3,
       competitionNet: homedata.data?.section4,
     };
   }, [homedata]);
@@ -52,15 +54,42 @@ const HomePage = ({ language }) => {
 
   return (
     <PageLoader isLoading={isLoading} progress={progress}>
-      <HeroSectionWithVideo
-        language={language}
-        HeroVideoData={memoizedSections?.heroSection}
-      />
+      {memoizedSections?.heroSection?.contentItems?.heroImage ? (
+        <>
+          <HeroSectionWithImg
+            language={language}
+            backgroundImg={
+              memoizedSections?.heroSection?.contentItems?.heroImage
+            }
+          />
+        </>
+      ) : (
+        <>
+          <HeroSectionWithVideo
+            language={language}
+            HeroVideoData={memoizedSections?.heroSection}
+          />
+        </>
+      )}
+
       <div dir={language === "ar" ? "rtl" : "ltr"}>
+        <HomeFlags
+          language={language}
+          data={memoizedSections?.FlagsData?.contentItems?.flagsImage[language]}
+          title={
+            memoizedSections?.FlagsData?.contentItems?.sectionHeading[language]
+          }
+        />
+        <HomeFlags
+          language={language}
+          data={memoizedSections?.TableData?.contentItems?.tableImage[language]}
+          title={false}
+        />
+        {/* 
         <ServiceSection
           language={language}
-          data={memoizedSections?.objectives}
-        />
+          data={memoizedSections?.FlagsData}
+        /> */}
 
         {/* <ParticipantsSection
           language={language}
