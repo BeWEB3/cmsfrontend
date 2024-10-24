@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API = `https://cmsapi.validatione.com/api/`;
-// const API = `https://acnapiuat.gac.gov.sa/api/`;
+const API = `${process.env.REACT_APP_API_KEY}/api/`;
 
 const axiosInstance = axios.create({
   baseURL: API,
