@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import HeroSectionWithVideo from "../components/HeroSectionWithVideo";
-import ServiceSection from "../components/ServiceSection";
-import ParticipantsSection from "../components/ParticipantsSection";
+// import ServiceSection from "../components/ServiceSection";
+// import ParticipantsSection from "../components/ParticipantsSection";
 import CompetitionNetwork from "../components/CompetitionNetwork";
 import NewsSection from "../components/NewsSection";
 import PageLoader from "./PageLoader";

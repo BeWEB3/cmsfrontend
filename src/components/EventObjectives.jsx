@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import React from "react";
 // import { LightbulbIcon, WrenchIcon, UsersIcon, icons } from "lucide-react";
 
@@ -40,7 +41,7 @@ function EventObjectives({ language, objectives }) {
               key={index}
               id={index + 1}
               Icon={obj?.imagePath}
-              title={obj?.description[language]}
+              title={DOMPurify.sanitize(obj?.description[language])}
               language={language}
             />
           ))}

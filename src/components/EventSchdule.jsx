@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import DOMPurify from "dompurify";
 
 function EventSchedule({ language, schedule }) {
   let sliderRef = useRef(null);
@@ -68,7 +69,7 @@ function EventSchedule({ language, schedule }) {
                   <div
                     className="overflow-y-auto flex-grow   xl:text-[21px] text-[18px] font-bold xl:leading-[30.24px] leading-[24px] text-center text-[#090909]"
                     dangerouslySetInnerHTML={{
-                      __html: item.description[language],
+                      __html: DOMPurify.sanitize(item?.description[language]),
                     }}
                   />
                 </div>

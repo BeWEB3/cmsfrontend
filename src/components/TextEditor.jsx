@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { FileIcon } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -50,8 +51,8 @@ const TextEditorComponent = ({ language, data }) => {
       return styledHtmlContent.replace(regex, `<${tag} class="${classes}"$1>`);
     };
 
-    return {
-      __html: addClassIfMissing(
+    const sanitizedContent = DOMPurify.sanitize(
+      addClassIfMissing(
         "h1",
         "text-[42px] font-normal leading-[81.06px] text-[#074163] mb-4"
       )
@@ -73,18 +74,20 @@ const TextEditorComponent = ({ language, data }) => {
         )
         .replace(
           /<ul(?![^>]*class=)([^>]*)>/g,
-          `<ul class="
-          ${language === "ar" ? "![list-style:arabic-indic]" : ""} 
-          list-inside mb-4 space-y-1"$1>`
+          `<ul class="${
+            language === "ar" ? "![list-style:arabic-indic]" : ""
+          } list-inside mb-4 space-y-1"$1>`
         )
         .replace(
           /<ol(?![^>]*class=)([^>]*)>/g,
-          `<ol class="
-          ${language === "ar" ? "![list-style:arabic-indic]" : "list-decimal "} 
-          list-inside mb-4 space-y-1"$1>`
+          `<ol class="${
+            language === "ar" ? "![list-style:arabic-indic]" : "list-decimal "
+          } list-inside mb-4 space-y-1"$1>`
         )
-        .replace(/<li(?![^>]*class=)([^>]*)>/g, '<li class="text-gray-600"$1>'),
-    };
+        .replace(/<li(?![^>]*class=)([^>]*)>/g, '<li class="text-gray-600"$1>')
+    );
+
+    return { __html: sanitizedContent };
   };
 
   const getFileName = (url) => {

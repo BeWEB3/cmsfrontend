@@ -1,6 +1,9 @@
+import DOMPurify from "dompurify";
 import React from "react";
 
 function EventBackground({ language, title, description }) {
+  const cleandescription = DOMPurify.sanitize(description?.[language]);
+
   return (
     <div className="max-w-[1293px] mx-auto py-[8rem] ">
       <div className="border-solid relative md:p-12 py-6 px-4 border-[#00567D] border-[2px] rounded-[15px] [box-shadow:0px_0px_11px_2px_#00567D40]   ">
@@ -17,12 +20,10 @@ function EventBackground({ language, title, description }) {
             language === "ar" && "ml-auto"
           }  `}
         />
-
         <div
           className="md:text-[25px] text-[18px] font-bold leading-[32.75px] text-[#024867]  "
-          dangerouslySetInnerHTML={{ __html: description?.[language] }}
+          dangerouslySetInnerHTML={{ __html: cleandescription }}
         />
-
         {/* <p className="md:text-[25px] text-[20px] font-bold leading-[32.75px] text-[#024867]  ">
           The third annual conference of the Arab Competition Network, organized
           by the General Authority for Competition in the Kingdom of Saudi

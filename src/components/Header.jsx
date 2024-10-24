@@ -251,6 +251,8 @@ const Header = ({ language, toggleLanguage }) => {
                         ? "events"
                         : item?.slug === "library"
                         ? "library"
+                        : item?.slug === "workshops"
+                        ? "workshops"
                         : `/page/${item?.slug}`
                       : item?.content?.en
                   }
@@ -298,6 +300,8 @@ const Header = ({ language, toggleLanguage }) => {
                             ? "events"
                             : item?.slug === "library"
                             ? "library"
+                            : item?.slug === "workshops"
+                            ? "workshops"
                             : `/page/${item?.slug}`
                           : item?.content?.en
                       }
@@ -421,6 +425,8 @@ const Header = ({ language, toggleLanguage }) => {
                       ? "events"
                       : item?.slug === "library"
                       ? "library"
+                      : item?.slug === "workshops"
+                      ? "workshops"
                       : `/page/${item?.slug}`
                     : item?.content?.en
                 }
@@ -465,6 +471,8 @@ const Header = ({ language, toggleLanguage }) => {
                           ? "events"
                           : item?.slug === "library"
                           ? "library"
+                          : item?.slug === "workshops"
+                          ? "workshops"
                           : `/page/${item?.slug}`
                         : item?.content?.en
                     }

@@ -56,16 +56,16 @@ const HeroSectionWithVideo = ({ language, HeroVideoData }) => {
     }
   };
 
-  const handleSeek = (e) => {
-    if (videoRef.current && progressRef.current) {
-      const rect = progressRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const percentage = (x / rect.width) * 100;
-      const seekTime = (percentage / 100) * videoRef.current.duration;
-      videoRef.current.currentTime = seekTime;
-      setProgress(percentage);
-    }
-  };
+  // const handleSeek = (e) => {
+  //   if (videoRef.current && progressRef.current) {
+  //     const rect = progressRef.current.getBoundingClientRect();
+  //     const x = e.clientX - rect.left;
+  //     const percentage = (x / rect.width) * 100;
+  //     const seekTime = (percentage / 100) * videoRef.current.duration;
+  //     videoRef.current.currentTime = seekTime;
+  //     setProgress(percentage);
+  //   }
+  // };
 
   return (
     <div className=" relative  ">

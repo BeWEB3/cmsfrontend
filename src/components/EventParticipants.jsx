@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef } from "react";
 import Slider from "react-slick/lib/slider";
@@ -93,6 +94,9 @@ const ParticipantCard = ({
   key,
   imagePath,
 }) => {
+  const cleanqualifications = DOMPurify.sanitize(qualifications[language]);
+  const cleandesignation = DOMPurify.sanitize(designation[language]);
+
   return (
     <div key={key} className=" px-2 my-4  ">
       <div className="bg-white rounded-[34px] shadow-md px-4 py-8 flex flex-col items-center [box-shadow:0px_0px_12px_1px_#7B7B7B40] h-full lg:max-w-[383px] text-center  gap-6  ">
@@ -104,21 +108,21 @@ const ParticipantCard = ({
         </h3>
 
         {/* <p
-        className={`text-[14px] font-bold leading-[14px]  text-[#919397] w-full`}
-      >
-        {title}
-      </p> */}
+          className={`text-[14px] font-bold leading-[14px]  text-[#919397] w-full`}
+        >
+          {title}
+        </p> */}
 
         <div
           className="text-[16px] font-bold leading-[16px]  w-full text-[#00567D]  "
           dangerouslySetInnerHTML={{
-            __html: qualifications[language],
+            __html: cleanqualifications,
           }}
         />
         <div
           className="text-[16px] font-bold leading-[16px]  w-full text-[#00567D]  "
           dangerouslySetInnerHTML={{
-            __html: designation[language],
+            __html: cleandesignation,
           }}
         />
 

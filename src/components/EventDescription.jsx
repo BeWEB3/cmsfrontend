@@ -1,8 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 function EventDescription({ language, title, description, date, images }) {
+  const cleandescription = DOMPurify.sanitize(description?.[language]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imagesLength = useMemo(() => images?.length || 0, [images]);
@@ -101,7 +104,7 @@ function EventDescription({ language, title, description, date, images }) {
             </h2>
             <div
               className="md:text-[22px] text-[16px] font-bold leading-[27.28px] text-[#979797]"
-              dangerouslySetInnerHTML={{ __html: description?.[language] }}
+              dangerouslySetInnerHTML={{ __html: cleandescription }}
             />
           </div>
         </div>
